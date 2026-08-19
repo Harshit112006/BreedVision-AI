@@ -73,29 +73,83 @@ function mockPrediction(seedKey: string): Prediction {
 
 /* -------------------------------------------------------------- real API -- */
 
+/** Shape returned by the FastAPI `POST /api/classify` route. */
+interface ClassifyResponse {
+  animal_id: string;
+  breed_id: string;
+  breed_name: string;
+  confidence: number;
+  band: "confident" | "uncertain" | "low";
+  is_confident: boolean;
+  alternatives: {
+    breed_id: string;
+    breed_name: string;
+    probability: number;
+  }[];
+  model_version: string;
+  inference_ms: number;
+}
+
+/**
+ * The backend uses snake_case throughout; the client maps into the camelCase
+ * domain type. Keeping the adaptation here rather than bending the API means
+ * the backend stays internally consistent and only this one function changes
+ * if the contract moves.
+ */
+function toPrediction(r: ClassifyResponse): Prediction {
+  return {
+    breedId: r.breed_id,
+    breedName: r.breed_name,
+    confidence: r.confidence,
+    alternatives: r.alternatives.map((a) => ({
+      breedId: a.breed_id,
+      breedName: a.breed_name,
+      probability: a.probability,
+    })),
+    isConfident: r.is_confident,
+    modelVersion: r.model_version,
+    inferenceMs: r.inference_ms,
+    // The classifier does not localise the animal; /api/detect does that.
+    boundingBox: null,
+  };
+}
+
 async function realPredictBreed(file: File): Promise<ServiceResult<Prediction>> {
   const body = new FormData();
-  body.append("image", file);
+  body.append("file", file);
 
   try {
-    const res = await fetch(`${API_BASE_URL}/predict`, { method: "POST", body });
+    const res = await fetch(`${API_BASE_URL}/api/classify`, {
+      method: "POST",
+      body,
+    });
 
+    if (res.status === 503) {
+      return {
+        ok: false,
+        error: {
+          code: "server",
+          message:
+            "The breed model is not loaded on the server. Analysis is unavailable right now.",
+        },
+      };
+    }
     if (res.status === 413) {
       return {
         ok: false,
         error: {
           code: "image_too_large",
-          message:
-            "That image is too large to analyse. Try a photo under 12 MB.",
+          message: "That image is too large to analyse. Try a photo under 10 MB.",
         },
       };
     }
-    if (res.status === 415) {
+    if (res.status === 400) {
       return {
         ok: false,
         error: {
-          code: "unsupported_format",
-          message: "That file type isn’t supported. Use a JPG, PNG or WEBP.",
+          code: "invalid_image",
+          message:
+            "That image could not be analysed. It may be damaged — try another photo.",
         },
       };
     }
@@ -109,7 +163,7 @@ async function realPredictBreed(file: File): Promise<ServiceResult<Prediction>> 
         },
       };
     }
-    return { ok: true, data: (await res.json()) as Prediction };
+    return { ok: true, data: toPrediction((await res.json()) as ClassifyResponse) };
   } catch {
     return {
       ok: false,
@@ -148,7 +202,7 @@ export async function getPredictionHistory(): Promise<
   if (USE_MOCKS) return { ok: true, data: [] };
 
   try {
-    const res = await fetch(`${API_BASE_URL}/predictions`);
+    const res = await fetch(`${API_BASE_URL}/api/animals`);
     if (!res.ok) {
       return {
         ok: false,

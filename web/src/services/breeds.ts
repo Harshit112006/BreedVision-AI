@@ -2,56 +2,27 @@
 
 import type { Breed, BreedSummary, ServiceResult } from "@/types";
 
-import { API_BASE_URL, USE_MOCKS } from "./config";
 import { MOCK_BREEDS, MOCK_BREED_SUMMARIES } from "./mock/data";
 
+/**
+ * The breed list is NOT mock data and does not depend on the API.
+ *
+ * It is generated from the model's class mapping, so it is exactly the set of
+ * breeds the classifier can predict. Fetching it from a server would risk the
+ * library advertising breeds the model was never trained on, and would break
+ * the page offline for no benefit. Descriptions and photographs are the parts
+ * that will eventually come from a backend (Phase 16).
+ */
 export async function getBreeds(): Promise<ServiceResult<BreedSummary[]>> {
-  if (USE_MOCKS) return { ok: true, data: MOCK_BREED_SUMMARIES };
-
-  try {
-    const res = await fetch(`${API_BASE_URL}/breeds`);
-    if (!res.ok) {
-      return {
-        ok: false,
-        error: { code: "server", message: "Could not load the breed library." },
-      };
-    }
-    return { ok: true, data: (await res.json()) as BreedSummary[] };
-  } catch {
-    return {
-      ok: false,
-      error: {
-        code: "network",
-        message: "No connection. Breed information is unavailable offline.",
-      },
-    };
-  }
+  return { ok: true, data: MOCK_BREED_SUMMARIES };
 }
 
 export async function getBreed(id: string): Promise<ServiceResult<Breed>> {
-  if (USE_MOCKS) {
-    const found = MOCK_BREEDS.find((b) => b.id === id);
-    return found
-      ? { ok: true, data: found }
-      : {
-          ok: false,
-          error: { code: "unknown", message: "That breed could not be found." },
-        };
-  }
-
-  try {
-    const res = await fetch(`${API_BASE_URL}/breeds/${id}`);
-    if (!res.ok) {
-      return {
+  const found = MOCK_BREEDS.find((b) => b.id === id);
+  return found
+    ? { ok: true, data: found }
+    : {
         ok: false,
-        error: { code: "server", message: "Could not load this breed." },
+        error: { code: "unknown", message: "That breed could not be found." },
       };
-    }
-    return { ok: true, data: (await res.json()) as Breed };
-  } catch {
-    return {
-      ok: false,
-      error: { code: "network", message: "No connection to the breed service." },
-    };
-  }
 }

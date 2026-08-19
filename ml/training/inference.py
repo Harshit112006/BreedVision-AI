@@ -77,10 +77,24 @@ class BreedPredictor:
         self.device = device
 
     @torch.inference_mode()
-    def predict(self, image_path: str | Path, top_k: int = 5) -> PredictionOutput:
-        with Image.open(image_path) as im:
-            img = im.convert("RGB")
-            img.load()
+    def predict(
+        self,
+        image: str | Path | Image.Image,
+        top_k: int = 5,
+    ) -> PredictionOutput:
+        """Predict from a file path or an already-decoded PIL image.
+
+        The in-memory form exists so a web service can classify an uploaded
+        file without writing it to disk first — while still going through this
+        one code path, so the serving transform can never drift from the
+        training transform.
+        """
+        if isinstance(image, Image.Image):
+            img = image.convert("RGB")
+        else:
+            with Image.open(image) as im:
+                img = im.convert("RGB")
+                img.load()
 
         x = self.transform(img).unsqueeze(0).to(self.device)
 

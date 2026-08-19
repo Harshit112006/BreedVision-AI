@@ -13,6 +13,10 @@ try:
 except ImportError:
     YOLO = None
 
+# Breed classification lives in its own module so that loading a second model
+# cannot destabilise the working detection path. It fails soft internally.
+import classifier
+
 BASE = Path(__file__).resolve().parent
 UPLOADS = BASE / "uploads"
 ANNOTATED = BASE / "annotated"
@@ -21,7 +25,9 @@ UPLOADS.mkdir(exist_ok=True); ANNOTATED.mkdir(exist_ok=True)
 DB = BASE / "breedvision.db"
 
 app = FastAPI(title="BreedVision AI Platform API", version="3.0")
-app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173","http://127.0.0.1:5173"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173","http://127.0.0.1:5173",
+                                 # web/ (Next.js) runs on 3000
+                                 "http://localhost:3000","http://127.0.0.1:3000"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 app.mount("/annotated", StaticFiles(directory=ANNOTATED), name="annotated")
 
 CUSTOM_MODEL = MODEL_DIR / "breedvision.pt"
@@ -89,6 +95,8 @@ def load_model():
 @app.on_event("startup")
 def startup():
     init_db(); load_model()
+    st = classifier.load()
+    print(f"[classifier] available={st.available} source={st.source} {st.detail}")
 
 @app.get("/api/health")
 def health():
@@ -97,7 +105,12 @@ def health():
         "animals":"SELECT COUNT(*) FROM animals","farmers":"SELECT COUNT(*) FROM farmers",
         "detections":"SELECT COUNT(*) FROM detections","alerts":"SELECT COUNT(*) FROM alerts WHERE read=0"}.items()}
     con.close()
-    return {"status":"online","model":model_source,"database":"connected",**counts}
+    cls = classifier.status()
+    return {"status":"online","model":model_source,"database":"connected",
+            "classifier":{"available":cls.available,"source":cls.source,
+                          "model_version":cls.model_version,
+                          "num_classes":cls.num_classes,"detail":cls.detail},
+            **counts}
 
 @app.get("/api/dashboard")
 def dashboard():
@@ -221,3 +234,76 @@ async def detect(file: UploadFile = File(...)):
                         ("LOW CONFIDENCE","Low confidence detection",f"{aid} received {d['confidence']}% confidence. Review recommended.","warning",0,datetime.now().isoformat()))
     con.commit(); con.close()
     return {"animal_id":aid,"model":model_source,"confidence":best,"inference_ms":elapsed,"detections":detections,"annotated_url":f"/annotated/{out_name}"}
+
+@app.get("/api/classify/info")
+def classify_info():
+    cls = classifier.status()
+    return {
+        "available": cls.available,
+        "source": cls.source,
+        "detail": cls.detail,
+        "model_version": cls.model_version,
+        "num_classes": cls.num_classes,
+        "task": "breed classification (49 Indian cattle breeds)",
+        "thresholds": {
+            "confident": classifier.PROVISIONAL_CONFIDENT_THRESHOLD,
+            "uncertain": classifier.PROVISIONAL_UNCERTAIN_THRESHOLD,
+            "provisional": True,
+        },
+    }
+
+@app.post("/api/classify")
+async def classify(file: UploadFile = File(...), top_k: int = 5):
+    """Predict the breed of a single animal image.
+
+    Distinct from /api/detect: that route localises animals with YOLO and
+    returns boxes; this one names the breed with the trained classifier. They
+    answer different questions and are deliberately kept separate.
+    """
+    cls = classifier.status()
+    if not cls.available:
+        raise HTTPException(503, f"Breed classifier unavailable. {cls.detail}")
+
+    if not file.content_type or not file.content_type.startswith("image/"):
+        raise HTTPException(400, "Please upload an image file.")
+    raw = await file.read()
+    if len(raw) > 10*1024*1024:
+        raise HTTPException(413, "Image is larger than 10 MB.")
+    try:
+        image = Image.open(io.BytesIO(raw)).convert("RGB")
+    except Exception:
+        raise HTTPException(400, "That image could not be opened. It may be damaged.")
+
+    try:
+        result = classifier.classify(image, top_k=max(1, min(top_k, 10)))
+    except Exception as exc:
+        raise HTTPException(500, f"Classification failed: {type(exc).__name__}")
+
+    # Record it the same way detections are recorded, so the dashboard and
+    # analytics endpoints see classifications too. Species is fixed: the
+    # training set contains cattle only (docs/dataset-report.md section 7.4).
+    aid = f"IND{uuid.uuid4().hex[:8].upper()}"
+    now = datetime.now().isoformat()
+    con = db()
+    con.execute(
+        "INSERT INTO detections(animal_id,species,breed,confidence,location,model,inference_ms,created_at) VALUES(?,?,?,?,?,?,?,?)",
+        (aid, "Cow", result["breed_name"], round(result["confidence"]*100, 1),
+         "Uploaded Image", result["model_version"], result["inference_ms"], now))
+    # Only record a named breed on the animal when the model is actually
+    # confident. Storing a hedged guess as fact is how a maybe becomes a
+    # record nobody questions later.
+    con.execute(
+        "INSERT OR REPLACE INTO animals VALUES(?,?,?,?,?,?,?,?,?,?)",
+        (aid, "Cow", result["breed_name"] if result["is_confident"] else "Unknown",
+         "AI Classifier", "", "", "Uploaded Image", "Active",
+         round(result["confidence"]*100, 1), now))
+    if not result["is_confident"]:
+        con.execute(
+            "INSERT INTO alerts(type,title,message,severity,read,created_at) VALUES(?,?,?,?,?,?)",
+            ("LOW CONFIDENCE", "Breed not confidently identified",
+             f"{aid} returned {round(result['confidence']*100,1)}% for "
+             f"{result['breed_name']}. Recorded as Unknown pending review.",
+             "warning", 0, now))
+    con.commit(); con.close()
+
+    return {"animal_id": aid, **result}
