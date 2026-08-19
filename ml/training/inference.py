@@ -58,9 +58,31 @@ class BreedPredictor:
         self.class_to_idx: dict[str, int] = ckpt["class_to_idx"]
         self.idx_to_class = {v: k for k, v in self.class_to_idx.items()}
         self.image_size: int = ckpt["image_size"]
-        self.model_version = Path(checkpoint).stem
+        self.model_version = ckpt.get("run_id") or Path(checkpoint).stem
 
-        self.backbone, dim = feat_mod.build_backbone(ckpt["backbone_timm_name"])
+        # Two checkpoint kinds are supported:
+        #
+        #   training checkpoint (~265 KB) -- head only. The backbone is the
+        #       public ImageNet one, so timm fetches it. Fine for experiments;
+        #       needs network on first load.
+        #   deployment bundle (~16 MB) -- carries the backbone weights too, so
+        #       the architecture is built with pretrained=False and nothing is
+        #       downloaded. Produced by ml/training/export.py.
+        #
+        # Preferring the bundle when present is what makes offline serving
+        # possible without a second, divergent inference path.
+        self.is_bundle = "backbone_state_dict" in ckpt
+        if self.is_bundle:
+            import timm
+
+            self.backbone = timm.create_model(
+                ckpt["backbone_timm_name"], pretrained=False, num_classes=0
+            )
+            self.backbone.load_state_dict(ckpt["backbone_state_dict"])
+            dim = int(self.backbone.num_features)
+        else:
+            self.backbone, dim = feat_mod.build_backbone(
+                ckpt["backbone_timm_name"])
         self.backbone.eval().to(device)
 
         self.head = nn.Linear(dim, len(self.class_to_idx))
@@ -73,7 +95,14 @@ class BreedPredictor:
         self.feature_mean = ckpt["feature_mean"].to(device)
         self.feature_std = ckpt["feature_std"].to(device)
 
-        self.transform = data_mod.build_transform(self.image_size, mean, std)
+        # A bundle carries the preprocessing it was trained with, which is
+        # more trustworthy than whatever the caller passed in.
+        pre = ckpt.get("preprocess") or {}
+        self.transform = data_mod.build_transform(
+            pre.get("image_size", self.image_size),
+            pre.get("mean", mean),
+            pre.get("std", std),
+        )
         self.device = device
 
     @torch.inference_mode()

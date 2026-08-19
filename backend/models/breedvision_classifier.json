@@ -1,0 +1,23 @@
+{
+  "file": "breedvision_classifier.pt",
+  "run_id": "phase2-frozen-baseline__efficientnet_b0",
+  "bundle_format": 1,
+  "backbone": "efficientnet_b0.ra_in1k",
+  "num_classes": 49,
+  "image_size": 224,
+  "dataset_version": "v1",
+  "size_mb": 15.82,
+  "sha256": "24b343ec26418505cec4c41267d53b527bbe05cc63173f6af340355a8dc3940a",
+  "val_metrics": {
+    "accuracy": 0.6358744394618834,
+    "macro_f1": 0.6048610397172275,
+    "weighted_f1": 0.632389819162687,
+    "macro_precision": 0.6133160708624181,
+    "macro_recall": 0.6080884116690162,
+    "n_samples": 1115,
+    "top1_accuracy": 0.6358744394618834,
+    "top3_accuracy": 0.8278026905829596,
+    "top5_accuracy": 0.9031390134529148
+  },
+  "created_utc": "2026-08-19T10:01:20.423465+00:00"
+}

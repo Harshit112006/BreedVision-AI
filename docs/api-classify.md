@@ -57,17 +57,50 @@ All optional. The first match wins.
 
 | Variable | Meaning |
 |---|---|
-| `BREEDVISION_CHECKPOINT` | full path to a `.pt` checkpoint |
+| `BREEDVISION_CHECKPOINT` | full path to a `.pt` checkpoint or bundle |
 | `BREEDVISION_RUNS_DIR` | directory to search (default `C:/bv-data/runs`) |
 | `BREEDVISION_RUN` | run id to prefer inside that directory |
 
-Failing all of those, it looks for
-`backend/models/breedvision_classifier.pt`, so a deployment can be
-self-contained with no environment variables.
+If none is set, the loader looks for
+`backend/models/breedvision_classifier.pt` first — so a deployment is
+self-contained and offline-capable with no environment variables at all.
 
-> **First start needs network.** The checkpoint stores only the trained head
-> (~265 KB). The frozen backbone weights are fetched by `timm` and cached under
-> `~/.cache/huggingface`. Pre-warm that cache for an offline deployment.
+### Offline deployment — solved
+
+Two checkpoint kinds are supported, and the loader prefers whichever it finds:
+
+| Kind | Size | Network at load |
+|---|---|---|
+| Training checkpoint (`C:/bv-data/runs/*.pt`) | ~265 KB | **yes** — `timm` fetches the backbone |
+| Deployment bundle (`backend/models/breedvision_classifier.pt`) | 15.8 MB | **no** |
+
+The training checkpoints are small because they store only the trained head;
+the frozen backbone is byte-identical to the public ImageNet weights, so there
+is no reason to duplicate it during experimentation. That is the wrong trade for
+a server, where it turns first start into a network dependency.
+
+`ml/training/export.py` produces the bundle — backbone weights, head weights,
+feature statistics, class mapping and preprocessing config in one file. The
+loader then constructs the architecture with `pretrained=False` and loads those
+weights, so nothing is downloaded.
+
+```bash
+python ml/training/export.py --run phase2-frozen-baseline__efficientnet_b0
+```
+
+**Verified**, not assumed: re-run with `HF_HOME` pointed at an empty directory
+and `HF_HUB_OFFLINE=1` / `TRANSFORMERS_OFFLINE=1`, the service loads and returns
+an identical prediction (Amritmahal, 0.4048, same alternatives).
+
+Build once with network; deploy without. The bundle is gitignored as a build
+artifact, but its manifest (`breedvision_classifier.json` — sha256, backbone,
+class count, validation metrics) is committed so a deployed file can be traced
+back to the run that produced it.
+
+> **`/api/detect` still needs network on first start.** `backend/models/`
+> contains no `yolov8n.pt`, so `ultralytics` downloads it. That path is
+> unchanged by this work and would need the same treatment (vendor the weights)
+> to run fully offline.
 
 ---
 
@@ -180,6 +213,8 @@ benefit.
 
 ## Not done
 
+- **`/api/detect` is still network-dependent on first start** and still cannot
+  name breeds.
 - **Not wired into `frontend/`** (the Vite app). Only `web/` calls it.
 - **No detect-then-classify pipeline.** Cropping to the animal before
   classifying may help; it needs measuring first.
