@@ -9,6 +9,7 @@ import { ErrorState } from "@/components/states";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { MockDataNotice } from "@/components/ui/MockDataNotice";
+import { useDateTag, useT } from "@/i18n";
 import { cn } from "@/lib/cn";
 import {
   captureLocation,
@@ -36,14 +37,11 @@ import type { GeoLocation, Prediction, ServiceError } from "@/types";
  */
 type Phase = "idle" | "preparing" | "ready" | "analysing" | "done" | "failed";
 
-const GUIDANCE = [
-  "Show most of the animal, not just the head",
-  "Photograph from the side where possible",
-  "Use daylight and avoid deep shade",
-  "Keep the animal unobstructed",
-];
+const GUIDANCE = [1, 2, 3, 4] as const;
 
 export function IdentifyFlow() {
+  const t = useT();
+  const dateTag = useDateTag();
   const [phase, setPhase] = useState<Phase>("idle");
   const [image, setImage] = useState<PreparedImage | null>(null);
   const [prediction, setPrediction] = useState<Prediction | null>(null);
@@ -173,17 +171,17 @@ export function IdentifyFlow() {
       const r = await syncAll();
       setSyncNote(
         r.ok && r.data.recordsFailed.length === 0
-          ? "Synced to your account."
-          : "Cloud sync didn’t finish. It will retry from the Account page.",
+          ? t("flow.synced")
+          : t("flow.syncFailed"),
       );
     }
-  }, [image, prediction, attachLocation, fp, duplicate]);
+  }, [image, prediction, attachLocation, fp, duplicate, t]);
 
   /* ------------------------------------------------------------- result -- */
   if (phase === "done" && prediction && image) {
     return (
       <div className="flex flex-col gap-8">
-        <MockDataNotice what="This prediction was generated for interface development." />
+        <MockDataNotice what={t("flow.mockWhat")} />
         {duplicate && saveState !== "saved" ? <DuplicateNotice match={duplicate} /> : null}
         {remoteDup && saveState !== "saved" ? <RemoteDuplicateNotice match={remoteDup} /> : null}
 
@@ -194,7 +192,7 @@ export function IdentifyFlow() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={image.previewUrl}
-                alt="The animal you submitted for identification"
+                alt={t("flow.imgAlt")}
                 className="h-full w-full object-cover"
               />
             </div>
@@ -211,10 +209,10 @@ export function IdentifyFlow() {
             <dl className="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-line pt-6">
               <div>
                 <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
-                  Recorded
+                  {t("flow.recorded")}
                 </dt>
                 <dd className="mt-1 text-small text-ink-2">
-                  {new Date().toLocaleString("en-IN", {
+                  {new Date().toLocaleString(dateTag, {
                     dateStyle: "medium",
                     timeStyle: "short",
                   })}
@@ -222,7 +220,7 @@ export function IdentifyFlow() {
               </div>
               <div>
                 <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
-                  Model version
+                  {t("flow.modelVersion")}
                 </dt>
                 <dd className="mt-1 text-small text-ink-2">
                   {prediction.modelVersion}
@@ -230,7 +228,7 @@ export function IdentifyFlow() {
               </div>
               <div>
                 <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
-                  Location
+                  {t("flow.location")}
                 </dt>
                 <dd className="mt-1 text-small text-ink-2">
                   {savedLocation ? (
@@ -242,13 +240,13 @@ export function IdentifyFlow() {
                         : ""}
                     </span>
                   ) : (
-                    <span className="text-ink-3">Not captured</span>
+                    <span className="text-ink-3">{t("flow.notCaptured")}</span>
                   )}
                 </dd>
               </div>
               <div>
                 <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
-                  Analysis time
+                  {t("flow.analysisTime")}
                 </dt>
                 <dd data-numeric="" className="mt-1 text-small text-ink-2">
                   {prediction.inferenceMs
@@ -270,9 +268,9 @@ export function IdentifyFlow() {
                   className="mt-0.5 h-5 w-5 shrink-0 accent-forest"
                 />
                 <span>
-                  Attach my location to this record
+                  {t("flow.attachLoc")}
                   <span className="block text-micro text-ink-3">
-                    Optional. Asked for only when you press Save.
+                    {t("flow.attachLoc.hint")}
                   </span>
                 </span>
               </label>
@@ -281,7 +279,7 @@ export function IdentifyFlow() {
             <div className="flex flex-wrap gap-3">
               {saveState === "saved" ? (
                 <ButtonLink href={`/history/${savedId}`} size="lg">
-                  View saved record
+                  {t("flow.viewSaved")}
                 </ButtonLink>
               ) : (
                 <Button
@@ -289,30 +287,29 @@ export function IdentifyFlow() {
                   onClick={save}
                   disabled={saveState === "saving"}
                 >
-                  {saveState === "saving" ? "Saving…" : "Save record"}
+                  {saveState === "saving" ? t("flow.saving") : t("flow.save")}
                 </Button>
               )}
               <Button size="lg" variant="secondary" onClick={reset}>
-                Identify another
+                {t("flow.another")}
               </Button>
               <ButtonLink
                 href={`/breeds/${prediction.breedId}`}
                 size="lg"
                 variant="secondary"
               >
-                View breed
+                {t("flow.viewBreed")}
               </ButtonLink>
             </div>
 
             <p className="text-micro text-ink-3" role="status" aria-live="polite">
               {saveState === "saved"
-                ? `Saved on this device.${
-                    savedLocation ? " Location attached." : ""
+                ? `${t("flow.savedOnDevice")}${
+                    savedLocation ? ` ${t("flow.locAttached")}` : ""
                   }${locationNote ? ` ${locationNote}` : ""}${syncNote ? ` ${syncNote}` : ""}`
                 : saveState === "failed"
-                  ? (error?.message ??
-                    "This record could not be saved on your device.")
-                  : "Records are stored on this device only. There is no account or server yet, so nothing is uploaded."}
+                  ? (error?.message ?? t("flow.saveFailed"))
+                  : t("flow.localOnly")}
             </p>
           </div>
         </div>
@@ -331,12 +328,12 @@ export function IdentifyFlow() {
           />
           <div role="status" aria-live="polite">
             <p className="text-body font-medium text-ink">
-              {phase === "preparing" ? "Preparing image" : "Analysing image"}
+              {phase === "preparing" ? t("flow.preparing") : t("flow.analysing")}
             </p>
             <p className="mt-1.5 text-small text-ink-3">
               {phase === "preparing"
-                ? "Resizing the photo for upload."
-                : "Comparing the animal against known breeds."}
+                ? t("flow.preparing.body")
+                : t("flow.analysing.body")}
             </p>
           </div>
         </div>
@@ -352,7 +349,7 @@ export function IdentifyFlow() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={image.previewUrl}
-            alt="Preview of the photo you selected"
+            alt={t("flow.previewAlt")}
             className="max-h-[26rem] w-full object-contain"
           />
         </div>
@@ -361,15 +358,15 @@ export function IdentifyFlow() {
           <p className="text-small text-ink-3">
             {image.width} × {image.height} · {formatBytes(image.bytes)}
             {image.bytes < image.originalBytes ? (
-              <> · reduced from {formatBytes(image.originalBytes)}</>
+              <> · {t("flow.reducedFrom", { size: formatBytes(image.originalBytes) })}</>
             ) : null}
           </p>
           <div className="flex flex-wrap gap-3">
             <Button variant="secondary" size="lg" onClick={reset}>
-              Change photo
+              {t("flow.change")}
             </Button>
             <Button size="lg" onClick={analyse}>
-              Analyse breed
+              {t("flow.analyse")}
             </Button>
           </div>
         </div>
@@ -382,10 +379,10 @@ export function IdentifyFlow() {
     <div className="flex flex-col gap-6">
       {phase === "failed" && error ? (
         <ErrorState
-          title="That photo could not be used"
+          title={t("flow.failTitle")}
           description={error.message}
           onRetry={reset}
-          retryLabel="Choose another photo"
+          retryLabel={t("flow.chooseAnother")}
         />
       ) : null}
 
@@ -423,10 +420,10 @@ export function IdentifyFlow() {
         </svg>
 
         <h2 className="mt-4 text-title font-semibold text-ink">
-          Add a photo of the animal
+          {t("flow.drop.title")}
         </h2>
         <p className="mx-auto mt-2 max-w-sm text-body text-ink-2 text-pretty">
-          Take a new photo or choose one from this device.
+          {t("flow.drop.body")}
         </p>
 
         <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -435,7 +432,7 @@ export function IdentifyFlow() {
             onClick={() => cameraInputRef.current?.click()}
             className="w-full sm:w-auto"
           >
-            Take photo
+            {t("flow.takePhoto")}
           </Button>
           <Button
             size="lg"
@@ -443,13 +440,12 @@ export function IdentifyFlow() {
             onClick={() => fileInputRef.current?.click()}
             className="w-full sm:w-auto"
           >
-            Upload image
+            {t("flow.upload")}
           </Button>
         </div>
 
         <p className="mt-5 text-micro text-ink-3">
-          JPG, PNG or WEBP · up to{" "}
-          {IMAGE_LIMITS.maxBytes / (1024 * 1024)} MB
+          {t("flow.limits", { mb: IMAGE_LIMITS.maxBytes / (1024 * 1024) })}
         </p>
 
         <input
@@ -479,7 +475,7 @@ export function IdentifyFlow() {
 
       <Card variant="sunk">
         <h2 className="text-small font-semibold text-ink">
-          What makes a good photo
+          {t("flow.guide.title")}
         </h2>
         <ul className="mt-3 grid gap-2 text-small text-ink-2 sm:grid-cols-2">
           {GUIDANCE.map((g) => (
@@ -488,7 +484,7 @@ export function IdentifyFlow() {
                 aria-hidden="true"
                 className="mt-2 h-1 w-1 shrink-0 rounded-full bg-ink-4"
               />
-              {g}
+              {t(`flow.guide.${g}` as const)}
             </li>
           ))}
         </ul>

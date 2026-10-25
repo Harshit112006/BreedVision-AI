@@ -7,25 +7,28 @@ import { useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
+import { LanguageSwitcher } from "@/components/navigation/LanguageSwitcher";
+import { useT, type MessageKey } from "@/i18n";
 import { cn } from "@/lib/cn";
 
 interface NavItem {
   href: string;
-  label: string;
+  label: MessageKey;
 }
 
 // Only routes that exist. "How it works" lives as a section on the home page
 // rather than a separate route, and there is no auth yet — linking to pages
 // that 404 is worse than not offering them.
 const PUBLIC_NAV: NavItem[] = [
-  { href: "/breeds", label: "Breeds" },
-  { href: "/history", label: "History" },
-  { href: "/prices", label: "Prices" },
-  { href: "/account", label: "Account" },
+  { href: "/breeds", label: "nav.breeds" },
+  { href: "/history", label: "nav.history" },
+  { href: "/prices", label: "nav.prices" },
+  { href: "/account", label: "nav.account" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const t = useT();
   const [open, setOpen] = useState(false);
 
   // Close the mobile menu on navigation, otherwise it hangs open over the new
@@ -44,13 +47,13 @@ export function SiteHeader() {
           <Link
             href="/"
             className="text-forest-deep"
-            aria-label="BreedVision — home"
+            aria-label={t("nav.home")}
           >
             <Logo />
           </Link>
 
           <nav
-            aria-label="Primary"
+            aria-label={t("nav.primary")}
             className="hidden items-center gap-1 md:flex"
           >
             {PUBLIC_NAV.map((item) => {
@@ -68,15 +71,16 @@ export function SiteHeader() {
                       : "text-ink-3 hover:bg-paper-sunk hover:text-ink",
                   )}
                 >
-                  {item.label}
+                  {t(item.label)}
                 </Link>
               );
             })}
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
+            <LanguageSwitcher />
             <ButtonLink href="/identify" size="sm">
-              Identify an animal
+              {t("nav.identify")}
             </ButtonLink>
           </div>
 
@@ -88,7 +92,7 @@ export function SiteHeader() {
             className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-ink-2 md:hidden"
           >
             <span className="sr-only">
-              {open ? "Close menu" : "Open menu"}
+              {open ? t("nav.closeMenu") : t("nav.openMenu")}
             </span>
             <svg
               viewBox="0 0 20 20"
@@ -112,18 +116,19 @@ export function SiteHeader() {
       {open ? (
         <div id="mobile-nav" className="border-t border-line bg-paper md:hidden">
           <Container>
-            <nav aria-label="Primary" className="flex flex-col py-3">
+            <nav aria-label={t("nav.primary")} className="flex flex-col py-3">
               {PUBLIC_NAV.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   className="rounded-md px-2 py-3 text-body font-medium text-ink-2 hover:bg-paper-sunk hover:text-ink"
                 >
-                  {item.label}
+                  {t(item.label)}
                 </Link>
               ))}
+              <LanguageSwitcher className="mt-2" />
               <ButtonLink href="/identify" size="lg" block className="mt-3 mb-2">
-                Identify an animal
+                {t("nav.identify")}
               </ButtonLink>
             </nav>
           </Container>

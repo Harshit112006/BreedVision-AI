@@ -1,4 +1,7 @@
+"use client";
+
 import { ConfidenceIndicator } from "@/components/prediction/ConfidenceIndicator";
+import { T } from "@/i18n";
 import { cn } from "@/lib/cn";
 
 /**
@@ -36,7 +39,7 @@ function PhotoPlaceholder({ className }: { className?: string }) {
         <path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.1-1.8A1.5 1.5 0 0 1 9.1 4.5h5.8a1.5 1.5 0 0 1 1.3.7L17.3 7h2.2A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" />
         <circle cx="12" cy="12.8" r="3.4" />
       </svg>
-      <span className="text-micro text-ink-3">Animal photo</span>
+      <span className="text-micro text-ink-3"><T k="visual.photo" /></span>
     </div>
   );
 }
@@ -53,7 +56,7 @@ export function ProductVisual({ className }: { className?: string }) {
 
       <div className="p-5 sm:p-6">
         <p className="text-micro font-semibold uppercase tracking-[0.14em] text-ink-3">
-          Predicted breed
+          <T k="pred.predicted" />
         </p>
         <p className="mt-1.5 text-section font-semibold tracking-tight text-ink">
           Gir
@@ -65,7 +68,7 @@ export function ProductVisual({ className }: { className?: string }) {
 
         <div className="mt-5 border-t border-line pt-4">
           <p className="text-micro font-semibold text-ink-2">
-            Other possibilities
+            <T k="pred.other" />
           </p>
           <ul className="mt-2 flex flex-col gap-1.5">
             {[

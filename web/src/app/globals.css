@@ -66,7 +66,8 @@
   --color-clay-soft: #f8eae5;
 
   /* --- typography --------------------------------------------------------- */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), var(--font-devanagari), var(--font-tamil),
+    var(--font-telugu), ui-sans-serif, system-ui, sans-serif;
 
   --text-display: 3.25rem;       /* 52px, fluid override below */
   --text-display--line-height: 1.04;

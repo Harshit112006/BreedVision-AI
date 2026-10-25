@@ -1,5 +1,8 @@
+"use client";
+
+import { useT } from "@/i18n";
 import { cn } from "@/lib/cn";
-import { BAND_PRESENTATION, bandFor, formatConfidence } from "@/lib/confidence";
+import { bandFor, formatConfidence } from "@/lib/confidence";
 import type { ConfidenceBand } from "@/types";
 
 const SEGMENTS = 10;
@@ -41,6 +44,7 @@ export function ConfidenceIndicator({
   size = "md",
   className,
 }: ConfidenceIndicatorProps) {
+  const t = useT();
   const band = bandFor(value);
   const style = BAND_STYLE[band];
   const filled = Math.max(1, Math.round(value * SEGMENTS));
@@ -60,7 +64,7 @@ export function ConfidenceIndicator({
             aria-hidden="true"
             className={cn("h-1.5 w-1.5 rounded-full", style.dot)}
           />
-          {BAND_PRESENTATION[band].label}
+          {t(`band.${band}.label` as const)}
         </span>
         {showValue ? (
           <span
@@ -80,7 +84,7 @@ export function ConfidenceIndicator({
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Number((value * 100).toFixed(1))}
-        aria-valuetext={`${percent} — ${BAND_PRESENTATION[band].label}`}
+        aria-valuetext={`${percent} — ${t(`band.${band}.label` as const)}`}
         className={cn(
           "flex gap-[3px]",
           size === "sm" ? "h-1.5" : "h-2",

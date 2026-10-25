@@ -1,3 +1,6 @@
+"use client";
+
+import { useT } from "@/i18n";
 import { USE_MOCKS } from "@/services/config";
 import { cn } from "@/lib/cn";
 
@@ -15,6 +18,7 @@ interface MockDataNoticeProps {
  * Renders nothing once NEXT_PUBLIC_USE_MOCKS=false.
  */
 export function MockDataNotice({ what, className }: MockDataNoticeProps) {
+  const t = useT();
   if (!USE_MOCKS) return null;
   return (
     <div
@@ -36,9 +40,8 @@ export function MockDataNotice({ what, className }: MockDataNoticeProps) {
         <circle cx="8" cy="11" r="0.75" fill="currentColor" stroke="none" />
       </svg>
       <p className="text-small text-ink-2">
-        <strong className="font-semibold text-terracotta">Demonstration data.</strong>{" "}
-        {what} No breed model has been trained yet, so nothing here is a real
-        identification.
+        <strong className="font-semibold text-terracotta">{t("mock.label")}</strong>{" "}
+        {what} {t("mock.tail")}
       </p>
     </div>
   );

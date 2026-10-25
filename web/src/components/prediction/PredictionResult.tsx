@@ -1,14 +1,13 @@
+"use client";
+
 import Link from "next/link";
 
 import { ConfidenceIndicator } from "@/components/prediction/ConfidenceIndicator";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { useT } from "@/i18n";
 import { cn } from "@/lib/cn";
-import {
-  BAND_PRESENTATION,
-  bandForPrediction,
-  formatConfidence,
-} from "@/lib/confidence";
+import { bandForPrediction, formatConfidence } from "@/lib/confidence";
 import type { Prediction } from "@/types";
 
 interface CandidateRowProps {
@@ -74,11 +73,11 @@ export function PredictionResult({
   headingLevel = "h2",
   className,
 }: PredictionResultProps) {
+  const t = useT();
   const Heading = headingLevel;
   // Nested headings follow the parent so the outline never skips a level.
   const SubHeading = headingLevel === "h1" ? "h2" : "h3";
   const band = bandForPrediction(prediction);
-  const presentation = BAND_PRESENTATION[band];
 
   // Uncertain: the top-1 belongs in the candidate list, not in the headline.
   const candidates =
@@ -98,7 +97,7 @@ export function PredictionResult({
       {band === "confident" ? (
         <header>
           <p className="text-micro font-semibold uppercase tracking-[0.14em] text-ink-3">
-            Predicted breed
+            {t("pred.predicted")}
           </p>
           {/* Visual size comes from the type token and is independent of the
               heading level, so the outline stays correct on every page. */}
@@ -112,15 +111,15 @@ export function PredictionResult({
       ) : (
         <header>
           <Badge tone={band === "uncertain" ? "amber" : "clay"}>
-            {presentation.label}
+            {t(`band.${band}.label` as const)}
           </Badge>
           <Heading className="mt-3 text-title font-semibold tracking-tight text-balance text-ink">
             {band === "uncertain"
-              ? "This animal could not be matched to one breed"
-              : "The breed could not be determined"}
+              ? t("pred.uncertainTitle")
+              : t("pred.lowTitle")}
           </Heading>
           <p className="mt-3 max-w-md text-body text-ink-2 text-pretty">
-            {presentation.description}
+            {t(`band.${band}.desc` as const)}
           </p>
         </header>
       )}
@@ -128,11 +127,11 @@ export function PredictionResult({
       {band !== "low" ? (
         <Card variant={band === "confident" ? "outlined" : "raised"}>
           <SubHeading className="text-small font-semibold text-ink">
-            {band === "confident" ? "Other possibilities" : "Possible matches"}
+            {band === "confident" ? t("pred.other") : t("pred.possible")}
           </SubHeading>
           {band !== "confident" ? (
             <p className="mt-1 text-small text-ink-3">
-              Listed most to least likely. None is confirmed.
+              {t("pred.noneConfirmed")}
             </p>
           ) : null}
           <ul className="mt-2 divide-y divide-line">
@@ -152,13 +151,13 @@ export function PredictionResult({
       {band === "low" ? (
         <Card variant="sunk">
           <SubHeading className="text-small font-semibold text-ink">
-            What usually helps
+            {t("pred.helps.title")}
           </SubHeading>
           <ul className="mt-3 flex flex-col gap-2 text-small text-ink-2">
-            <li>Stand back so most of the animal is in frame.</li>
-            <li>Photograph from the side rather than head-on.</li>
-            <li>Avoid strong backlight and deep shade.</li>
-            <li>Make sure the animal is not blocked by fencing or people.</li>
+            <li>{t("pred.helps.1")}</li>
+            <li>{t("pred.helps.2")}</li>
+            <li>{t("pred.helps.3")}</li>
+            <li>{t("pred.helps.4")}</li>
           </ul>
         </Card>
       ) : null}

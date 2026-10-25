@@ -70,7 +70,7 @@ export function Section({
 }
 
 interface SectionHeadingProps {
-  eyebrow?: string;
+  eyebrow?: ReactNode;
   title: ReactNode;
   description?: ReactNode;
   /** Editorial layouts read better left-aligned; centre only for short bands. */

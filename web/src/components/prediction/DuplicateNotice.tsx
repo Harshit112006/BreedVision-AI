@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 
+import { useDateTag, useT } from "@/i18n";
 import type { RemoteDuplicate } from "@/services/cloud";
 import type { DuplicateMatch } from "@/services/duplicates";
 
@@ -8,7 +11,9 @@ import type { DuplicateMatch } from "@/services/duplicates";
  * animals, so the wording never claims two photos show the same animal.
  */
 export function DuplicateNotice({ match }: { match: DuplicateMatch }) {
-  const when = new Date(match.createdAt).toLocaleDateString("en-IN", {
+  const t = useT();
+  const dateTag = useDateTag();
+  const when = new Date(match.createdAt).toLocaleDateString(dateTag, {
     dateStyle: "medium",
   });
   const same = match.tier === "same";
@@ -20,22 +25,16 @@ export function DuplicateNotice({ match }: { match: DuplicateMatch }) {
     >
       <p className="text-small text-ink-2">
         <strong className="font-semibold text-amber">
-          {same ? "This looks like the same photo" : "This photo is very similar"}
+          {same ? t("dup.same", { date: when }) : t("dup.similar", { date: when })}
         </strong>{" "}
-        {same ? "as" : "to"} one you saved on {when}.{" "}
         <Link
           href={`/history/${match.recordId}`}
           className="font-medium text-forest underline underline-offset-2"
         >
-          View that record
+          {t("dup.view")}
         </Link>
-        .
       </p>
-      <p className="mt-1 text-micro text-ink-3">
-        This compares pictures only. It cannot tell whether two different photos
-        show the same animal, and it can miss heavily cropped or rotated copies.
-        You can still save this record.
-      </p>
+      <p className="mt-1 text-micro text-ink-3">{t("dup.caveat")}</p>
     </div>
   );
 }
@@ -46,20 +45,17 @@ export function DuplicateNotice({ match }: { match: DuplicateMatch }) {
  * caller's own, never whose or when.
  */
 export function RemoteDuplicateNotice({ match }: { match: RemoteDuplicate }) {
+  const t = useT();
   const same = match.tier === "same";
   return (
     <div role="status" className="rounded-md border border-amber/30 bg-amber-soft px-4 py-3">
       <p className="text-small text-ink-2">
         <strong className="font-semibold text-amber">
-          {same ? "This looks like a photo already recorded" : "A very similar photo is already recorded"}
+          {same ? t("dup.remote.same") : t("dup.remote.similar")}
         </strong>{" "}
-        {match.isOwn ? "on your account." : "in the shared system."}
+        {match.isOwn ? t("dup.remote.own") : t("dup.remote.shared")}
       </p>
-      <p className="mt-1 text-micro text-ink-3">
-        This compares pictures only. It cannot tell whether two different photos
-        show the same animal, and it can miss cropped or rotated copies. You can
-        still save this record.
-      </p>
+      <p className="mt-1 text-micro text-ink-3">{t("dup.remote.caveat")}</p>
     </div>
   );
 }

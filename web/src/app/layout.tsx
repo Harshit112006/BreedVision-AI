@@ -1,11 +1,31 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Noto_Sans_Devanagari, Noto_Sans_Tamil, Noto_Sans_Telugu } from "next/font/google";
+
+import { LocaleSync } from "@/i18n";
 
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// Inter has no Devanagari, Tamil or Telugu glyphs. These load by unicode range,
+// so a visitor reading English never downloads them.
+const devanagari = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  variable: "--font-devanagari",
+  display: "swap",
+});
+const tamil = Noto_Sans_Tamil({
+  subsets: ["tamil"],
+  variable: "--font-tamil",
+  display: "swap",
+});
+const telugu = Noto_Sans_Telugu({
+  subsets: ["telugu"],
+  variable: "--font-telugu",
   display: "swap",
 });
 
@@ -28,7 +48,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${devanagari.variable} ${tamil.variable} ${telugu.variable}`}>
       <body className="min-h-dvh antialiased">
         <a
           href="#main"
@@ -36,7 +56,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        {children}
+        <LocaleSync>{children}</LocaleSync>
       </body>
     </html>
   );
