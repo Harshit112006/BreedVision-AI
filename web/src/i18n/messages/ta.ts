@@ -239,4 +239,10 @@ export const ta: Partial<Record<MessageKey, string>> = {
   "rec.delete": "பதிவை நீக்கு",
   "breed.noPhoto": "இன்னும் படம் இல்லை",
   "breed.noPhotoFor": "{name} க்கான படம் கிடைக்கவில்லை",
+  "notcattle.badge": "மாடு அல்லவா?",
+  "notcattle.title": "இது மாட்டின் படம் போலத் தெரியவில்லை",
+  "notcattle.body": "BreedVision 49 இந்திய மாட்டு இனங்களை மட்டுமே அறியும்; எனவே இந்தப் படத்துக்கு இனத்தைச் சொல்லாது. விலங்கு பசு அல்லது காளை என்பதையும், அதன் பெரும்பகுதி படத்தில் உள்ளதையும் சரிபாருங்கள்.",
+  "notcattle.short": "மாடு போலத் தெரியவில்லை",
+  "model.title": "மாதிரி விவரங்கள்",
+  "hist.export": "CSV ஏற்றுமதி",
 };

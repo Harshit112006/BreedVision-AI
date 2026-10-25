@@ -10,6 +10,7 @@ import { Field, Select } from "@/components/ui/Field";
 import { useDateTag, useT } from "@/i18n";
 import { cn } from "@/lib/cn";
 import { bandFor, formatConfidence } from "@/lib/confidence";
+import { recordsToCsv } from "@/lib/csv";
 import { listRecords, type LocalRecord } from "@/services/records";
 import type { ConfidenceBand } from "@/types";
 
@@ -43,7 +44,8 @@ function RecordCard({ record }: { record: LocalRecord }) {
   const t = useT();
   const dateTag = useDateTag();
   const band = bandFor(record.prediction.confidence);
-  const asserts = band === "confident";
+  const notCattle = record.prediction.looksLikeCattle === false;
+  const asserts = band === "confident" && !notCattle;
 
   return (
     <li>
@@ -70,7 +72,9 @@ function RecordCard({ record }: { record: LocalRecord }) {
             >
               {asserts
                 ? record.prediction.breedName
-                : t(`band.${band}.label` as const)}
+                : notCattle
+                  ? t("notcattle.short")
+                  : t(`band.${band}.label` as const)}
             </span>
             {asserts ? (
               <span
@@ -90,6 +94,8 @@ function RecordCard({ record }: { record: LocalRecord }) {
               <Badge tone={BAND_TONE[band]}>
                 {t(`band.${band}.label` as const)}
               </Badge>
+            ) : notCattle ? (
+              <span className="text-small text-ink-3">{t("hist.noUsable")}</span>
             ) : band === "uncertain" ? (
               <span className="text-small text-ink-3">
                 {t("hist.candidates", { n: record.prediction.alternatives.length + 1 })}
@@ -185,6 +191,22 @@ export function HistoryList() {
   const filtersActive =
     dateFilter !== "all" || breedFilter !== "all" || bandFilter !== "all";
 
+  // Exports exactly the records currently shown, so a filter is also a way to
+  // choose what goes into the file.
+  const exportCsv = () => {
+    const blob = new Blob([recordsToCsv(results, bandFor)], {
+      type: "text/csv;charset=utf-8",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `breedvision-records-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
+
   const clear = () => {
     setDateFilter("all");
     setBreedFilter("all");
@@ -261,11 +283,21 @@ export function HistoryList() {
                 })}
           </span>
         </p>
-        {filtersActive ? (
-          <Button variant="quiet" size="sm" onClick={clear}>
-            {t("common.clear")}
+        <div className="flex flex-wrap items-center gap-2">
+          {filtersActive ? (
+            <Button variant="quiet" size="sm" onClick={clear}>
+              {t("common.clear")}
+            </Button>
+          ) : null}
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={exportCsv}
+            disabled={results.length === 0}
+          >
+            {t("hist.export")}
           </Button>
-        ) : null}
+        </div>
       </div>
 
       {results.length === 0 ? (

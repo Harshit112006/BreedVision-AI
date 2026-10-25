@@ -91,8 +91,22 @@ def export(run_id: str, cfg: dict, out: Path) -> dict:
                 "basis": "validation, 5-fold cross-fitted; not tuned on the test split",
             }
 
+    # Optional "does this look like cattle?" detector (ml/training/ood.py).
+    ood = None
+    ood_path = runs_dir / f"{run_id}__ood.npz"
+    if ood_path.is_file():
+        import numpy as np
+
+        z = np.load(ood_path)
+        ood = {
+            "class_means": torch.from_numpy(z["class_means"]),
+            "precision": torch.from_numpy(z["precision"]),
+            "threshold": float(z["threshold"]),
+        }
+
     pre = cfg["preprocess"]
     bundle = {
+        "ood": ood,
         "temperature": temperature,
         "thresholds": thresholds,
         "bundle_format": BUNDLE_FORMAT,

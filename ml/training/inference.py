@@ -44,6 +44,10 @@ class PredictionOutput:
     candidates: list[Candidate]
     inference_ms: float
     model_version: str
+    # Feature-space distance to the nearest breed; None if the bundle has no
+    # detector. `looks_like_cattle` is False when it exceeds the cut-off.
+    ood_score: float | None = None
+    looks_like_cattle: bool | None = None
 
 
 class BreedPredictor:
@@ -75,6 +79,7 @@ class BreedPredictor:
         # training checkpoint has none, which means T = 1.0 and no thresholds.
         self.temperature = float(ckpt.get("temperature", 1.0))
         self.thresholds = ckpt.get("thresholds")
+        self.ood = ckpt.get("ood")
 
         self.is_bundle = "backbone_state_dict" in ckpt
         if self.is_bundle:
@@ -136,6 +141,15 @@ class BreedPredictor:
         feats = self.backbone(x)
         logits = self.head((feats - self.feature_mean) / self.feature_std)
         probs = torch.softmax(logits / self.temperature, dim=1)[0]
+
+        ood_score = None
+        looks_like_cattle = None
+        if self.ood is not None:
+            # Smallest squared Mahalanobis distance to any breed mean.
+            diff = feats[0].unsqueeze(0) - self.ood["class_means"]
+            d2 = ((diff @ self.ood["precision"]) * diff).sum(1)
+            ood_score = float(d2.min())
+            looks_like_cattle = ood_score <= self.ood["threshold"]
         elapsed_ms = (time.perf_counter() - t0) * 1000.0
 
         k = min(top_k, probs.numel())
@@ -149,6 +163,8 @@ class BreedPredictor:
             candidates=candidates,
             inference_ms=elapsed_ms,
             model_version=self.model_version,
+            ood_score=ood_score,
+            looks_like_cattle=looks_like_cattle,
         )
 
 

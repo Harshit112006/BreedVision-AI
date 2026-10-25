@@ -56,6 +56,10 @@ export interface Prediction {
   alternatives: PredictionAlternative[];
   /** Backend's own verdict; the client re-derives a band and should agree. */
   isConfident: boolean;
+  /** False when the photo is unlike the cattle photos the model was fitted on.
+   *  null/undefined when the model has no such check. When false, no breed is
+   *  stated, whatever the confidence number says. */
+  looksLikeCattle?: boolean | null;
   modelVersion: string;
   /** Milliseconds of server-side inference, when reported. */
   inferenceMs: number | null;

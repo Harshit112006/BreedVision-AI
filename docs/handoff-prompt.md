@@ -1,3 +1,5 @@
+> **Status (26 Oct 2026):** steps 1-5 below were completed in a later session (real-model demo, fine-tuned model deployed and tested, stale text fixed, non-cattle check, Model facts page, CSV export, runbook and demo script). Still open: translating Prices/Account, opening the PR, native review of translations.
+
 You are taking over a nearly finished university project. I must demo it to my professor TOMORROW (26 Oct 2026), so prioritise a working, honest demo over new features. Work directly in the repo and verify everything by running it.
 
 PROJECT

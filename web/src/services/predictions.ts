@@ -82,6 +82,7 @@ interface ClassifyResponse {
   confidence: number;
   band: "confident" | "uncertain" | "low";
   is_confident: boolean;
+  looks_like_cattle?: boolean | null;
   alternatives: {
     breed_id: string;
     breed_name: string;
@@ -108,6 +109,7 @@ function toPrediction(r: ClassifyResponse): Prediction {
       probability: a.probability,
     })),
     isConfident: r.is_confident,
+    looksLikeCattle: r.looks_like_cattle ?? null,
     modelVersion: r.model_version,
     inferenceMs: r.inference_ms,
     // The classifier does not localise the animal; /api/detect does that.

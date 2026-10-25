@@ -58,6 +58,25 @@ which breed is asked about; it is not a generic "where is the animal" detector.
 **Centre bias.** The central 3 x 3 cells hold 25% of the average evidence
 (18% if uniform). Mild.
 
+### Re-run on the fine-tuned model (the one now deployed)
+
+The tables above were measured on the earlier frozen-backbone model. The same
+script (`ml/scripts/eval_explainability.py`, same 300 validation photos) was re-run
+on the fine-tuned bundle on 26 Oct 2026, and the heat-map is still informative:
+
+| Cells blanked (of 49) | By the map | Fixed centre blob | Random cells | Least important |
+|---|---|---|---|---|
+| 5 (10%) | **0.185** | 0.052 | 0.022 | -0.052 |
+| 10 (20%) | **0.298** | 0.163 | 0.054 | -0.082 |
+| 15 (31%) | **0.378** | 0.236 | 0.093 | -0.084 |
+
+The per-image map hurts more than random cells in 82-90% of images and more than
+the fixed centre prior in 72-76%. Class sensitivity is higher still than before
+(mean rank correlation 0.14, never above 0.9), and the central 3 x 3 cells hold
+24% of the evidence (18% if uniform). The captioned-thumbnail and centre-crop
+findings below were made on the earlier model; the crop behaviour is unchanged
+(same preprocessing), and the text-shortcut question remains open.
+
 ## Findings from looking at real examples
 
 Numbers about a picture are no substitute for the picture. Two things only

@@ -68,3 +68,40 @@ def logits_for_checkpoint(run: str, ckpt: dict, cfg: dict, split: str,
         relpaths=np.array(list(ds.frame["relpath"]), dtype=object),
     )
     return logits, labels
+
+
+def features_for_checkpoint(run: str, ckpt: dict, cfg: dict, split: str,
+                            workers: int = 4):
+    """Penultimate (pooled backbone) features for `split`, cached on disk.
+
+    Used by the out-of-distribution check, which needs the feature space the
+    classifier head reads, not its output.
+    """
+    import timm
+
+    cache = Path(cfg["paths"]["features"]) / f"{run}_{split}_feats.npz"
+    if cache.is_file():
+        d = np.load(cache, allow_pickle=True)
+        return d["features"], d["labels"]
+
+    class_to_idx = ckpt["class_to_idx"]
+    pre = cfg["preprocess"]
+    backbone = timm.create_model(ckpt["backbone_timm_name"], pretrained=False,
+                                 num_classes=0)
+    backbone.load_state_dict(ckpt["backbone_state_dict"])
+    backbone.eval()
+    ds = data_mod.BreedImageDataset(
+        data_mod.load_split(cfg["data"]["splits_parquet"], split),
+        cfg["data"]["image_root"], class_to_idx,
+        data_mod.build_transform(pre["image_size"], pre["mean"], pre["std"]),
+    )
+    loader = DataLoader(ds, batch_size=64, num_workers=workers)
+    feats, labs = [], []
+    with torch.inference_mode():
+        for x, y in loader:
+            feats.append(backbone(x))
+            labs.append(y)
+    features = torch.cat(feats).numpy()
+    labels = torch.cat(labs).numpy()
+    np.savez_compressed(cache, features=features, labels=labels)
+    return features, labels

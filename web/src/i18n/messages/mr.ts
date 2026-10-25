@@ -239,4 +239,10 @@ export const mr: Partial<Record<MessageKey, string>> = {
   "rec.delete": "नोंद हटवा",
   "breed.noPhoto": "अद्याप फोटो नाही",
   "breed.noPhotoFor": "{name} चा फोटो उपलब्ध नाही",
+  "notcattle.badge": "गोवंश नाही?",
+  "notcattle.title": "हा गोवंशाचा फोटो वाटत नाही",
+  "notcattle.body": "BreedVision फक्त 49 भारतीय गोवंश जाती ओळखतो, म्हणून या फोटोसाठी कोणतीही जात सांगणार नाही. जनावर गाय किंवा बैल आहे आणि त्याचा बहुतेक भाग फ्रेममध्ये आहे ते तपासा.",
+  "notcattle.short": "गोवंशासारखा वाटत नाही",
+  "model.title": "मॉडेलची माहिती",
+  "hist.export": "CSV निर्यात करा",
 };

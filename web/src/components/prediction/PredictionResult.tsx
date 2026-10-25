@@ -78,6 +78,7 @@ export function PredictionResult({
   // Nested headings follow the parent so the outline never skips a level.
   const SubHeading = headingLevel === "h1" ? "h2" : "h3";
   const band = bandForPrediction(prediction);
+  const notCattle = prediction.looksLikeCattle === false;
 
   // Uncertain: the top-1 belongs in the candidate list, not in the headline.
   const candidates =
@@ -91,6 +92,35 @@ export function PredictionResult({
           },
           ...prediction.alternatives,
         ];
+
+  if (notCattle) {
+    // The photo is unlike any cattle photo the model was fitted on, so the
+    // top breed would be a guess about something that is not in its world.
+    return (
+      <div className={cn("flex flex-col gap-6", className)}>
+        <header>
+          <Badge tone="clay">{t("notcattle.badge")}</Badge>
+          <Heading className="mt-3 text-title font-semibold tracking-tight text-balance text-ink">
+            {t("notcattle.title")}
+          </Heading>
+          <p className="mt-3 max-w-md text-body text-ink-2 text-pretty">
+            {t("notcattle.body")}
+          </p>
+        </header>
+        <Card variant="sunk">
+          <SubHeading className="text-small font-semibold text-ink">
+            {t("pred.helps.title")}
+          </SubHeading>
+          <ul className="mt-3 flex flex-col gap-2 text-small text-ink-2">
+            <li>{t("pred.helps.1")}</li>
+            <li>{t("pred.helps.2")}</li>
+            <li>{t("pred.helps.3")}</li>
+            <li>{t("pred.helps.4")}</li>
+          </ul>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)}>

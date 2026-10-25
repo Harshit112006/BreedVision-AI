@@ -12,6 +12,7 @@ const LINKS: { href: string; label: MessageKey }[] = [
   { href: "/identify", label: "nav.identify" },
   { href: "/breeds", label: "footer.breedLibrary" },
   { href: "/history", label: "nav.history" },
+  { href: "/model", label: "model.title" },
 ];
 
 export function SiteFooter() {

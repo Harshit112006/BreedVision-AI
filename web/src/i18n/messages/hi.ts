@@ -239,4 +239,10 @@ export const hi: Partial<Record<MessageKey, string>> = {
   "rec.delete": "रिकॉर्ड हटाएँ",
   "breed.noPhoto": "अभी कोई फ़ोटो नहीं",
   "breed.noPhotoFor": "{name} की कोई फ़ोटो उपलब्ध नहीं",
+  "notcattle.badge": "गोवंश नहीं?",
+  "notcattle.title": "यह गोवंश की फ़ोटो नहीं लगती",
+  "notcattle.body": "BreedVision केवल 49 भारतीय गोवंश नस्लों को जानता है, इसलिए इस फ़ोटो के लिए कोई नस्ल नहीं बताएगा। जाँचें कि पशु गाय या बैल है और उसका अधिकतर हिस्सा फ़्रेम में है।",
+  "notcattle.short": "गोवंश जैसा नहीं लगता",
+  "model.title": "मॉडल की जानकारी",
+  "hist.export": "CSV निर्यात करें",
 };
