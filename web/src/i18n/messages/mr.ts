@@ -6,7 +6,7 @@ export const mr: Partial<Record<MessageKey, string>> = {
   "nav.primary": "मुख्य मेनू",
   "nav.breeds": "जाती",
   "nav.history": "इतिहास",
-  "nav.prices": "किमती",
+  "nav.prices": "जनावराची किंमत",
   "nav.account": "खाते",
   "nav.identify": "जनावराची ओळख करा",
   "nav.openMenu": "मेनू उघडा",
@@ -245,4 +245,7 @@ export const mr: Partial<Record<MessageKey, string>> = {
   "notcattle.short": "गोवंशासारखा वाटत नाही",
   "model.title": "मॉडेलची माहिती",
   "hist.export": "CSV निर्यात करा",
+  "value.title": "तुमच्या जनावराची किंमत जाणून घ्या",
+  "value.intro": "रुपयांमध्ये अंदाजे मूल्य, जातीच्या नोंदवलेल्या किमती आणि दूध उत्पादन व गर्भधारणेमुळे वाढणाऱ्या मूल्यावर आधारित. हे फक्त मार्गदर्शन आहे, बाजारभाव नाही.",
+  "flow.estimateValue": "किमतीचा अंदाज",
 };

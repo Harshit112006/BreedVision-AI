@@ -79,10 +79,14 @@ of the breed model.
 **"Can it run offline?"** The model runs on a laptop with no internet. The mobile
 app/PWA offline mode is not built; the web app currently needs the laptop backend.
 
-**"Is the value ranking a price?"** No. It is a relative index from a published paper
-(Kumar et al., 2014: milk yield and pregnancy only). There is no verified livestock
-price series. Demo sale prices are synthetic, labelled "Demo", and can never be
-uploaded.
+**"Where do the rupee values come from?"** They are an *indicative estimate*, not a
+market quote. The base is a breed guide's listed price range (10 of 49 breeds have
+one; the rest get a general desi-cow range and the page says so). Milk yield adds
+Rs 4,000 a litre (an assumption from one project report) and pregnancy adds the
+ratio from Kumar et al. 2014. The sale rows in the demo are synthetic, labelled
+"Illustrative", generated around those same ranges, so they cannot validate the
+estimate. No verified livestock price series exists; the "Log a sale" form is how
+real data would be collected.
 
 **"How do you know there is no data leakage?"** Near-duplicate photos (perceptual
 hash) were grouped so they stay on one side of the split. A plain random split would

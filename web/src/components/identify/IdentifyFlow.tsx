@@ -11,6 +11,7 @@ import { Card } from "@/components/ui/Card";
 import { MockDataNotice } from "@/components/ui/MockDataNotice";
 import { useDateTag, useT } from "@/i18n";
 import { cn } from "@/lib/cn";
+import { bandForPrediction } from "@/lib/confidence";
 import {
   captureLocation,
   getLocationPreference,
@@ -302,6 +303,17 @@ export function IdentifyFlow() {
               >
                 {t("flow.viewBreed")}
               </ButtonLink>
+              {/* Only when the app actually named a breed. */}
+              {bandForPrediction(prediction) === "confident" &&
+              prediction.looksLikeCattle !== false ? (
+                <ButtonLink
+                  href={`/prices?breed=${prediction.breedId}`}
+                  size="lg"
+                  variant="secondary"
+                >
+                  {t("flow.estimateValue")}
+                </ButtonLink>
+              ) : null}
             </div>
 
             <p className="text-micro text-ink-3" role="status" aria-live="polite">

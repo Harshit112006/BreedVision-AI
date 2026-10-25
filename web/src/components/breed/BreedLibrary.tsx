@@ -36,7 +36,7 @@ function BreedCard({
           "transition-colors hover:border-field-line",
         )}
       >
-        <div className="aspect-4/3 w-full border-b border-line">
+        <div className="aspect-4/3 w-full overflow-hidden border-b border-line">
           <BreedImage
             name={breed.name}
             category={breed.category}
@@ -65,6 +65,16 @@ function BreedCard({
   );
 }
 
+/** "Maharashtra and Gujarat (registry name: X)" -> ["Gujarat", "Maharashtra"]. */
+function statesOf(region: string | null): string[] {
+  if (!region) return [];
+  return region
+    .replace(/\(.*?\)/g, "")
+    .split(/,| and /)
+    .map((r) => r.trim())
+    .filter((r) => r && !/farm/i.test(r));
+}
+
 export function BreedLibrary({ breeds }: BreedLibraryProps) {
   const t = useT();
   const [query, setQuery] = useState("");
@@ -75,18 +85,13 @@ export function BreedLibrary({ breeds }: BreedLibraryProps) {
   const deferredQuery = useDeferredValue(query);
 
   const regions = useMemo(
-    () =>
-      Array.from(
-        new Set(breeds.map((b) => b.region).filter((r): r is string => !!r)),
-      ).sort(),
+    () => Array.from(new Set(breeds.flatMap((b) => statesOf(b.region)))).sort(),
     [breeds],
   );
 
-  // Filters are shown only when the data can actually be filtered. The current
-  // dataset is cattle-only with no recorded home tracts, so both controls stay
-  // hidden; they reappear on their own once Phase 16 supplies regions or a
-  // buffalo dataset is added. A control that can only ever return everything
-  // is noise pretending to be a feature.
+  // Filters are shown only when the data can actually be filtered: the
+  // category control stays hidden while the library is cattle-only. A control
+  // that can only ever return everything is noise pretending to be a feature.
   const categories = useMemo(
     () => Array.from(new Set(breeds.map((b) => b.category))),
     [breeds],
@@ -98,7 +103,7 @@ export function BreedLibrary({ breeds }: BreedLibraryProps) {
     const q = deferredQuery.trim().toLowerCase();
     return breeds.filter((b) => {
       if (category !== "all" && b.category !== category) return false;
-      if (region !== "all" && b.region !== region) return false;
+      if (region !== "all" && !statesOf(b.region).includes(region)) return false;
       if (!q) return true;
       return (
         b.name.toLowerCase().includes(q) ||

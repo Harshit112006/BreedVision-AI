@@ -5,14 +5,11 @@
  * (`breeds.generated.ts`) rather than hand-maintained, so the library can never
  * advertise a breed the model was not trained on.
  *
- * Two honesty rules govern what is exposed here:
- *
- * 1. Breed **names** are the dataset's own class labels. Those are safe to
- *    state — they are what the model predicts.
- * 2. Breed **descriptions, characteristics and regions are absent** (`null` /
- *    empty), and `source` is null so the UI renders an explicit "not verified"
- *    state. Writing plausible-sounding breed facts would put invented content
- *    in front of users. Phase 16 fills these from ICAR-NBAGR with citations.
+ * Names are the dataset's own class labels. Home tracts come from the
+ * ICAR-NBAGR registry; use and notes are a general summary kept in
+ * `breed-info.ts` (see its header for exactly what is and isn't cited).
+ * Photos are samples from the training dataset. Where a fact is unknown the
+ * field is left empty rather than guessed.
  *
  * Scope: this dataset contains **cattle only**. It has no buffalo breeds, so
  * buffalo identification is not offered anywhere in the product until a
@@ -24,30 +21,39 @@
 
 import type { Breed, BreedSummary, ModelInfo } from "@/types";
 
+import { BREED_INFO, BREED_SOURCE, BREED_SOURCE_URL } from "./breed-info";
 import { GENERATED_BREEDS, NUM_CLASSES } from "./breeds.generated";
 
 export const MOCK_BREED_SUMMARIES: BreedSummary[] = GENERATED_BREEDS.map(
-  (b) => ({
-    id: b.id,
-    name: b.name,
-    category: "cattle" as const,
-    // Home tracts are not recorded in the dataset and are not invented here.
-    region: null,
-    shortDescription: null,
-    imageUrl: null,
-  }),
+  (b) => {
+    const info = BREED_INFO[b.id];
+    return {
+      id: b.id,
+      name: b.name,
+      category: "cattle" as const,
+      region: info?.region ?? null,
+      shortDescription: info?.notes ?? null,
+      // Photos are resized samples from the training dataset, written by
+      // ml/scripts/export_breed_photos.py. 1.jpg is the card/hero image.
+      imageUrl: `/breeds/${b.id}/1.jpg`,
+    };
+  },
 );
 
-export const MOCK_BREEDS: Breed[] = MOCK_BREED_SUMMARIES.map((b) => ({
-  ...b,
-  description: null,
-  characteristics: [],
-  // No verified relationships exist yet; an arbitrary "related" list would be
-  // a fabricated claim about breed similarity.
-  relatedBreedIds: [],
-  source: null,
-  sourceUrl: null,
-}));
+export const MOCK_BREEDS: Breed[] = MOCK_BREED_SUMMARIES.map((b) => {
+  const info = BREED_INFO[b.id];
+  return {
+    ...b,
+    description: info?.notes ?? null,
+    characteristics: [
+      ...(info?.use ? [{ label: "Primary use", value: info.use }] : []),
+    ],
+    gallery: [1, 2, 3].map((n) => `/breeds/${b.id}/${n}.jpg`),
+    relatedBreedIds: info?.related ?? [],
+    source: BREED_SOURCE,
+    sourceUrl: BREED_SOURCE_URL,
+  };
+});
 
 export const MOCK_MODEL_INFO: ModelInfo = {
   // No model has been selected for deployment yet. Phase 2 compares backbones;

@@ -116,6 +116,28 @@ export default async function BreedDetailPage({ params }: PageProps) {
               </div>
             </div>
 
+            {breed.gallery.length > 1 ? (
+              <ul
+                aria-label={`${breed.name} photographs`}
+                className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3"
+              >
+                {breed.gallery.map((src, i) => (
+                  <li
+                    key={src}
+                    className="aspect-4/3 overflow-hidden rounded-lg border border-line"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={src}
+                      alt={`${breed.name} ${breed.category}, photo ${i + 1}`}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
             {/* ------------------------------------------------ description */}
             <div className="mt-16 grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-14">
               <section>

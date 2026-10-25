@@ -12,7 +12,7 @@ export const en = {
   "nav.primary": "Primary",
   "nav.breeds": "Breeds",
   "nav.history": "History",
-  "nav.prices": "Prices",
+  "nav.prices": "Cattle value",
   "nav.account": "Account",
   "nav.identify": "Identify an animal",
   "nav.openMenu": "Open menu",
@@ -262,6 +262,9 @@ export const en = {
   "notcattle.short": "Does not look like cattle",
   "model.title": "Model facts",
   "hist.export": "Export CSV",
+  "value.title": "Find the value of your cattle",
+  "value.intro": "An indicative estimate in rupees, built from listed breed price ranges and what milk yield and pregnancy add. It is a guide, not a market quote.",
+  "flow.estimateValue": "Estimate value",
 } as const;
 
 export type MessageKey = keyof typeof en;

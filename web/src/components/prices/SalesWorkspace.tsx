@@ -213,10 +213,11 @@ export function SalesWorkspace() {
     <div className="flex flex-col gap-10">
       {demoCount > 0 ? (
         <div className="rounded-md border border-terracotta/30 bg-terracotta-soft px-4 py-3 text-small text-ink-2">
-          <strong className="font-semibold text-terracotta">Demonstration data.</strong>{" "}
-          {demoCount} rows below are <strong>synthetic</strong>, generated for
-          testing. They are not real sales and are excluded from the observed
-          prices section.
+          <strong className="font-semibold text-terracotta">Illustrative data.</strong>{" "}
+          {demoCount} rows below are <strong>synthetic</strong>: generated
+          around the listed price ranges the estimator uses, with an assumed
+          trend. They are not real sales, are excluded from the observed prices
+          section, and can never be uploaded.
         </div>
       ) : null}
 
@@ -224,8 +225,8 @@ export function SalesWorkspace() {
         <h2 className="text-title font-semibold tracking-tight text-ink">Log a sale</h2>
         <p className="mt-2 max-w-prose text-small text-ink-2 text-pretty">
           Real sale prices are the data this project is missing. Each one you
-          record helps build an honest price reference. Stored on this device
-          only.
+          record helps build an honest price reference, and is never mixed with
+          the illustrative sales. Stored on this device only.
         </p>
         <form onSubmit={submit} className="mt-5 grid gap-4 sm:grid-cols-2">
           <Field label="Breed">
@@ -273,26 +274,26 @@ export function SalesWorkspace() {
             </Select>
             {demoCount === 0 ? (
               <Button variant="secondary" size="sm" disabled={busy}
-                onClick={() => run(loadDemoSales, "Demo data loaded. It is synthetic.")}>
-                Load demo data
+                onClick={() => run(loadDemoSales, "Illustrative sales loaded. They are synthetic.")}>
+                Load illustrative sales
               </Button>
             ) : (
               <Button variant="secondary" size="sm" disabled={busy}
-                onClick={() => run(removeDemoSales, "Demo data removed.")}>
-                Remove demo data
+                onClick={() => run(removeDemoSales, "Illustrative sales removed.")}>
+                Remove illustrative sales
               </Button>
             )}
           </div>
         </div>
 
         <p role="status" aria-live="polite" className="text-micro text-ink-3">
-          {notice ?? `${realCount} real, ${demoCount} demo.`}
+          {notice ?? `${realCount} real, ${demoCount} illustrative.`}
         </p>
 
         {sales.length === 0 ? (
           <EmptyState
             title="No sales logged yet"
-            description="Log a sale above, or load the synthetic demo set to see how ranking and history look."
+            description="Log a sale above, or load the illustrative sales to see how ranking and history look."
           />
         ) : ranked.length === 0 ? (
           <p className="text-small text-ink-3">
@@ -318,7 +319,7 @@ export function SalesWorkspace() {
                     <td data-numeric="" className="px-3 py-2">{ranks.get(r)}</td>
                     <td className="px-3 py-2">
                       {r.sale.breedName}{" "}
-                      {r.sale.source === "synthetic" ? <Badge tone="terracotta">Demo</Badge> : null}
+                      {r.sale.source === "synthetic" ? <Badge tone="terracotta">Illustrative</Badge> : null}
                     </td>
                     <td data-numeric="" className="px-3 py-2">{r.index.toFixed(1)}</td>
                     <td data-numeric="" className="px-3 py-2">{inr(r.sale.priceInr)}</td>
@@ -349,7 +350,7 @@ export function SalesWorkspace() {
       <section aria-labelledby="obs-h" className="flex flex-col gap-3">
         <h2 id="obs-h" className="text-title font-semibold tracking-tight text-ink">Observed prices (real sales only)</h2>
         {realByBreed.length === 0 ? (
-          <p className="text-small text-ink-3">No real sales logged yet. Demo rows are never counted here.</p>
+          <p className="text-small text-ink-3">No real sales logged yet. Illustrative rows are never counted here.</p>
         ) : (
           <ul className="grid gap-3 sm:grid-cols-2">
             {realByBreed.map(([id, e]) => (

@@ -6,7 +6,7 @@ export const te: Partial<Record<MessageKey, string>> = {
   "nav.primary": "ప్రధాన మెనూ",
   "nav.breeds": "జాతులు",
   "nav.history": "చరిత్ర",
-  "nav.prices": "ధరలు",
+  "nav.prices": "పశువు విలువ",
   "nav.account": "ఖాతా",
   "nav.identify": "పశువును గుర్తించండి",
   "nav.openMenu": "మెనూ తెరవండి",
@@ -245,4 +245,7 @@ export const te: Partial<Record<MessageKey, string>> = {
   "notcattle.short": "పశువులా కనిపించడం లేదు",
   "model.title": "మోడల్ వివరాలు",
   "hist.export": "CSV ఎగుమతి",
+  "value.title": "మీ పశువు విలువను తెలుసుకోండి",
+  "value.intro": "జాబితా చేసిన జాతి ధరల పరిధులు, పాల దిగుబడి మరియు గర్భధారణ పెంచే విలువ ఆధారంగా రూపాయల్లో ఒక సూచనాత్మక అంచనా. ఇది మార్గదర్శకం మాత్రమే, మార్కెట్ ధర కాదు.",
+  "flow.estimateValue": "విలువ అంచనా",
 };

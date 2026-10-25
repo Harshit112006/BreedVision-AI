@@ -6,7 +6,7 @@ export const ta: Partial<Record<MessageKey, string>> = {
   "nav.primary": "முதன்மை மெனு",
   "nav.breeds": "இனங்கள்",
   "nav.history": "வரலாறு",
-  "nav.prices": "விலைகள்",
+  "nav.prices": "மாட்டின் மதிப்பு",
   "nav.account": "கணக்கு",
   "nav.identify": "மாட்டை அடையாளம் காணுங்கள்",
   "nav.openMenu": "மெனுவைத் திறக்க",
@@ -245,4 +245,7 @@ export const ta: Partial<Record<MessageKey, string>> = {
   "notcattle.short": "மாடு போலத் தெரியவில்லை",
   "model.title": "மாதிரி விவரங்கள்",
   "hist.export": "CSV ஏற்றுமதி",
+  "value.title": "உங்கள் மாட்டின் மதிப்பைக் கண்டறியுங்கள்",
+  "value.intro": "பட்டியலிடப்பட்ட இன விலை வரம்புகள், பால் அளவு மற்றும் கர்ப்பம் சேர்க்கும் மதிப்பின் அடிப்படையில் ரூபாயில் ஒரு தோராய மதிப்பீடு. இது வழிகாட்டி மட்டுமே, சந்தை விலை அல்ல.",
+  "flow.estimateValue": "மதிப்பை மதிப்பிடு",
 };

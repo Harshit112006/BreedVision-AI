@@ -25,6 +25,8 @@ export interface BreedSummary {
 export interface Breed extends BreedSummary {
   description: string | null;
   characteristics: BreedCharacteristic[];
+  /** Extra photo URLs shown on the detail page, after the primary image. */
+  gallery: string[];
   relatedBreedIds: string[];
   /**
    * Where the breed facts came from (e.g. "ICAR-NBAGR"). Null means unverified
