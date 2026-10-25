@@ -29,6 +29,7 @@ export interface LocalRecord {
   imageWidth: number;
   imageHeight: number;
   syncState: SyncState;
+  duplicateOf: StoredRecord["duplicateOf"] | null;
 }
 
 function toLocalRecord(r: StoredRecord): LocalRecord {
@@ -42,6 +43,7 @@ function toLocalRecord(r: StoredRecord): LocalRecord {
     imageWidth: r.imageWidth,
     imageHeight: r.imageHeight,
     syncState: r.syncState,
+    duplicateOf: r.duplicateOf ?? null,
   };
 }
 
@@ -59,6 +61,9 @@ export interface SaveRecordInput {
   height: number;
   location?: GeoLocation | null;
   note?: string | null;
+  /** Hash and match result from the duplicate-photo check, when it ran. */
+  phash?: string;
+  duplicateOf?: StoredRecord["duplicateOf"] | null;
 }
 
 export async function saveRecord(
@@ -74,6 +79,8 @@ export async function saveRecord(
     imageWidth: input.width,
     imageHeight: input.height,
     syncState: "local-only",
+    phash: input.phash,
+    duplicateOf: input.duplicateOf ?? null,
   };
 
   try {

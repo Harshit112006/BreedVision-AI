@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { DuplicateNotice } from "@/components/prediction/DuplicateNotice";
 import { PredictionResult } from "@/components/prediction/PredictionResult";
 import { ErrorState } from "@/components/states";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -14,6 +15,12 @@ import {
   setLocationPreference,
 } from "@/lib/geolocation";
 import { formatBytes, prepareImage, type PreparedImage } from "@/lib/image";
+import {
+  findDuplicate,
+  fingerprint,
+  type DuplicateMatch,
+  type PhotoFingerprint,
+} from "@/services/duplicates";
 import { predictBreed } from "@/services/predictions";
 import { saveRecord } from "@/services/records";
 import { IMAGE_LIMITS } from "@/services/config";
@@ -44,6 +51,8 @@ export function IdentifyFlow() {
     "idle" | "saving" | "saved" | "failed"
   >("idle");
   const [savedId, setSavedId] = useState<string | null>(null);
+  const [fp, setFp] = useState<PhotoFingerprint | null>(null);
+  const [duplicate, setDuplicate] = useState<DuplicateMatch | null>(null);
   const [attachLocation, setAttachLocation] = useState(false);
   const [savedLocation, setSavedLocation] = useState<GeoLocation | null>(null);
   const [locationNote, setLocationNote] = useState<string | null>(null);
@@ -67,6 +76,8 @@ export function IdentifyFlow() {
     setSavedId(null);
     setSavedLocation(null);
     setLocationNote(null);
+    setFp(null);
+    setDuplicate(null);
     setPhase("idle");
   }, [image]);
 
@@ -100,6 +111,17 @@ export function IdentifyFlow() {
     }
     setPrediction(result.data);
     setPhase("done");
+
+    // Duplicate-photo check. Runs after the result is shown and can never block
+    // it: any failure just means no notice.
+    try {
+      const f = await fingerprint(image.file);
+      setFp(f);
+      setDuplicate(await findDuplicate(f));
+    } catch {
+      setFp(null);
+      setDuplicate(null);
+    }
   }, [image]);
 
   const save = useCallback(async () => {
@@ -121,6 +143,10 @@ export function IdentifyFlow() {
       width: image.width,
       height: image.height,
       location,
+      phash: fp?.hash,
+      duplicateOf: duplicate
+        ? { id: duplicate.recordId, distance: duplicate.distance, tier: duplicate.tier }
+        : null,
     });
     if (!result.ok) {
       setSaveState("failed");
@@ -130,13 +156,14 @@ export function IdentifyFlow() {
     setSavedId(result.data.id);
     setSavedLocation(location);
     setSaveState("saved");
-  }, [image, prediction, attachLocation]);
+  }, [image, prediction, attachLocation, fp, duplicate]);
 
   /* ------------------------------------------------------------- result -- */
   if (phase === "done" && prediction && image) {
     return (
       <div className="flex flex-col gap-8">
         <MockDataNotice what="This prediction was generated for interface development." />
+        {duplicate && saveState !== "saved" ? <DuplicateNotice match={duplicate} /> : null}
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-12">
           <figure className="flex flex-col gap-3">

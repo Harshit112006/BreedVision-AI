@@ -101,6 +101,11 @@ function RecordCard({ record }: { record: LocalRecord }) {
             {record.location ? (
               <Badge tone="neutral">Location saved</Badge>
             ) : null}
+            {record.duplicateOf ? (
+              <Badge tone="amber">
+                {record.duplicateOf.tier === "same" ? "Same photo as another" : "Similar photo"}
+              </Badge>
+            ) : null}
           </span>
 
           <span className="text-micro text-ink-3">

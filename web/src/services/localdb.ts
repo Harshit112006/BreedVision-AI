@@ -31,6 +31,10 @@ export interface StoredRecord {
   imageWidth: number;
   imageHeight: number;
   syncState: SyncState;
+  /** 64-bit perceptual hash (hex), for the duplicate-photo check. */
+  phash?: string;
+  /** Set when, at save time, this photo matched an earlier record. */
+  duplicateOf?: { id: string; distance: number; tier: "same" | "similar" } | null;
 }
 
 function isAvailable(): boolean {

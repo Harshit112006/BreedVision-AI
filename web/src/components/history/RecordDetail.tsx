@@ -141,6 +141,25 @@ export function RecordDetail({ id }: { id: string }) {
                 )}
               </dd>
             </div>
+            {record.duplicateOf ? (
+              <div className="col-span-2">
+                <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
+                  Duplicate check
+                </dt>
+                <dd className="mt-1 text-small text-ink-2">
+                  {record.duplicateOf.tier === "same"
+                    ? "When saved, this looked like the same photo as "
+                    : "When saved, this was very similar to "}
+                  <Link
+                    href={`/history/${record.duplicateOf.id}`}
+                    className="font-medium text-forest underline underline-offset-2"
+                  >
+                    an earlier record
+                  </Link>
+                  . It compares pictures, not animals.
+                </dd>
+              </div>
+            ) : null}
             <div>
               <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
                 Storage

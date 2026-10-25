@@ -25,7 +25,8 @@ BreedVision AI lets a field worker photograph an animal and get:
 2. After a few basic inputs (age, milk yield, lactation stage), an **estimated
    value range** with the reasoning shown.
 3. A **GPS-tagged record** that works offline and syncs later.
-4. A **duplicate-animal flag**, so one animal cannot be claimed twice.
+4. A **duplicate-photo flag**, so the same picture is not submitted twice. It
+   does not identify individual animals.
 
 ## Scope, stated honestly
 
@@ -38,7 +39,8 @@ BreedVision AI lets a field worker photograph an animal and get:
 | Buffalo breeds | **Not covered**: no buffalo in the dataset |
 | Relative value ranking and sale-price log | Built (see below) |
 | Rupee price estimate | **Not built**; blocked on a verified price source |
-| Duplicate-animal detection | Planned; reuses the perceptual hashing already built |
+| Duplicate-photo check | Built, device-only; catches re-submitted photos, **not** different photos of one animal (see `duplicate-detection.md`) |
+| Duplicate-animal identification | **Not possible with this method**; needs a different technique |
 | Offline capture with sync | Planned; local records already carry a sync state |
 | Bharat Pashudhan integration | **Not built**; no integration exists |
 
