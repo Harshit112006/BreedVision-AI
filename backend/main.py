@@ -24,7 +24,7 @@ MODEL_DIR = BASE / "models"
 UPLOADS.mkdir(exist_ok=True); ANNOTATED.mkdir(exist_ok=True)
 DB = BASE / "breedvision.db"
 
-app = FastAPI(title="BreedVision AI Platform API", version="3.0")
+app = FastAPI(title="BreedVision Platform API", version="3.0")
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173","http://127.0.0.1:5173",
                                  # web/ (Next.js) runs on 3000
                                  "http://localhost:3000","http://127.0.0.1:3000"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])

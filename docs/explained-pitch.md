@@ -1,4 +1,4 @@
-# BreedVision AI — Four Explanations
+# BreedVision — Four Explanations
 
 Timed versions for different audiences. Written to be *said aloud*, not read
 off a slide. Every figure is measured.
@@ -7,7 +7,7 @@ off a slide. Every figure is measured.
 
 ## One sentence
 
-> BreedVision AI identifies the breed of Indian cattle from a photograph, using
+> BreedVision identifies the breed of Indian cattle from a photograph, using
 > a neural network trained on about 7,800 labelled images across 49 breeds, and
 > it tells you how confident it is — including saying when it isn't sure.
 
@@ -19,7 +19,7 @@ off a slide. Every figure is measured.
 > depends a lot on the individual's experience — two people can look at the
 > same animal and disagree.
 >
-> BreedVision AI is a system where you photograph the animal and a trained
+> BreedVision is a system where you photograph the animal and a trained
 > model tells you the most likely breed, with a confidence score and the next
 > most likely alternatives.
 >

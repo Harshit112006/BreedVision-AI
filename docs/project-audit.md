@@ -1,4 +1,4 @@
-# BreedVision AI — Project Audit (Phase 0)
+# BreedVision — Project Audit (Phase 0)
 
 **Date:** 2026-08-19
 **Branch:** `main` @ `7bdf979`

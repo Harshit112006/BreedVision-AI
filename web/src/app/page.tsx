@@ -53,7 +53,7 @@ export default function HomePage() {
             <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
               <div>
                 <p className="text-micro font-semibold uppercase tracking-[0.16em] text-ink-3">
-                  BreedVision AI
+                  BreedVision
                 </p>
                 <h1 className="mt-5 text-display font-semibold tracking-tight text-balance text-ink">
                   Identify the breed. Keep a record that holds up.

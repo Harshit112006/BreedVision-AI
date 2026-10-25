@@ -11,7 +11,7 @@ import { getBreeds } from "@/services/breeds";
 export const metadata: Metadata = {
   title: "Breed library",
   description:
-    "Browse Indian cattle and buffalo breeds covered by BreedVision AI.",
+    "Browse Indian cattle and buffalo breeds covered by BreedVision.",
 };
 
 export default async function BreedsPage() {

@@ -96,7 +96,7 @@ export default function FoundationPage() {
             </h1>
             <p className="mt-4 max-w-2xl text-lead text-ink-2 text-pretty">
               The token set, base components and states that the rest of
-              BreedVision AI is built from. This page is a working reference, not
+              BreedVision is built from. This page is a working reference, not
               a product screen.
             </p>
 

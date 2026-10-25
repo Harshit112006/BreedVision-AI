@@ -1,9 +1,9 @@
-# BreedVision AI — dataset & pipeline configuration
+# BreedVision — dataset & pipeline configuration
 # Single source of truth for paths, seeds and thresholds.
 # Nothing in ml/ may hardcode these values (Engineering Principle 6).
 
 project:
-  name: BreedVision AI
+  name: BreedVision
   dataset_version: v1
 
 paths:

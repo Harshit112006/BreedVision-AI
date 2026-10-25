@@ -1,5 +1,5 @@
 /**
- * Domain types for BreedVision AI.
+ * Domain types for BreedVision.
  *
  * These mirror the intended FastAPI response shapes. When the backend exists,
  * these should be validated against it (or generated from its OpenAPI schema)

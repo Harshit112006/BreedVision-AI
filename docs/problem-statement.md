@@ -18,7 +18,7 @@ Yet breed identity and animal value are both recorded by hand:
 
 ## The solution
 
-BreedVision AI lets a field worker photograph an animal and get:
+BreedVision lets a field worker photograph an animal and get:
 
 1. A **breed prediction with a calibrated confidence score**, which says so when
    it is unsure rather than guessing.

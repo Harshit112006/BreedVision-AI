@@ -192,7 +192,7 @@ def _render(cfg, inv, valid, counts, inv_summary, dup_stats, split_report,
     L = []
     a = L.append
 
-    a("# BreedVision AI — Dataset Report (Phase 1)\n")
+    a("# BreedVision — Dataset Report (Phase 1)\n")
     a(f"**Generated:** {date.today().isoformat()}  ")
     a(f"**Dataset version:** `{cfg.dataset_version}`  ")
     a(f"**Seed:** `{cfg.seed}`  ")

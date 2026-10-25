@@ -1,4 +1,4 @@
-# BreedVision AI — Phase 2 experiment configuration.
+# BreedVision — Phase 2 experiment configuration.
 #
 # Experiments are defined here, not hardcoded in train.py. Every run records
 # the resolved config alongside its metrics so results stay reproducible and

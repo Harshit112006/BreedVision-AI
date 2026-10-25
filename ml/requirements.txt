@@ -1,4 +1,4 @@
-# BreedVision AI — Phase 1 (dataset engineering) dependencies.
+# BreedVision — Phase 1 (dataset engineering) dependencies.
 # Direct dependencies only; pip resolves the transitive set.
 # Verified installable on Python 3.14 (cp314) / Windows on 2026-08-19.
 #

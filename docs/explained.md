@@ -1,4 +1,4 @@
-# BreedVision AI — Explained
+# BreedVision — Explained
 
 From plain English to full technical detail.
 
@@ -54,11 +54,11 @@ is a design decision, not a copy-paste — see "What's missing" at the end.
 
 ---
 
-# BreedVision AI — What Is This Project?
+# BreedVision — What Is This Project?
 
 ## What it is
 
-BreedVision AI is a system that looks at a photograph of a cow and tries to
+BreedVision is a system that looks at a photograph of a cow and tries to
 work out which **breed** it is.
 
 You give it a picture. It gives you back a breed name, plus a number saying how
@@ -286,7 +286,7 @@ work it out from repeated exposure.
 
 Eventually you show them a photo they've never seen, with the label hidden.
 They say "that looks like a Gir, though it could be a Sahiwal." That's what
-BreedVision AI does.
+BreedVision does.
 
 Now the important refinements, so the analogy doesn't mislead:
 
@@ -326,7 +326,7 @@ blind spots.
 Following one photo from start to finish. **[REAL]** means working today;
 **[PLACEHOLDER]** and **[PLANNED]** mean what they say.
 
-### 1. User opens BreedVision AI **[REAL]**
+### 1. User opens BreedVision **[REAL]**
 *Sees:* A landing page explaining the product, with "Identify an animal" as the
 obvious main action.
 *Behind the scenes:* A Next.js web application serving pre-rendered pages.
@@ -760,7 +760,7 @@ right (precision); of all actual Gir images, how many did it find (recall).
 
 # 0.8 The Summary To Memorise
 
-> **BreedVision AI is a computer-vision system that identifies the breed of
+> **BreedVision is a computer-vision system that identifies the breed of
 > Indian cattle from a photograph.** A user uploads or takes a picture; the
 > system validates and resizes it, then a trained neural network converts the
 > image into a numerical description and maps that onto 49 cattle breeds,

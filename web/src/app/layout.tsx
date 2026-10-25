@@ -11,8 +11,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "BreedVision AI — Breed identification for Indian livestock",
-    template: "%s — BreedVision AI",
+    default: "BreedVision — Breed identification for Indian livestock",
+    template: "%s — BreedVision",
   },
   description:
     "Image-based breed identification for Indian cattle and buffaloes. Photograph an animal, get a predicted breed with a confidence score, and keep a record.",

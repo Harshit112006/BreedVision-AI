@@ -44,7 +44,7 @@ export function Logo({ className, markOnly = false }: LogoProps) {
       </svg>
       {markOnly ? null : (
         <span className="text-body font-semibold tracking-[-0.015em]">
-          BreedVision <span className="text-ink-3 font-medium">AI</span>
+          BreedVision
         </span>
       )}
     </span>

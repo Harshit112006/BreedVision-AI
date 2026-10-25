@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================================
-   BreedVision AI — design tokens
+   BreedVision — design tokens
    ----------------------------------------------------------------------------
    Single source of truth for the visual system. Nothing in the app should use
    a raw hex value; everything resolves through a token below.

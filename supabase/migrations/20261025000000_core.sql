@@ -1,4 +1,4 @@
--- BreedVision AI: core schema.
+-- BreedVision: core schema.
 --
 -- Security model: every table is protected by row-level security so a user can
 -- only ever read or change their own rows. This is enforced here, in the

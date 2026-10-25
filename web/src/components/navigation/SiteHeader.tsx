@@ -44,7 +44,7 @@ export function SiteHeader() {
           <Link
             href="/"
             className="text-forest-deep"
-            aria-label="BreedVision AI — home"
+            aria-label="BreedVision — home"
           >
             <Logo />
           </Link>

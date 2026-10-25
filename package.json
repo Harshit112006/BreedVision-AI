@@ -1,5 +1,5 @@
 {
-  "name": "breedvision-ai",
+  "name": "breedvision",
   "private": true,
   "description": "Root convenience scripts. The web app itself lives in web/.",
   "scripts": {

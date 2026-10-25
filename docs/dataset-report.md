@@ -1,4 +1,4 @@
-# BreedVision AI — Dataset Report (Phase 1)
+# BreedVision — Dataset Report (Phase 1)
 
 **Generated:** 2026-08-19  
 **Dataset version:** `v1`  

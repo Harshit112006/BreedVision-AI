@@ -1,4 +1,4 @@
-"""BreedVision AI dataset engineering library (Phase 1)."""
+"""BreedVision dataset engineering library (Phase 1)."""
 
 from .config import Config, ensure_dirs, load_config
 

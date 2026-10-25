@@ -1,6 +1,6 @@
 """Render Markdown documents to PDF.
 
-Built for the BreedVision AI docs, which lean heavily on tables, fenced code
+Built for the BreedVision docs, which lean heavily on tables, fenced code
 blocks and box-drawing diagrams. Two details matter for those:
 
 * Fonts. ReportLab's built-in fonts are Latin-1 only, so box-drawing characters
@@ -439,7 +439,7 @@ def convert(src: Path, out: Path) -> Path:
         leftMargin=20 * mm, rightMargin=20 * mm,
         topMargin=18 * mm, bottomMargin=18 * mm,
         title=clean_text(title),
-        author="BreedVision AI",
+        author="BreedVision",
     )
 
     def footer(canvas, doc_):

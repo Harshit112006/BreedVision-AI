@@ -46,7 +46,7 @@ export function SiteFooter() {
 
         <div className="flex flex-col gap-2 border-t border-line py-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-micro text-ink-3">
-            BreedVision AI — a prototype system. Predictions are advisory and
+            BreedVision — a prototype system. Predictions are advisory and
             should be confirmed by a qualified assessor.
           </p>
           {/* ink-4 clears AA on paper and surface but only reaches 4.31:1 on
