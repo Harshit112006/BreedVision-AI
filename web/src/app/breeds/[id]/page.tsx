@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/navigation/SiteHeader";
 import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { T } from "@/i18n";
 import { getBreed, getBreeds } from "@/services/breeds";
 
 interface PageProps {
@@ -58,7 +59,7 @@ export default async function BreedDetailPage({ params }: PageProps) {
                 href="/breeds"
                 className="text-ink-3 underline-offset-2 hover:text-ink hover:underline"
               >
-                Breed library
+                <T k="breeds.title" />
               </Link>
               <span aria-hidden="true" className="mx-2 text-ink-4">
                 /
@@ -80,7 +81,7 @@ export default async function BreedDetailPage({ params }: PageProps) {
                 <Badge
                   tone={breed.category === "buffalo" ? "terracotta" : "neutral"}
                 >
-                  {breed.category === "buffalo" ? "Buffalo" : "Cattle"}
+                  <T k={breed.category === "buffalo" ? "cat.buffalo" : "cat.cattle"} />
                 </Badge>
                 <h1 className="mt-3 text-display font-semibold tracking-tight text-ink">
                   {breed.name}
@@ -89,27 +90,27 @@ export default async function BreedDetailPage({ params }: PageProps) {
                 <dl className="mt-7 flex flex-col gap-5 border-t border-line pt-6">
                   <div>
                     <dt className="text-micro font-semibold uppercase tracking-[0.14em] text-ink-3">
-                      Home tract
+                      <T k="breed.homeTract" />
                     </dt>
                     <dd className="mt-1 text-body text-ink">
                       {breed.region ?? (
-                        <span className="text-ink-3">Not yet recorded</span>
+                        <span className="text-ink-3"><T k="breed.notRecorded" /></span>
                       )}
                     </dd>
                   </div>
                   <div>
                     <dt className="text-micro font-semibold uppercase tracking-[0.14em] text-ink-3">
-                      Category
+                      <T k="breed.category" />
                     </dt>
                     <dd className="mt-1 text-body text-ink">
-                      Indian {breed.category}
+                      <T k={breed.category === "buffalo" ? "breed.indian.buffalo" : "breed.indian.cattle"} />
                     </dd>
                   </div>
                 </dl>
 
                 <div className="mt-8">
                   <ButtonLink href="/identify" size="lg">
-                    Identify an animal
+                    <T k="nav.identify" />
                   </ButtonLink>
                 </div>
               </div>
@@ -119,7 +120,7 @@ export default async function BreedDetailPage({ params }: PageProps) {
             <div className="mt-16 grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-14">
               <section>
                 <h2 className="text-title font-semibold tracking-tight text-ink">
-                  About this breed
+                  <T k="breed.about" />
                 </h2>
                 <div className="mt-5">
                   {breed.description ? (
@@ -135,7 +136,7 @@ export default async function BreedDetailPage({ params }: PageProps) {
                 </div>
 
                 <h3 className="mt-10 text-body font-semibold text-ink">
-                  Distinguishing characteristics
+                  <T k="breed.characteristics" />
                 </h3>
                 {breed.characteristics.length > 0 ? (
                   <dl className="mt-4 divide-y divide-line border-y border-line">
@@ -151,8 +152,7 @@ export default async function BreedDetailPage({ params }: PageProps) {
                   </dl>
                 ) : (
                   <p className="mt-3 text-small text-ink-3 text-pretty">
-                    Not yet recorded. Characteristics will be added from
-                    ICAR-NBAGR records rather than written from memory.
+                    <T k="breed.charMissing" />
                   </p>
                 )}
               </section>
@@ -160,7 +160,7 @@ export default async function BreedDetailPage({ params }: PageProps) {
               {/* -------------------------------------------------- related */}
               <aside>
                 <h2 className="text-body font-semibold text-ink">
-                  Related breeds
+                  <T k="breed.related" />
                 </h2>
                 {related.length > 0 ? (
                   <ul className="mt-4 flex flex-col gap-3">
@@ -182,7 +182,7 @@ export default async function BreedDetailPage({ params }: PageProps) {
                               {r.name}
                             </span>
                             <span className="block truncate text-micro text-ink-3">
-                              {r.region ?? "Home tract not recorded"}
+                              {r.region ?? <T k="breed.tractShort" />}
                             </span>
                           </span>
                         </Link>
@@ -192,7 +192,7 @@ export default async function BreedDetailPage({ params }: PageProps) {
                 ) : (
                   <Card variant="sunk" className="mt-4">
                     <p className="text-small text-ink-3">
-                      No related breeds recorded yet.
+                      <T k="breed.relatedNone" />
                     </p>
                   </Card>
                 )}

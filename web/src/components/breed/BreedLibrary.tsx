@@ -8,6 +8,7 @@ import { EmptyState } from "@/components/states";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Field, Input, Select } from "@/components/ui/Field";
+import { useT } from "@/i18n";
 import { cn } from "@/lib/cn";
 import type { AnimalCategory, BreedSummary } from "@/types";
 
@@ -25,6 +26,7 @@ function BreedCard({
   /** Hidden when every breed shares one category — it would say nothing. */
   showBadge: boolean;
 }) {
+  const t = useT();
   return (
     <li>
       <Link
@@ -50,12 +52,12 @@ function BreedCard({
               <Badge
                 tone={breed.category === "buffalo" ? "terracotta" : "neutral"}
               >
-                {breed.category === "buffalo" ? "Buffalo" : "Cattle"}
+                {breed.category === "buffalo" ? t("cat.buffalo") : t("cat.cattle")}
               </Badge>
             ) : null}
           </div>
           <p className="text-small text-ink-3">
-            {breed.region ?? "Home tract not yet recorded"}
+            {breed.region ?? t("breeds.tractMissing")}
           </p>
         </div>
       </Link>
@@ -64,6 +66,7 @@ function BreedCard({
 }
 
 export function BreedLibrary({ breeds }: BreedLibraryProps) {
+  const t = useT();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<CategoryFilter>("all");
   const [region, setRegion] = useState("all");
@@ -122,32 +125,32 @@ export function BreedLibrary({ breeds }: BreedLibraryProps) {
             : "max-w-md",
         )}
       >
-        <Field label="Search breeds" hint="Search by breed or region name.">
+        <Field label={t("breeds.search")} hint={t("breeds.search.hint")}>
           <Input
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="e.g. Gir, or Gujarat"
+            placeholder={t("breeds.search.placeholder")}
           />
         </Field>
 
         {showCategoryFilter ? (
-          <Field label="Animal">
+          <Field label={t("breeds.animal")}>
             <Select
               value={category}
               onChange={(e) => setCategory(e.target.value as CategoryFilter)}
             >
-              <option value="all">All animals</option>
-              <option value="cattle">Cattle</option>
-              <option value="buffalo">Buffalo</option>
+              <option value="all">{t("breeds.allAnimals")}</option>
+              <option value="cattle">{t("cat.cattle")}</option>
+              <option value="buffalo">{t("cat.buffalo")}</option>
             </Select>
           </Field>
         ) : null}
 
         {showRegionFilter ? (
-          <Field label="Region">
+          <Field label={t("breeds.region")}>
             <Select value={region} onChange={(e) => setRegion(e.target.value)}>
-              <option value="all">All regions</option>
+              <option value="all">{t("breeds.allRegions")}</option>
               {regions.map((r) => (
                 <option key={r} value={r}>
                   {r}
@@ -161,25 +164,27 @@ export function BreedLibrary({ breeds }: BreedLibraryProps) {
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
         <p className="text-small text-ink-2" role="status" aria-live="polite">
           <span data-numeric="" className="font-medium text-ink">
-            {results.length}
-          </span>{" "}
-          {results.length === 1 ? "breed" : "breeds"}
-          {filtersActive ? ` of ${breeds.length}` : ""}
+            {filtersActive
+              ? t("count.breeds.filtered", { n: results.length, total: breeds.length })
+              : t(results.length === 1 ? "count.breeds.one" : "count.breeds.many", {
+                  n: results.length,
+                })}
+          </span>
         </p>
         {filtersActive ? (
           <Button variant="quiet" size="sm" onClick={clear}>
-            Clear filters
+            {t("common.clear")}
           </Button>
         ) : null}
       </div>
 
       {results.length === 0 ? (
         <EmptyState
-          title="No breeds match those filters"
-          description="Try a different spelling, or clear the filters to see the full library."
+          title={t("breeds.empty.title")}
+          description={t("breeds.empty.desc")}
           action={
             <Button size="sm" variant="secondary" onClick={clear}>
-              Clear filters
+              {t("common.clear")}
             </Button>
           }
         />

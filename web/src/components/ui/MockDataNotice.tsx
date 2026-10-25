@@ -1,12 +1,14 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 import { useT } from "@/i18n";
 import { USE_MOCKS } from "@/services/config";
 import { cn } from "@/lib/cn";
 
 interface MockDataNoticeProps {
   /** What specifically is mocked on this screen. */
-  what: string;
+  what: ReactNode;
   className?: string;
 }
 

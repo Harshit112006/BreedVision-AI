@@ -7,8 +7,9 @@ import { EmptyState, ErrorState, LoadingState } from "@/components/states";
 import { Badge } from "@/components/ui/Badge";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Field, Select } from "@/components/ui/Field";
+import { useDateTag, useT } from "@/i18n";
 import { cn } from "@/lib/cn";
-import { BAND_PRESENTATION, bandFor, formatConfidence } from "@/lib/confidence";
+import { bandFor, formatConfidence } from "@/lib/confidence";
 import { listRecords, type LocalRecord } from "@/services/records";
 import type { ConfidenceBand } from "@/types";
 
@@ -39,6 +40,8 @@ function cutoffFor(filter: DateFilter): number {
 }
 
 function RecordCard({ record }: { record: LocalRecord }) {
+  const t = useT();
+  const dateTag = useDateTag();
   const band = bandFor(record.prediction.confidence);
   const asserts = band === "confident";
 
@@ -67,7 +70,7 @@ function RecordCard({ record }: { record: LocalRecord }) {
             >
               {asserts
                 ? record.prediction.breedName
-                : BAND_PRESENTATION[band].label}
+                : t(`band.${band}.label` as const)}
             </span>
             {asserts ? (
               <span
@@ -85,31 +88,31 @@ function RecordCard({ record }: { record: LocalRecord }) {
                 the band, so repeating it here is noise. */}
             {asserts ? (
               <Badge tone={BAND_TONE[band]}>
-                {BAND_PRESENTATION[band].label}
+                {t(`band.${band}.label` as const)}
               </Badge>
             ) : band === "uncertain" ? (
               <span className="text-small text-ink-3">
-                {record.prediction.alternatives.length + 1} candidates
+                {t("hist.candidates", { n: record.prediction.alternatives.length + 1 })}
               </span>
             ) : (
               // The `low` detail view deliberately shows no candidate list, so
               // the card must not advertise one either.
               <span className="text-small text-ink-3">
-                No usable match
+                {t("hist.noUsable")}
               </span>
             )}
             {record.location ? (
-              <Badge tone="neutral">Location saved</Badge>
+              <Badge tone="neutral">{t("hist.locSaved")}</Badge>
             ) : null}
             {record.duplicateOf ? (
               <Badge tone="amber">
-                {record.duplicateOf.tier === "same" ? "Same photo as another" : "Similar photo"}
+                {record.duplicateOf.tier === "same" ? t("hist.dupSame") : t("hist.dupSimilar")}
               </Badge>
             ) : null}
           </span>
 
           <span className="text-micro text-ink-3">
-            {new Date(record.createdAt).toLocaleString("en-IN", {
+            {new Date(record.createdAt).toLocaleString(dateTag, {
               dateStyle: "medium",
               timeStyle: "short",
             })}
@@ -121,6 +124,7 @@ function RecordCard({ record }: { record: LocalRecord }) {
 }
 
 export function HistoryList() {
+  const t = useT();
   const [records, setRecords] = useState<LocalRecord[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [dateFilter, setDateFilter] = useState<DateFilter>("all");
@@ -188,19 +192,19 @@ export function HistoryList() {
   };
 
   if (records === null) {
-    return <LoadingState label="Loading your saved identifications" rows={3} />;
+    return <LoadingState label={t("hist.loading")} rows={3} />;
   }
 
   if (error) {
-    return <ErrorState title="Records could not be read" description={error} />;
+    return <ErrorState title={t("hist.readFail")} description={error} />;
   }
 
   if (records.length === 0) {
     return (
       <EmptyState
-        title="No saved identifications yet"
-        description="Identify an animal and choose Save record, and it will appear here."
-        action={<ButtonLink href="/identify">Identify an animal</ButtonLink>}
+        title={t("hist.empty.title")}
+        description={t("hist.empty.desc")}
+        action={<ButtonLink href="/identify">{t("nav.identify")}</ButtonLink>}
       />
     );
   }
@@ -208,24 +212,24 @@ export function HistoryList() {
   return (
     <div className="flex flex-col gap-8">
       <div className="grid gap-4 sm:grid-cols-3">
-        <Field label="Date">
+        <Field label={t("hist.date")}>
           <Select
             value={dateFilter}
             onChange={(e) => setDateFilter(e.target.value as DateFilter)}
           >
-            <option value="all">Any time</option>
-            <option value="today">Today</option>
-            <option value="7d">Last 7 days</option>
-            <option value="30d">Last 30 days</option>
+            <option value="all">{t("hist.anyTime")}</option>
+            <option value="today">{t("hist.today")}</option>
+            <option value="7d">{t("hist.7d")}</option>
+            <option value="30d">{t("hist.30d")}</option>
           </Select>
         </Field>
 
-        <Field label="Breed">
+        <Field label={t("hist.breed")}>
           <Select
             value={breedFilter}
             onChange={(e) => setBreedFilter(e.target.value)}
           >
-            <option value="all">All breeds</option>
+            <option value="all">{t("hist.allBreeds")}</option>
             {breeds.map((b) => (
               <option key={b} value={b}>
                 {b}
@@ -234,15 +238,15 @@ export function HistoryList() {
           </Select>
         </Field>
 
-        <Field label="Confidence">
+        <Field label={t("hist.confidence")}>
           <Select
             value={bandFilter}
             onChange={(e) => setBandFilter(e.target.value as BandFilter)}
           >
-            <option value="all">Any confidence</option>
-            <option value="confident">Confident match</option>
-            <option value="uncertain">Uncertain</option>
-            <option value="low">Not identified</option>
+            <option value="all">{t("hist.anyConf")}</option>
+            <option value="confident">{t("band.confident.label")}</option>
+            <option value="uncertain">{t("band.uncertain.label")}</option>
+            <option value="low">{t("band.low.label")}</option>
           </Select>
         </Field>
       </div>
@@ -250,25 +254,27 @@ export function HistoryList() {
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
         <p className="text-small text-ink-2" role="status" aria-live="polite">
           <span data-numeric="" className="font-medium text-ink">
-            {results.length}
-          </span>{" "}
-          {results.length === 1 ? "record" : "records"}
-          {filtersActive ? ` of ${records.length}` : ""}
+            {filtersActive
+              ? t("count.records.filtered", { n: results.length, total: records.length })
+              : t(results.length === 1 ? "count.records.one" : "count.records.many", {
+                  n: results.length,
+                })}
+          </span>
         </p>
         {filtersActive ? (
           <Button variant="quiet" size="sm" onClick={clear}>
-            Clear filters
+            {t("common.clear")}
           </Button>
         ) : null}
       </div>
 
       {results.length === 0 ? (
         <EmptyState
-          title="No records match those filters"
-          description="Try a wider date range, or clear the filters."
+          title={t("hist.noMatch.title")}
+          description={t("hist.noMatch.desc")}
           action={
             <Button size="sm" variant="secondary" onClick={clear}>
-              Clear filters
+              {t("common.clear")}
             </Button>
           }
         />

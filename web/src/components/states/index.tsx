@@ -1,12 +1,15 @@
+"use client";
+
 import type { ReactNode } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { Skeleton } from "@/components/ui/Skeleton";
+import { useT } from "@/i18n";
 import { cn } from "@/lib/cn";
 
 interface StateShellProps {
   icon?: ReactNode;
-  title: string;
+  title: ReactNode;
   /** Always answer two questions: what happened, and what to do next. */
   description: ReactNode;
   action?: ReactNode;
@@ -58,7 +61,7 @@ function StateShell({
 }
 
 interface EmptyStateProps {
-  title: string;
+  title: ReactNode;
   description: ReactNode;
   action?: ReactNode;
   icon?: ReactNode;
@@ -72,10 +75,10 @@ export function EmptyState(props: EmptyStateProps) {
 
 interface ErrorStateProps {
   /** Short, specific. Never "Something went wrong". */
-  title?: string;
+  title?: ReactNode;
   description: ReactNode;
   onRetry?: () => void;
-  retryLabel?: string;
+  retryLabel?: ReactNode;
   className?: string;
 }
 
@@ -85,22 +88,23 @@ interface ErrorStateProps {
  * whole animal."
  */
 export function ErrorState({
-  title = "That didn’t work",
+  title,
   description,
   onRetry,
-  retryLabel = "Try again",
+  retryLabel,
   className,
 }: ErrorStateProps) {
+  const t = useT();
   return (
     <StateShell
       tone="error"
-      title={title}
+      title={title ?? t("state.errorTitle")}
       description={description}
       className={className}
       action={
         onRetry ? (
           <Button variant="secondary" size="sm" onClick={onRetry}>
-            {retryLabel}
+            {retryLabel ?? t("state.retry")}
           </Button>
         ) : null
       }

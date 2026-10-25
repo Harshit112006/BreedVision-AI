@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/navigation/SiteFooter";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
 import { ErrorState } from "@/components/states";
 import { MockDataNotice } from "@/components/ui/MockDataNotice";
+import { T } from "@/i18n";
 import { getBreeds } from "@/services/breeds";
 
 export const metadata: Metadata = {
@@ -24,16 +25,15 @@ export default async function BreedsPage() {
         <Section spacing="tight">
           <Container>
             <h1 className="text-title font-semibold tracking-tight text-ink">
-              Breed library
+              <T k="breeds.title" />
             </h1>
             <p className="mt-2 max-w-xl text-body text-ink-2 text-pretty">
-              Indian cattle breeds the system is being built to
-              recognise. Search by breed or region.
+              <T k="breeds.intro" />
             </p>
 
             <MockDataNotice
               className="mt-6"
-              what="Breed names and regions are genuine; descriptions are withheld until verified."
+              what={<T k="breeds.mockWhat" />}
             />
 
             <div className="mt-8">
@@ -41,7 +41,7 @@ export default async function BreedsPage() {
                 <BreedLibrary breeds={result.data} />
               ) : (
                 <ErrorState
-                  title="The breed library could not be loaded"
+                  title={<T k="breeds.loadFail" />}
                   description={result.error.message}
                 />
               )}

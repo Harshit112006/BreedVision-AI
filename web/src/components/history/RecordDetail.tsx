@@ -7,15 +7,18 @@ import { useRouter } from "next/navigation";
 import { PredictionResult } from "@/components/prediction/PredictionResult";
 import { ErrorState, LoadingState } from "@/components/states";
 import { Button, ButtonLink } from "@/components/ui/Button";
+import { useDateTag, useT, type MessageKey } from "@/i18n";
 import { deleteRecord, getRecord, type LocalRecord } from "@/services/records";
 
-const SYNC_LABEL: Record<LocalRecord["syncState"], string> = {
-  "local-only": "Stored on this device only",
-  pending: "Waiting to sync",
-  synced: "Synced",
+const SYNC_LABEL: Record<LocalRecord["syncState"], MessageKey> = {
+  "local-only": "rec.sync.local",
+  pending: "rec.sync.pending",
+  synced: "rec.sync.synced",
 };
 
 export function RecordDetail({ id }: { id: string }) {
+  const t = useT();
+  const dateTag = useDateTag();
   const router = useRouter();
   const [record, setRecord] = useState<LocalRecord | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -49,16 +52,16 @@ export function RecordDetail({ id }: { id: string }) {
   if (error) {
     return (
       <ErrorState
-        title="Record not found"
+        title={t("rec.notFound")}
         description={error}
         onRetry={() => router.push("/history")}
-        retryLabel="Back to history"
+        retryLabel={t("rec.back")}
       />
     );
   }
 
   if (!record) {
-    return <LoadingState label="Loading this record" rows={1} />;
+    return <LoadingState label={t("rec.loading")} rows={1} />;
   }
 
   const onDelete = async () => {
@@ -74,17 +77,17 @@ export function RecordDetail({ id }: { id: string }) {
 
   return (
     <div className="flex flex-col gap-8">
-      <nav aria-label="Breadcrumb" className="text-small">
+      <nav aria-label={t("rec.crumbAria")} className="text-small">
         <Link
           href="/history"
           className="text-ink-3 underline-offset-2 hover:text-ink hover:underline"
         >
-          History
+          {t("nav.history")}
         </Link>
         <span aria-hidden="true" className="mx-2 text-ink-4">
           /
         </span>
-        <span className="text-ink-2">Record</span>
+        <span className="text-ink-2">{t("rec.crumb")}</span>
       </nav>
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-12">
@@ -93,7 +96,7 @@ export function RecordDetail({ id }: { id: string }) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={record.imageUrl}
-              alt="The animal in this identification record"
+              alt={t("rec.imgAlt")}
               className="h-full w-full object-cover"
             />
           </div>
@@ -109,10 +112,10 @@ export function RecordDetail({ id }: { id: string }) {
           <dl className="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-line pt-6">
             <div>
               <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
-                Recorded
+                {t("flow.recorded")}
               </dt>
               <dd className="mt-1 text-small text-ink-2">
-                {new Date(record.createdAt).toLocaleString("en-IN", {
+                {new Date(record.createdAt).toLocaleString(dateTag, {
                   dateStyle: "medium",
                   timeStyle: "short",
                 })}
@@ -120,7 +123,7 @@ export function RecordDetail({ id }: { id: string }) {
             </div>
             <div>
               <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
-                Model version
+                {t("flow.modelVersion")}
               </dt>
               <dd className="mt-1 text-small text-ink-2">
                 {record.prediction.modelVersion}
@@ -128,7 +131,7 @@ export function RecordDetail({ id }: { id: string }) {
             </div>
             <div>
               <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
-                Location
+                {t("flow.location")}
               </dt>
               <dd className="mt-1 text-small text-ink-2">
                 {record.location ? (
@@ -137,49 +140,48 @@ export function RecordDetail({ id }: { id: string }) {
                     {record.location.longitude.toFixed(4)}
                   </span>
                 ) : (
-                  <span className="text-ink-3">Not captured</span>
+                  <span className="text-ink-3">{t("flow.notCaptured")}</span>
                 )}
               </dd>
             </div>
             {record.duplicateOf ? (
               <div className="col-span-2">
                 <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
-                  Duplicate check
+                  {t("rec.dup.title")}
                 </dt>
                 <dd className="mt-1 text-small text-ink-2">
-                  {record.duplicateOf.tier === "same"
-                    ? "When saved, this looked like the same photo as "
-                    : "When saved, this was very similar to "}
                   <Link
                     href={`/history/${record.duplicateOf.id}`}
                     className="font-medium text-forest underline underline-offset-2"
                   >
-                    an earlier record
-                  </Link>
-                  . It compares pictures, not animals.
+                    {record.duplicateOf.tier === "same"
+                      ? t("rec.dup.same")
+                      : t("rec.dup.similar")}
+                  </Link>{" "}
+                  {t("rec.dup.note")}
                 </dd>
               </div>
             ) : null}
             <div>
               <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
-                Storage
+                {t("rec.storage")}
               </dt>
               <dd className="mt-1 text-small text-ink-2">
-                {SYNC_LABEL[record.syncState]}
+                {t(SYNC_LABEL[record.syncState])}
               </dd>
             </div>
           </dl>
 
           <div className="flex flex-wrap gap-3">
             <ButtonLink href="/identify" size="lg">
-              Identify another
+              {t("flow.another")}
             </ButtonLink>
             <ButtonLink
               href={`/breeds/${record.prediction.breedId}`}
               size="lg"
               variant="secondary"
             >
-              View breed
+              {t("flow.viewBreed")}
             </ButtonLink>
           </div>
 
@@ -187,7 +189,7 @@ export function RecordDetail({ id }: { id: string }) {
             {confirming ? (
               <div className="flex flex-wrap items-center gap-3">
                 <p className="text-small text-ink-2">
-                  Delete this record permanently?
+                  {t("rec.delete.confirm")}
                 </p>
                 <Button
                   variant="danger"
@@ -195,14 +197,14 @@ export function RecordDetail({ id }: { id: string }) {
                   onClick={onDelete}
                   disabled={deleting}
                 >
-                  {deleting ? "Deleting…" : "Yes, delete"}
+                  {deleting ? t("rec.deleting") : t("rec.delete.yes")}
                 </Button>
                 <Button
                   variant="quiet"
                   size="sm"
                   onClick={() => setConfirming(false)}
                 >
-                  Keep it
+                  {t("rec.keep")}
                 </Button>
               </div>
             ) : (
@@ -211,7 +213,7 @@ export function RecordDetail({ id }: { id: string }) {
                 size="sm"
                 onClick={() => setConfirming(true)}
               >
-                Delete record
+                {t("rec.delete")}
               </Button>
             )}
           </div>

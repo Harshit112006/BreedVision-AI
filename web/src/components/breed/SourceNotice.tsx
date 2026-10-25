@@ -1,3 +1,6 @@
+"use client";
+
+import { useT } from "@/i18n";
 import { cn } from "@/lib/cn";
 
 interface SourceNoticeProps {
@@ -14,6 +17,7 @@ interface SourceNoticeProps {
  * as established fact. Phase 16 populates these from ICAR-NBAGR.
  */
 export function SourceNotice({ source, sourceUrl, className }: SourceNoticeProps) {
+  const t = useT();
   if (!source) {
     return (
       <div
@@ -24,11 +28,9 @@ export function SourceNotice({ source, sourceUrl, className }: SourceNoticeProps
       >
         <p className="text-small text-ink-2">
           <strong className="font-semibold text-amber">
-            Breed details not yet verified.
+            {t("src.unverifiedHead")}
           </strong>{" "}
-          Descriptions and characteristics for this breed have not been checked
-          against an authoritative source, so none are shown. They will be added
-          from ICAR-NBAGR records with citations.
+          {t("src.unverifiedBody")}
         </p>
       </div>
     );
@@ -36,7 +38,7 @@ export function SourceNotice({ source, sourceUrl, className }: SourceNoticeProps
 
   return (
     <p className={cn("text-micro text-ink-3", className)}>
-      Source:{" "}
+      {t("src.label")}{" "}
       {sourceUrl ? (
         <a
           href={sourceUrl}

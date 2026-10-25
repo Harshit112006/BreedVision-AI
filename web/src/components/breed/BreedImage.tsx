@@ -1,3 +1,6 @@
+"use client";
+
+import { useT } from "@/i18n";
 import { cn } from "@/lib/cn";
 import type { AnimalCategory } from "@/types";
 
@@ -26,6 +29,7 @@ export function BreedImage({
   className,
   size = "card",
 }: BreedImageProps) {
+  const t = useT();
   if (imageUrl) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
@@ -44,7 +48,7 @@ export function BreedImage({
         className,
       )}
       role="img"
-      aria-label={`No photograph available for ${name}`}
+      aria-label={t("breed.noPhotoFor", { name })}
     >
       <span
         aria-hidden="true"
@@ -56,7 +60,7 @@ export function BreedImage({
         {name.slice(0, 2)}
       </span>
       {size === "hero" ? (
-        <span className="text-micro text-ink-3">No photograph yet</span>
+        <span className="text-micro text-ink-3">{t("breed.noPhoto")}</span>
       ) : null}
     </div>
   );
