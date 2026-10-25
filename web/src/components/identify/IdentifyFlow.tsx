@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { PredictionResult } from "@/components/prediction/PredictionResult";
 import { ErrorState } from "@/components/states";
@@ -8,11 +8,16 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { MockDataNotice } from "@/components/ui/MockDataNotice";
 import { cn } from "@/lib/cn";
+import {
+  captureLocation,
+  getLocationPreference,
+  setLocationPreference,
+} from "@/lib/geolocation";
 import { formatBytes, prepareImage, type PreparedImage } from "@/lib/image";
 import { predictBreed } from "@/services/predictions";
 import { saveRecord } from "@/services/records";
 import { IMAGE_LIMITS } from "@/services/config";
-import type { Prediction, ServiceError } from "@/types";
+import type { GeoLocation, Prediction, ServiceError } from "@/types";
 
 /**
  * Phases map to real async boundaries — there is no invented progress.
@@ -39,6 +44,16 @@ export function IdentifyFlow() {
     "idle" | "saving" | "saved" | "failed"
   >("idle");
   const [savedId, setSavedId] = useState<string | null>(null);
+  const [attachLocation, setAttachLocation] = useState(false);
+  const [savedLocation, setSavedLocation] = useState<GeoLocation | null>(null);
+  const [locationNote, setLocationNote] = useState<string | null>(null);
+
+  // Read the remembered choice after mount; localStorage does not exist during
+  // server rendering, so it cannot seed the initial state.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setAttachLocation(getLocationPreference());
+  }, []);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
@@ -50,6 +65,8 @@ export function IdentifyFlow() {
     setError(null);
     setSaveState("idle");
     setSavedId(null);
+    setSavedLocation(null);
+    setLocationNote(null);
     setPhase("idle");
   }, [image]);
 
@@ -88,11 +105,22 @@ export function IdentifyFlow() {
   const save = useCallback(async () => {
     if (!image || !prediction) return;
     setSaveState("saving");
+    setLocationNote(null);
+
+    // Location is optional and never blocks the save.
+    let location: GeoLocation | null = null;
+    if (attachLocation) {
+      const loc = await captureLocation();
+      if (loc.ok) location = loc.location;
+      else setLocationNote(loc.reason);
+    }
+
     const result = await saveRecord({
       file: image.file,
       prediction,
       width: image.width,
       height: image.height,
+      location,
     });
     if (!result.ok) {
       setSaveState("failed");
@@ -100,8 +128,9 @@ export function IdentifyFlow() {
       return;
     }
     setSavedId(result.data.id);
+    setSavedLocation(location);
     setSaveState("saved");
-  }, [image, prediction]);
+  }, [image, prediction, attachLocation]);
 
   /* ------------------------------------------------------------- result -- */
   if (phase === "done" && prediction && image) {
@@ -151,7 +180,19 @@ export function IdentifyFlow() {
                 <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
                   Location
                 </dt>
-                <dd className="mt-1 text-small text-ink-3">Not captured</dd>
+                <dd className="mt-1 text-small text-ink-2">
+                  {savedLocation ? (
+                    <span data-numeric="">
+                      {savedLocation.latitude.toFixed(4)},{" "}
+                      {savedLocation.longitude.toFixed(4)}
+                      {savedLocation.accuracyM !== null
+                        ? ` (±${savedLocation.accuracyM} m)`
+                        : ""}
+                    </span>
+                  ) : (
+                    <span className="text-ink-3">Not captured</span>
+                  )}
+                </dd>
               </div>
               <div>
                 <dt className="text-micro uppercase tracking-[0.14em] text-ink-3">
@@ -164,6 +205,26 @@ export function IdentifyFlow() {
                 </dd>
               </div>
             </dl>
+
+            {saveState !== "saved" ? (
+              <label className="flex min-h-11 cursor-pointer items-start gap-3 text-small text-ink-2">
+                <input
+                  type="checkbox"
+                  checked={attachLocation}
+                  onChange={(e) => {
+                    setAttachLocation(e.target.checked);
+                    setLocationPreference(e.target.checked);
+                  }}
+                  className="mt-0.5 h-5 w-5 shrink-0 accent-forest"
+                />
+                <span>
+                  Attach my location to this record
+                  <span className="block text-micro text-ink-3">
+                    Optional. Asked for only when you press Save.
+                  </span>
+                </span>
+              </label>
+            ) : null}
 
             <div className="flex flex-wrap gap-3">
               {saveState === "saved" ? (
@@ -193,7 +254,9 @@ export function IdentifyFlow() {
 
             <p className="text-micro text-ink-3" role="status" aria-live="polite">
               {saveState === "saved"
-                ? "Saved on this device."
+                ? `Saved on this device.${
+                    savedLocation ? " Location attached." : ""
+                  }${locationNote ? ` ${locationNote}` : ""}`
                 : saveState === "failed"
                   ? (error?.message ??
                     "This record could not be saved on your device.")
