@@ -6,8 +6,9 @@
  * advertise a breed the model was not trained on.
  *
  * Names are the dataset's own class labels. Home tracts come from the
- * ICAR-NBAGR registry; use and notes are a general summary kept in
- * `breed-info.ts` (see its header for exactly what is and isn't cited).
+ * ICAR-NBAGR registry; descriptions and traits are summarised from the sources
+ * listed per breed in `breed-info.ts` (see its header for what they are and are
+ * not).
  * Photos are samples from the training dataset. Where a fact is unknown the
  * field is left empty rather than guessed.
  *
@@ -32,7 +33,7 @@ export const MOCK_BREED_SUMMARIES: BreedSummary[] = GENERATED_BREEDS.map(
       name: b.name,
       category: "cattle" as const,
       region: info?.region ?? null,
-      shortDescription: info?.notes ?? null,
+      shortDescription: info?.description ?? null,
       // Photos are resized samples from the training dataset, written by
       // ml/scripts/export_breed_photos.py. 1.jpg is the card/hero image.
       imageUrl: `/breeds/${b.id}/1.jpg`,
@@ -44,10 +45,9 @@ export const MOCK_BREEDS: Breed[] = MOCK_BREED_SUMMARIES.map((b) => {
   const info = BREED_INFO[b.id];
   return {
     ...b,
-    description: info?.notes ?? null,
-    characteristics: [
-      ...(info?.use ? [{ label: "Primary use", value: info.use }] : []),
-    ],
+    description: info?.description ?? null,
+    characteristics: info?.traits ?? [],
+    sources: info?.sources ?? [],
     gallery: [1, 2, 3].map((n) => `/breeds/${b.id}/${n}.jpg`),
     relatedBreedIds: info?.related ?? [],
     source: BREED_SOURCE,

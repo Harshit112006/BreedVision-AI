@@ -265,6 +265,8 @@ export const en = {
   "value.title": "Find the value of your cattle",
   "value.intro": "An indicative estimate in rupees, built from listed breed price ranges and what milk yield and pregnancy add. It is a guide, not a market quote.",
   "flow.estimateValue": "Estimate value",
+  "breed.sources": "Sources:",
+  "breed.sourcesNote": "Summarised from these pages, which are breed guides and journal surveys, not the full ICAR breed records. Home tract is from the ICAR-NBAGR registry. Check a detail with your state animal husbandry department before relying on it.",
 } as const;
 
 export type MessageKey = keyof typeof en;

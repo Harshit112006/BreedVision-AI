@@ -33,6 +33,8 @@ export interface Breed extends BreedSummary {
    * and the UI must say so rather than presenting it as established fact.
    */
   source: string | null;
+  /** The pages this breed's description and traits were summarised from. */
+  sources?: { label: string; url: string }[];
   sourceUrl: string | null;
 }
 

@@ -10,6 +10,7 @@ FastAPI will eventually be organized as:
 
 - **Model:** EfficientNet-B0 (last three blocks fine-tuned), 49 Indian cattle breeds. On 1,114 held-out test photos: **61.9% top-1, 83.0% top-3**; when it names a breed (about 1 photo in 4) it is right about 90% of the time. Details and limits: [docs/test-evaluation.md](docs/test-evaluation.md).
 - **Cattle value:** an indicative rupee estimate for a cow (breed listing range + milk yield + pregnancy), not a market quote; sources and limits in [docs/price-reference.md](docs/price-reference.md).
+- **Breed library:** all 49 breeds have a description, traits and cited sources (guide/journal summaries, not the full ICAR records): [docs/breed-descriptions.md](docs/breed-descriptions.md).
 - **Not covered:** buffalo (none in the dataset); field photos have not been tested; no Bharat Pashudhan integration.
 - **Run the demo:** [docs/demo-runbook.md](docs/demo-runbook.md). Talking points: [docs/demo-script.md](docs/demo-script.md).
 - **Web app languages:** English, Hindi, Marathi, Tamil, Telugu (AI-written, not yet reviewed by native speakers): [docs/i18n.md](docs/i18n.md).

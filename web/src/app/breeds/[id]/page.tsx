@@ -146,9 +146,37 @@ export default async function BreedDetailPage({ params }: PageProps) {
                 </h2>
                 <div className="mt-5">
                   {breed.description ? (
-                    <p className="max-w-prose text-body text-ink-2 text-pretty">
-                      {breed.description}
-                    </p>
+                    <>
+                      <p className="max-w-prose text-body text-ink-2 text-pretty">
+                        {breed.description}
+                      </p>
+                      {breed.sources && breed.sources.length > 0 ? (
+                        <div className="mt-4 max-w-prose text-micro text-ink-3">
+                          <p>
+                            <strong className="font-semibold text-ink-2">
+                              <T k="breed.sources" />
+                            </strong>{" "}
+                            {breed.sources.map((src, i) => (
+                              <span key={src.url}>
+                                {i > 0 ? "; " : ""}
+                                <a
+                                  href={src.url}
+                                  target="_blank"
+                                  rel="noreferrer noopener"
+                                  className="text-forest underline underline-offset-2"
+                                >
+                                  {src.label}
+                                </a>
+                              </span>
+                            ))}
+                            .
+                          </p>
+                          <p className="mt-1 text-pretty">
+                            <T k="breed.sourcesNote" />
+                          </p>
+                        </div>
+                      ) : null}
+                    </>
                   ) : (
                     <SourceNotice
                       source={breed.source}
