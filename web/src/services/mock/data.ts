@@ -9,8 +9,9 @@
  * ICAR-NBAGR registry; descriptions and traits are summarised from the sources
  * listed per breed in `breed-info.ts` (see its header for what they are and are
  * not).
- * Photos are samples from the training dataset. Where a fact is unknown the
- * field is left empty rather than guessed.
+ * Photos are licensed Wikimedia Commons images with attribution; the training
+ * dataset is not used because its labels are too noisy. Where a fact or photo
+ * is unknown the field is left empty rather than guessed.
  *
  * Scope: this dataset contains **cattle only**. It has no buffalo breeds, so
  * buffalo identification is not offered anywhere in the product until a
@@ -22,6 +23,7 @@
 
 import type { Breed, BreedSummary, ModelInfo } from "@/types";
 
+import { BREED_PHOTOS } from "./breed-photos.generated";
 import { BREED_INFO, BREED_SOURCE, BREED_SOURCE_URL } from "./breed-info";
 import { GENERATED_BREEDS, NUM_CLASSES } from "./breeds.generated";
 
@@ -34,9 +36,9 @@ export const MOCK_BREED_SUMMARIES: BreedSummary[] = GENERATED_BREEDS.map(
       category: "cattle" as const,
       region: info?.region ?? null,
       shortDescription: info?.description ?? null,
-      // Photos are resized samples from the training dataset, written by
-      // ml/scripts/export_breed_photos.py. 1.jpg is the card/hero image.
-      imageUrl: `/breeds/${b.id}/1.jpg`,
+      // Licensed Wikimedia Commons photos (ml/scripts/export_breed_photos.py).
+      // Breeds with no verified photograph get null and the UI says so.
+      imageUrl: BREED_PHOTOS[b.id]?.[0]?.file ?? null,
     };
   },
 );
@@ -48,7 +50,14 @@ export const MOCK_BREEDS: Breed[] = MOCK_BREED_SUMMARIES.map((b) => {
     description: info?.description ?? null,
     characteristics: info?.traits ?? [],
     sources: info?.sources ?? [],
-    gallery: [1, 2, 3].map((n) => `/breeds/${b.id}/${n}.jpg`),
+    photos: (BREED_PHOTOS[b.id] ?? []).map((p) => ({
+      url: p.file,
+      title: p.title,
+      author: p.author,
+      license: p.license,
+      licenseUrl: p.licenseUrl,
+      page: p.page,
+    })),
     relatedBreedIds: info?.related ?? [],
     source: BREED_SOURCE,
     sourceUrl: BREED_SOURCE_URL,

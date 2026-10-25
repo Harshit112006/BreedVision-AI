@@ -25,8 +25,8 @@ export interface BreedSummary {
 export interface Breed extends BreedSummary {
   description: string | null;
   characteristics: BreedCharacteristic[];
-  /** Extra photo URLs shown on the detail page, after the primary image. */
-  gallery: string[];
+  /** Licensed photographs with attribution; the first is the primary image. */
+  photos: PhotoCredit[];
   relatedBreedIds: string[];
   /**
    * Where the breed facts came from (e.g. "ICAR-NBAGR"). Null means unverified
@@ -36,6 +36,17 @@ export interface Breed extends BreedSummary {
   /** The pages this breed's description and traits were summarised from. */
   sources?: { label: string; url: string }[];
   sourceUrl: string | null;
+}
+
+export interface PhotoCredit {
+  url: string;
+  /** Commons file name, used as alt-text context. */
+  title: string;
+  author: string;
+  license: string;
+  licenseUrl: string;
+  /** Page the photo was taken from (licence and author details). */
+  page: string;
 }
 
 export interface BreedCharacteristic {

@@ -239,6 +239,7 @@ export const te: Partial<Record<MessageKey, string>> = {
   "rec.delete": "రికార్డు తొలగించు",
   "breed.noPhoto": "ఇంకా ఫోటో లేదు",
   "breed.noPhotoFor": "{name} ఫోటో అందుబాటులో లేదు",
+  "breed.photoCredits": "ఫోటో క్రెడిట్స్",
   "notcattle.badge": "పశువు కాదా?",
   "notcattle.title": "ఇది పశువు ఫోటోలా కనిపించడం లేదు",
   "notcattle.body": "BreedVision 49 భారతీయ పశు జాతులను మాత్రమే తెలుసుకుంటుంది, కాబట్టి ఈ ఫోటోకు జాతిని చెప్పదు. పశువు ఆవు లేదా ఎద్దు అని, దానిలో ఎక్కువ భాగం ఫ్రేమ్‌లో ఉందని సరిచూడండి.",

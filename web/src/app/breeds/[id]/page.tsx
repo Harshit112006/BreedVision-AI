@@ -116,26 +116,62 @@ export default async function BreedDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            {breed.gallery.length > 1 ? (
+            {breed.photos.length > 1 ? (
               <ul
                 aria-label={`${breed.name} photographs`}
                 className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3"
               >
-                {breed.gallery.map((src, i) => (
+                {breed.photos.slice(1).map((ph, i) => (
                   <li
-                    key={src}
+                    key={ph.url}
                     className="aspect-4/3 overflow-hidden rounded-lg border border-line"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={src}
-                      alt={`${breed.name} ${breed.category}, photo ${i + 1}`}
+                      src={ph.url}
+                      alt={`${breed.name} ${breed.category}, photo ${i + 2}`}
                       loading="lazy"
                       className="h-full w-full object-cover"
                     />
                   </li>
                 ))}
               </ul>
+            ) : null}
+
+            {breed.photos.length > 0 ? (
+              <details className="mt-4 text-micro text-ink-3">
+                <summary className="cursor-pointer select-none">
+                  <T k="breed.photoCredits" />
+                </summary>
+                <ol className="mt-2 list-decimal space-y-1 pl-5">
+                  {breed.photos.map((ph) => (
+                    <li key={ph.url}>
+                      <a
+                        href={ph.page}
+                        className="text-forest underline underline-offset-2"
+                        rel="noreferrer noopener"
+                        target="_blank"
+                      >
+                        {ph.title}
+                      </a>{" "}
+                      — {ph.author},{" "}
+                      {ph.licenseUrl ? (
+                        <a
+                          href={ph.licenseUrl}
+                          className="underline underline-offset-2"
+                          rel="noreferrer noopener"
+                          target="_blank"
+                        >
+                          {ph.license}
+                        </a>
+                      ) : (
+                        ph.license
+                      )}
+                      , via Wikimedia Commons
+                    </li>
+                  ))}
+                </ol>
+              </details>
             ) : null}
 
             {/* ------------------------------------------------ description */}

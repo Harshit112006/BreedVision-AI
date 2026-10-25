@@ -256,6 +256,7 @@ export const en = {
   "rec.delete": "Delete record",
   "breed.noPhoto": "No photograph yet",
   "breed.noPhotoFor": "No photograph available for {name}",
+  "breed.photoCredits": "Photo credits",
   "notcattle.badge": "Not cattle?",
   "notcattle.title": "This does not look like a photo of cattle",
   "notcattle.body": "BreedVision only knows 49 Indian cattle breeds, so it will not name a breed for this photo. Check that the animal is a cow or bull and that most of it is in the frame.",
