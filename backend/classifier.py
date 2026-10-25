@@ -256,6 +256,9 @@ def classify(image, top_k: int = 5) -> dict:
             }
             for c in out.candidates[1:]
         ],
+        # None when the loaded bundle has no detector. False means the photo is
+        # unlike the cattle photos the model was fitted on (see ml/training/ood.py).
+        "looks_like_cattle": out.looks_like_cattle,
         "model_version": out.model_version,
         "inference_ms": round(out.inference_ms, 1),
         "num_classes": len(_predictor.class_to_idx),
