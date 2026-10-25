@@ -50,17 +50,21 @@ three**, which is why the page shows a range.
 - Only the milk and pregnancy effects have any published support, and that
   support is a 2010-11 study of crossbred-heavy herds in one state.
 
-## The synthetic sales dataset
+## The synthetic sales dataset (not shown in the app)
+
+> **Status (26 Oct 2026):** the sale log, ranking, price-history chart and observed
+> prices were removed from the Cattle value page. The app now shows only the
+> estimator. The dataset and its generator remain in the repository as the way the
+> price anchors are produced and documented; nothing in the interface displays it.
 
 `ml/synthetic/SYNTHETIC_sales.csv` (and `web/public/demo/synthetic-sales.json`):
 414 invented sales, Jan 2021 to Sep 2026, six a month. Each price is a random draw
 around the same anchors, scaled by the same milk and pregnancy rule, with an
 **assumed** 6% yearly trend (latest month pinned to the anchors), an assumed +-5%
 seasonal swing, and noise sized so that the listed range is roughly a 90% interval.
-Every row is flagged `synthetic`, shown as "Illustrative", excluded from observed
-prices, and rejected by the database if anyone tries to upload it.
+Every row is flagged `synthetic` and the database rejects any attempt to upload
+one.
 
-It exercises the price-log table, ranking and history chart. **It cannot validate
-the estimator**, because the estimator and the dataset share one formula: any
-agreement between them is circular. Real validation needs real sale prices, which is
-what the "Log a sale" form collects.
+**It cannot validate the estimator**, because the estimator and the dataset share one formula: any
+agreement between them is circular. Real validation needs real sale prices, which
+this project does not have.

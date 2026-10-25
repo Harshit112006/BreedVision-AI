@@ -83,10 +83,10 @@ app/PWA offline mode is not built; the web app currently needs the laptop backen
 market quote. The base is a breed guide's listed price range (10 of 49 breeds have
 one; the rest get a general desi-cow range and the page says so). Milk yield adds
 Rs 4,000 a litre (an assumption from one project report) and pregnancy adds the
-ratio from Kumar et al. 2014. The sale rows in the demo are synthetic, labelled
-"Illustrative", generated around those same ranges, so they cannot validate the
-estimate. No verified livestock price series exists; the "Log a sale" form is how
-real data would be collected.
+ratio from Kumar et al. 2014. No verified livestock price series exists, so the
+estimate cannot be checked against real sales; that is a stated limit. (A synthetic
+sales dataset generated around the same ranges exists in the repository but is not
+shown in the app, and could not validate the estimate anyway.)
 
 **"How do you know there is no data leakage?"** Near-duplicate photos (perceptual
 hash) were grouped so they stay on one side of the split. A plain random split would

@@ -4,7 +4,6 @@ import { Suspense } from "react";
 import { Container, Section } from "@/components/layout/Container";
 import { SiteFooter } from "@/components/navigation/SiteFooter";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
-import { SalesWorkspace } from "@/components/prices/SalesWorkspace";
 import { ValueCalculator } from "@/components/prices/ValueCalculator";
 import { LoadingState } from "@/components/states";
 import { T } from "@/i18n";
@@ -12,7 +11,7 @@ import { T } from "@/i18n";
 export const metadata: Metadata = {
   title: "Find the value of your cattle",
   description:
-    "An indicative rupee estimate for a cow, from listed breed price ranges, milk yield and pregnancy, plus a log of real sale prices.",
+    "An indicative rupee estimate for a cow, from listed breed price ranges, milk yield and pregnancy.",
 };
 
 export default function PricesPage() {
@@ -33,7 +32,6 @@ export default function PricesPage() {
               <Suspense fallback={<LoadingState label="Loading" rows={1} />}>
                 <ValueCalculator />
               </Suspense>
-              <SalesWorkspace />
             </div>
           </Container>
         </Section>
