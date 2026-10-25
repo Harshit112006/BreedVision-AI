@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { AccountPanel } from "@/components/account/AccountPanel";
 import { Container, Section } from "@/components/layout/Container";
 import { SiteFooter } from "@/components/navigation/SiteFooter";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
+import { ACCOUNTS_ENABLED } from "@/services/config";
 
 export const metadata: Metadata = {
   title: "Account",
@@ -11,6 +13,8 @@ export const metadata: Metadata = {
 };
 
 export default function AccountPage() {
+  // Accounts are switched off for now (services/config.ts).
+  if (!ACCOUNTS_ENABLED) notFound();
   return (
     <>
       <SiteHeader />

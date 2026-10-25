@@ -19,6 +19,16 @@ export const API_BASE_URL =
  */
 export const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS !== "false";
 
+/**
+ * Accounts, cloud backup and the cross-account duplicate check are built and
+ * tested, but switched off in the interface for now. While false: no Account
+ * page or link, nothing is ever uploaded (even if a session was left in the
+ * browser from earlier), and the duplicate check compares against this device's
+ * records only. Set to true to bring it all back; it also needs the Supabase
+ * variables in .env.local (see docs/supabase.md).
+ */
+export const ACCOUNTS_ENABLED = false;
+
 /** Upload limits, mirrored by backend validation in Phase 9. */
 export const IMAGE_LIMITS = {
   /** Reject before upload rather than wasting a round trip. */

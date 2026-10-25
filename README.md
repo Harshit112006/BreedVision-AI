@@ -12,4 +12,4 @@ FastAPI will eventually be organized as:
 - **Not covered:** buffalo (none in the dataset); field photos have not been tested; no Bharat Pashudhan integration.
 - **Run the demo:** [docs/demo-runbook.md](docs/demo-runbook.md). Talking points: [docs/demo-script.md](docs/demo-script.md).
 - **Web app languages:** English, Hindi, Marathi, Tamil, Telugu (AI-written, not yet reviewed by native speakers): [docs/i18n.md](docs/i18n.md).
-- **Other docs:** [docs/explained.md](docs/explained.md) (plain-language explanation), [docs/non-cattle-check.md](docs/non-cattle-check.md), [docs/explainability.md](docs/explainability.md), [docs/duplicate-detection.md](docs/duplicate-detection.md), [docs/supabase.md](docs/supabase.md).
+- **Other docs:** [docs/explained.md](docs/explained.md) (plain-language explanation), [docs/non-cattle-check.md](docs/non-cattle-check.md), [docs/explainability.md](docs/explainability.md), [docs/duplicate-detection.md](docs/duplicate-detection.md), [docs/supabase.md](docs/supabase.md) (accounts and cloud backup are built but switched off for now).

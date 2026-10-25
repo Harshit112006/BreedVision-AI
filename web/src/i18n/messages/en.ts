@@ -121,7 +121,7 @@ export const en = {
   "flow.syncFailed":
     "Cloud sync didn’t finish. It will retry from the Account page.",
   "flow.saveFailed": "This record could not be saved on your device.",
-  "flow.localOnly": "Records are saved on this device. Sign in on the Account page to back them up to your account.",
+  "flow.localOnly": "Records are saved on this device only. Nothing is uploaded.",
 
   /* prediction result */
   "pred.predicted": "Predicted breed",
@@ -211,7 +211,7 @@ export const en = {
   "src.label": "Source:",
   "state.errorTitle": "That didn’t work",
   "state.retry": "Try again",
-  "history.intro": "Identifications you have saved. They are kept on this device; sign in on the Account page to back them up.",
+  "history.intro": "Identifications you have saved. They are kept on this device only.",
   "hist.loading": "Loading your saved identifications",
   "hist.readFail": "Records could not be read",
   "hist.empty.title": "No saved identifications yet",

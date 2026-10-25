@@ -1,5 +1,7 @@
 # Supabase: accounts, cloud sync, cross-account duplicate check
 
+> **Status (26 Oct 2026): switched off in the interface.** Accounts, cloud backup and the cross-account duplicate check are built and tested but hidden for now: `ACCOUNTS_ENABLED = false` in `web/src/services/config.ts`. While off there is no Account page or link, nothing is ever uploaded (even if a session was left in the browser), and the duplicate check uses this device's records only. Set it to `true` (and add the Supabase variables to `web/.env.local`) to bring it back.
+
 The app is **local-first**. Everything works on-device with no account. Supabase
 adds optional sign-in, cloud backup of records, and a duplicate-photo check
 across accounts.

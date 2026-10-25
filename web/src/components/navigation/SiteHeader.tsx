@@ -10,6 +10,7 @@ import { Logo } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "@/components/navigation/LanguageSwitcher";
 import { useT, type MessageKey } from "@/i18n";
 import { cn } from "@/lib/cn";
+import { ACCOUNTS_ENABLED } from "@/services/config";
 
 interface NavItem {
   href: string;
@@ -23,7 +24,9 @@ const PUBLIC_NAV: NavItem[] = [
   { href: "/breeds", label: "nav.breeds" },
   { href: "/history", label: "nav.history" },
   { href: "/prices", label: "nav.prices" },
-  { href: "/account", label: "nav.account" },
+  ...(ACCOUNTS_ENABLED
+    ? [{ href: "/account", label: "nav.account" } as NavItem]
+    : []),
 ];
 
 export function SiteHeader() {

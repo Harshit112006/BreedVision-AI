@@ -26,7 +26,7 @@ import {
 import { currentUser, remoteDuplicate, syncAll, type RemoteDuplicate } from "@/services/cloud";
 import { predictBreed } from "@/services/predictions";
 import { saveRecord } from "@/services/records";
-import { IMAGE_LIMITS } from "@/services/config";
+import { ACCOUNTS_ENABLED, IMAGE_LIMITS } from "@/services/config";
 import type { GeoLocation, Prediction, ServiceError } from "@/types";
 
 /**
@@ -124,7 +124,9 @@ export function IdentifyFlow() {
       const local = await findDuplicate(f);
       setDuplicate(local);
       // Only ask the cloud when the device found nothing and an account exists.
-      setRemoteDup(local ? null : await remoteDuplicate(f));
+      setRemoteDup(
+        local || !ACCOUNTS_ENABLED ? null : await remoteDuplicate(f),
+      );
     } catch {
       setFp(null);
       setDuplicate(null);
@@ -167,7 +169,7 @@ export function IdentifyFlow() {
 
     // If signed in, upload straight away. Never blocks or fails the save: the
     // record is already safe on the device and simply stays pending on error.
-    if (await currentUser()) {
+    if (ACCOUNTS_ENABLED && (await currentUser())) {
       const r = await syncAll();
       setSyncNote(
         r.ok && r.data.recordsFailed.length === 0
