@@ -14,8 +14,9 @@
 import type { GeoLocation, Prediction } from "@/types";
 
 const DB_NAME = "breedvision";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE = "records";
+const SALES_STORE = "sales";
 
 /** How a record stands with respect to a backend that does not exist yet. */
 export type SyncState = "local-only" | "pending" | "synced";
@@ -46,6 +47,12 @@ function openDb(): Promise<IDBDatabase> {
         // History is shown newest first, so index the sort key.
         store.createIndex("createdAt", "createdAt");
         store.createIndex("syncState", "syncState");
+      }
+      // v2: user-logged sale prices. Additive, so existing records survive.
+      if (!db.objectStoreNames.contains(SALES_STORE)) {
+        const sales = db.createObjectStore(SALES_STORE, { keyPath: "id" });
+        sales.createIndex("soldOn", "soldOn");
+        sales.createIndex("source", "source");
       }
     };
     req.onsuccess = () => resolve(req.result);
@@ -96,4 +103,74 @@ export async function deleteRecordById(id: string): Promise<void> {
 export async function countRecords(): Promise<number> {
   if (!isAvailable()) return 0;
   return tx<number>("readonly", (s) => s.count());
+}
+
+
+/* ------------------------------------------------------------------ sales -- */
+
+export interface StoredSale {
+  id: string;
+  breedId: string;
+  breedName: string;
+  /** Rupees, whole number. */
+  priceInr: number;
+  /** YYYY-MM-DD. */
+  soldOn: string;
+  milkYieldLitres: number | null;
+  pregnant: boolean | null;
+  ageYears: number | null;
+  note: string | null;
+  createdAt: string;
+  /** "synthetic" rows are demonstration data and must always be labelled. */
+  source: "user" | "synthetic";
+}
+
+function salesTx<T>(
+  mode: IDBTransactionMode,
+  run: (store: IDBObjectStore) => IDBRequest<T> | void,
+): Promise<T | undefined> {
+  return openDb().then(
+    (db) =>
+      new Promise<T | undefined>((resolve, reject) => {
+        const t = db.transaction(SALES_STORE, mode);
+        const req = run(t.objectStore(SALES_STORE));
+        t.oncomplete = () => {
+          db.close();
+          resolve(req ? req.result : undefined);
+        };
+        t.onerror = () => reject(t.error ?? new Error("sales transaction failed"));
+        t.onabort = () => reject(t.error ?? new Error("sales transaction aborted"));
+      }),
+  );
+}
+
+export async function putSales(sales: StoredSale[]): Promise<void> {
+  if (!isAvailable()) throw new Error("storage unavailable");
+  await salesTx("readwrite", (s) => {
+    sales.forEach((x) => s.put(x));
+  });
+}
+
+export async function getAllSales(): Promise<StoredSale[]> {
+  if (!isAvailable()) return [];
+  const all = (await salesTx<StoredSale[]>("readonly", (s) => s.getAll())) ?? [];
+  return all.sort((a, b) => b.soldOn.localeCompare(a.soldOn));
+}
+
+export async function deleteSaleById(id: string): Promise<void> {
+  if (!isAvailable()) return;
+  await salesTx("readwrite", (s) => {
+    s.delete(id);
+  });
+}
+
+export async function deleteSalesBySource(
+  source: StoredSale["source"],
+): Promise<void> {
+  if (!isAvailable()) return;
+  const all = await getAllSales();
+  const ids = all.filter((x) => x.source === source).map((x) => x.id);
+  await salesTx("readwrite", (s) => {
+    ids.forEach((id) => s.delete(id));
+  });
 }

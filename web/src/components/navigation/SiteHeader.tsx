@@ -20,6 +20,7 @@ interface NavItem {
 const PUBLIC_NAV: NavItem[] = [
   { href: "/breeds", label: "Breeds" },
   { href: "/history", label: "History" },
+  { href: "/prices", label: "Prices" },
 ];
 
 export function SiteHeader() {

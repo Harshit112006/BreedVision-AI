@@ -1,0 +1,505 @@
+id,breedId,breedName,priceInr,soldOn,milkYieldLitres,pregnant,ageYears,note,createdAt,source
+synthetic-201901-00,shweta-kapila,Shweta Kapila,53900,2019-01-22,6.0,True,3,SYNTHETIC - not a real sale,2019-01-22T00:00:00.000Z,synthetic
+synthetic-201901-01,tharparkar,Tharparkar,49400,2019-01-13,13.6,False,7,SYNTHETIC - not a real sale,2019-01-13T00:00:00.000Z,synthetic
+synthetic-201901-02,bargur,Bargur,43900,2019-01-24,4.7,False,3,SYNTHETIC - not a real sale,2019-01-24T00:00:00.000Z,synthetic
+synthetic-201901-03,rathi,Rathi,55200,2019-01-15,14.5,False,7,SYNTHETIC - not a real sale,2019-01-15T00:00:00.000Z,synthetic
+synthetic-201901-04,dagri,Dagri,37300,2019-01-08,3.5,False,4,SYNTHETIC - not a real sale,2019-01-08T00:00:00.000Z,synthetic
+synthetic-201901-05,nari,Nari,70700,2019-01-02,15.8,True,9,SYNTHETIC - not a real sale,2019-01-02T00:00:00.000Z,synthetic
+synthetic-201902-00,motu,Motu,62700,2019-02-27,12.9,False,4,SYNTHETIC - not a real sale,2019-02-27T00:00:00.000Z,synthetic
+synthetic-201902-01,tharparkar,Tharparkar,44600,2019-02-05,9.1,False,4,SYNTHETIC - not a real sale,2019-02-05T00:00:00.000Z,synthetic
+synthetic-201902-02,hallikar,Hallikar,61900,2019-02-25,13.8,False,2,SYNTHETIC - not a real sale,2019-02-25T00:00:00.000Z,synthetic
+synthetic-201902-03,pulikulam,Pulikulam,46000,2019-02-13,5.3,False,6,SYNTHETIC - not a real sale,2019-02-13T00:00:00.000Z,synthetic
+synthetic-201902-04,khariar,Khariar,52200,2019-02-10,12.5,False,4,SYNTHETIC - not a real sale,2019-02-10T00:00:00.000Z,synthetic
+synthetic-201902-05,hallikar,Hallikar,68900,2019-02-19,17.4,False,6,SYNTHETIC - not a real sale,2019-02-19T00:00:00.000Z,synthetic
+synthetic-201903-00,bhelai,Bhelai,54200,2019-03-20,14.7,False,10,SYNTHETIC - not a real sale,2019-03-20T00:00:00.000Z,synthetic
+synthetic-201903-01,konkan-kapila,Konkan Kapila,38000,2019-03-13,4.4,False,3,SYNTHETIC - not a real sale,2019-03-13T00:00:00.000Z,synthetic
+synthetic-201903-02,bachaur,Bachaur,44900,2019-03-01,11.7,True,4,SYNTHETIC - not a real sale,2019-03-01T00:00:00.000Z,synthetic
+synthetic-201903-03,bhelai,Bhelai,71400,2019-03-17,13.8,False,4,SYNTHETIC - not a real sale,2019-03-17T00:00:00.000Z,synthetic
+synthetic-201903-04,gir,Gir,35800,2019-03-05,4.3,False,7,SYNTHETIC - not a real sale,2019-03-05T00:00:00.000Z,synthetic
+synthetic-201903-05,pulikulam,Pulikulam,48200,2019-03-03,7.9,True,8,SYNTHETIC - not a real sale,2019-03-03T00:00:00.000Z,synthetic
+synthetic-201904-00,dagri,Dagri,52200,2019-04-17,16.9,False,3,SYNTHETIC - not a real sale,2019-04-17T00:00:00.000Z,synthetic
+synthetic-201904-01,red-kandhari,Red Kandhari,35800,2019-04-14,3.3,False,5,SYNTHETIC - not a real sale,2019-04-14T00:00:00.000Z,synthetic
+synthetic-201904-02,deoni,Deoni,59300,2019-04-05,10.3,False,2,SYNTHETIC - not a real sale,2019-04-05T00:00:00.000Z,synthetic
+synthetic-201904-03,red-kandhari,Red Kandhari,47900,2019-04-09,10.1,True,10,SYNTHETIC - not a real sale,2019-04-09T00:00:00.000Z,synthetic
+synthetic-201904-04,ghumsari,Ghumsari,46100,2019-04-15,3.3,False,5,SYNTHETIC - not a real sale,2019-04-15T00:00:00.000Z,synthetic
+synthetic-201904-05,hariana,Hariana,62000,2019-04-19,11.3,True,7,SYNTHETIC - not a real sale,2019-04-19T00:00:00.000Z,synthetic
+synthetic-201905-00,bachaur,Bachaur,55900,2019-05-27,14.5,True,8,SYNTHETIC - not a real sale,2019-05-27T00:00:00.000Z,synthetic
+synthetic-201905-01,khariar,Khariar,42700,2019-05-11,3.6,False,6,SYNTHETIC - not a real sale,2019-05-11T00:00:00.000Z,synthetic
+synthetic-201905-02,ongole,Ongole,58500,2019-05-17,7.8,False,9,SYNTHETIC - not a real sale,2019-05-17T00:00:00.000Z,synthetic
+synthetic-201905-03,punganur,Punganur,39500,2019-05-05,6.8,False,3,SYNTHETIC - not a real sale,2019-05-05T00:00:00.000Z,synthetic
+synthetic-201905-04,kosali,Kosali,80800,2019-05-23,17.9,False,5,SYNTHETIC - not a real sale,2019-05-23T00:00:00.000Z,synthetic
+synthetic-201905-05,malvi,Malvi,63600,2019-05-09,16.4,False,6,SYNTHETIC - not a real sale,2019-05-09T00:00:00.000Z,synthetic
+synthetic-201906-00,ladakhi,Ladakhi,63900,2019-06-11,8.6,True,7,SYNTHETIC - not a real sale,2019-06-11T00:00:00.000Z,synthetic
+synthetic-201906-01,khillari,Khillari,86700,2019-06-04,17.1,True,2,SYNTHETIC - not a real sale,2019-06-04T00:00:00.000Z,synthetic
+synthetic-201906-02,malvi,Malvi,35800,2019-06-08,5.7,False,3,SYNTHETIC - not a real sale,2019-06-08T00:00:00.000Z,synthetic
+synthetic-201906-03,krishna-valley,Krishna Valley,55400,2019-06-14,14.7,False,6,SYNTHETIC - not a real sale,2019-06-14T00:00:00.000Z,synthetic
+synthetic-201906-04,nagori,Nagori,57300,2019-06-27,6.4,True,2,SYNTHETIC - not a real sale,2019-06-27T00:00:00.000Z,synthetic
+synthetic-201906-05,hallikar,Hallikar,54500,2019-06-16,10.6,False,8,SYNTHETIC - not a real sale,2019-06-16T00:00:00.000Z,synthetic
+synthetic-201907-00,kherigarh,Kherigarh,61200,2019-07-12,13.7,False,9,SYNTHETIC - not a real sale,2019-07-12T00:00:00.000Z,synthetic
+synthetic-201907-01,hariana,Hariana,76500,2019-07-09,16.9,False,10,SYNTHETIC - not a real sale,2019-07-09T00:00:00.000Z,synthetic
+synthetic-201907-02,pulikulam,Pulikulam,66000,2019-07-14,17.3,True,7,SYNTHETIC - not a real sale,2019-07-14T00:00:00.000Z,synthetic
+synthetic-201907-03,bargur,Bargur,53100,2019-07-03,11.3,False,9,SYNTHETIC - not a real sale,2019-07-03T00:00:00.000Z,synthetic
+synthetic-201907-04,badri,Badri,53400,2019-07-20,17.5,False,5,SYNTHETIC - not a real sale,2019-07-20T00:00:00.000Z,synthetic
+synthetic-201907-05,gangatari,Gangatari,62000,2019-07-01,10.0,False,9,SYNTHETIC - not a real sale,2019-07-01T00:00:00.000Z,synthetic
+synthetic-201908-00,kosali,Kosali,59700,2019-08-21,15.0,True,9,SYNTHETIC - not a real sale,2019-08-21T00:00:00.000Z,synthetic
+synthetic-201908-01,red-sindhi,Red Sindhi,57300,2019-08-12,16.0,False,4,SYNTHETIC - not a real sale,2019-08-12T00:00:00.000Z,synthetic
+synthetic-201908-02,hallikar,Hallikar,87900,2019-08-08,16.0,False,7,SYNTHETIC - not a real sale,2019-08-08T00:00:00.000Z,synthetic
+synthetic-201908-03,khariar,Khariar,55600,2019-08-03,14.2,False,10,SYNTHETIC - not a real sale,2019-08-03T00:00:00.000Z,synthetic
+synthetic-201908-04,poda-thirupu,Poda Thirupu,41900,2019-08-25,5.2,False,7,SYNTHETIC - not a real sale,2019-08-25T00:00:00.000Z,synthetic
+synthetic-201908-05,himachali-pahari,Himachali Pahari,68400,2019-08-08,16.8,True,3,SYNTHETIC - not a real sale,2019-08-08T00:00:00.000Z,synthetic
+synthetic-201909-00,ongole,Ongole,48400,2019-09-23,3.3,True,3,SYNTHETIC - not a real sale,2019-09-23T00:00:00.000Z,synthetic
+synthetic-201909-01,dangi,Dangi,60400,2019-09-11,11.9,False,9,SYNTHETIC - not a real sale,2019-09-11T00:00:00.000Z,synthetic
+synthetic-201909-02,thutho,Thutho,65400,2019-09-14,16.1,False,6,SYNTHETIC - not a real sale,2019-09-14T00:00:00.000Z,synthetic
+synthetic-201909-03,kangayam,Kangayam,42200,2019-09-16,6.6,True,7,SYNTHETIC - not a real sale,2019-09-16T00:00:00.000Z,synthetic
+synthetic-201909-04,konkan-kapila,Konkan Kapila,45100,2019-09-03,8.6,False,2,SYNTHETIC - not a real sale,2019-09-03T00:00:00.000Z,synthetic
+synthetic-201909-05,gaolao,Gaolao,41500,2019-09-03,3.8,False,8,SYNTHETIC - not a real sale,2019-09-03T00:00:00.000Z,synthetic
+synthetic-201910-00,gangatari,Gangatari,67500,2019-10-17,17.7,False,10,SYNTHETIC - not a real sale,2019-10-17T00:00:00.000Z,synthetic
+synthetic-201910-01,shweta-kapila,Shweta Kapila,68500,2019-10-15,14.7,True,9,SYNTHETIC - not a real sale,2019-10-15T00:00:00.000Z,synthetic
+synthetic-201910-02,siri,Siri,46900,2019-10-07,9.9,False,9,SYNTHETIC - not a real sale,2019-10-07T00:00:00.000Z,synthetic
+synthetic-201910-03,konkan-kapila,Konkan Kapila,55600,2019-10-12,5.1,False,3,SYNTHETIC - not a real sale,2019-10-12T00:00:00.000Z,synthetic
+synthetic-201910-04,ladakhi,Ladakhi,49700,2019-10-05,8.5,True,5,SYNTHETIC - not a real sale,2019-10-05T00:00:00.000Z,synthetic
+synthetic-201910-05,umblachery,Umblachery,52500,2019-10-25,7.5,False,8,SYNTHETIC - not a real sale,2019-10-25T00:00:00.000Z,synthetic
+synthetic-201911-00,bhelai,Bhelai,54000,2019-11-06,11.0,False,4,SYNTHETIC - not a real sale,2019-11-06T00:00:00.000Z,synthetic
+synthetic-201911-01,gangatari,Gangatari,60900,2019-11-08,11.0,False,2,SYNTHETIC - not a real sale,2019-11-08T00:00:00.000Z,synthetic
+synthetic-201911-02,bargur,Bargur,55400,2019-11-26,13.4,False,3,SYNTHETIC - not a real sale,2019-11-26T00:00:00.000Z,synthetic
+synthetic-201911-03,sahiwal,Sahiwal,35900,2019-11-03,4.4,False,7,SYNTHETIC - not a real sale,2019-11-03T00:00:00.000Z,synthetic
+synthetic-201911-04,bachaur,Bachaur,70000,2019-11-13,17.4,False,3,SYNTHETIC - not a real sale,2019-11-13T00:00:00.000Z,synthetic
+synthetic-201911-05,dagri,Dagri,47100,2019-11-07,14.9,False,2,SYNTHETIC - not a real sale,2019-11-07T00:00:00.000Z,synthetic
+synthetic-201912-00,dangi,Dangi,72900,2019-12-01,12.2,True,2,SYNTHETIC - not a real sale,2019-12-01T00:00:00.000Z,synthetic
+synthetic-201912-01,red-kandhari,Red Kandhari,47900,2019-12-21,10.0,False,8,SYNTHETIC - not a real sale,2019-12-21T00:00:00.000Z,synthetic
+synthetic-201912-02,punganur,Punganur,53600,2019-12-22,12.0,False,6,SYNTHETIC - not a real sale,2019-12-22T00:00:00.000Z,synthetic
+synthetic-201912-03,hallikar,Hallikar,44600,2019-12-12,4.3,False,8,SYNTHETIC - not a real sale,2019-12-12T00:00:00.000Z,synthetic
+synthetic-201912-04,kenkatha,Kenkatha,46500,2019-12-18,8.0,False,8,SYNTHETIC - not a real sale,2019-12-18T00:00:00.000Z,synthetic
+synthetic-201912-05,konkan-kapila,Konkan Kapila,58600,2019-12-05,8.5,True,4,SYNTHETIC - not a real sale,2019-12-05T00:00:00.000Z,synthetic
+synthetic-202001-00,gir,Gir,54000,2020-01-05,9.6,False,10,SYNTHETIC - not a real sale,2020-01-05T00:00:00.000Z,synthetic
+synthetic-202001-01,rathi,Rathi,58700,2020-01-13,17.0,False,7,SYNTHETIC - not a real sale,2020-01-13T00:00:00.000Z,synthetic
+synthetic-202001-02,shweta-kapila,Shweta Kapila,71700,2020-01-08,13.8,False,10,SYNTHETIC - not a real sale,2020-01-08T00:00:00.000Z,synthetic
+synthetic-202001-03,ghumsari,Ghumsari,62100,2020-01-16,12.6,True,6,SYNTHETIC - not a real sale,2020-01-16T00:00:00.000Z,synthetic
+synthetic-202001-04,purnea,Purnea,44400,2020-01-27,9.8,False,2,SYNTHETIC - not a real sale,2020-01-27T00:00:00.000Z,synthetic
+synthetic-202001-05,ongole,Ongole,64300,2020-01-25,9.6,True,6,SYNTHETIC - not a real sale,2020-01-25T00:00:00.000Z,synthetic
+synthetic-202002-00,purnea,Purnea,65300,2020-02-22,18.0,False,2,SYNTHETIC - not a real sale,2020-02-22T00:00:00.000Z,synthetic
+synthetic-202002-01,ghumsari,Ghumsari,49700,2020-02-18,4.6,False,2,SYNTHETIC - not a real sale,2020-02-18T00:00:00.000Z,synthetic
+synthetic-202002-02,sahiwal,Sahiwal,67800,2020-02-13,16.5,True,2,SYNTHETIC - not a real sale,2020-02-13T00:00:00.000Z,synthetic
+synthetic-202002-03,himachali-pahari,Himachali Pahari,75500,2020-02-25,14.7,True,2,SYNTHETIC - not a real sale,2020-02-25T00:00:00.000Z,synthetic
+synthetic-202002-04,motu,Motu,38500,2020-02-27,3.1,True,2,SYNTHETIC - not a real sale,2020-02-27T00:00:00.000Z,synthetic
+synthetic-202002-05,gangatari,Gangatari,54800,2020-02-02,6.6,False,4,SYNTHETIC - not a real sale,2020-02-02T00:00:00.000Z,synthetic
+synthetic-202003-00,siri,Siri,71500,2020-03-13,14.6,False,10,SYNTHETIC - not a real sale,2020-03-13T00:00:00.000Z,synthetic
+synthetic-202003-01,bargur,Bargur,58100,2020-03-14,6.0,True,8,SYNTHETIC - not a real sale,2020-03-14T00:00:00.000Z,synthetic
+synthetic-202003-02,purnea,Purnea,58100,2020-03-02,15.8,True,7,SYNTHETIC - not a real sale,2020-03-02T00:00:00.000Z,synthetic
+synthetic-202003-03,kankrej,Kankrej,41100,2020-03-27,7.1,False,6,SYNTHETIC - not a real sale,2020-03-27T00:00:00.000Z,synthetic
+synthetic-202003-04,pulikulam,Pulikulam,66500,2020-03-13,12.2,True,2,SYNTHETIC - not a real sale,2020-03-13T00:00:00.000Z,synthetic
+synthetic-202003-05,vechur,Vechur,43100,2020-03-05,5.6,True,8,SYNTHETIC - not a real sale,2020-03-05T00:00:00.000Z,synthetic
+synthetic-202004-00,red-sindhi,Red Sindhi,71400,2020-04-13,14.8,False,6,SYNTHETIC - not a real sale,2020-04-13T00:00:00.000Z,synthetic
+synthetic-202004-01,himachali-pahari,Himachali Pahari,89300,2020-04-16,17.2,True,5,SYNTHETIC - not a real sale,2020-04-16T00:00:00.000Z,synthetic
+synthetic-202004-02,khillari,Khillari,74800,2020-04-19,17.1,True,7,SYNTHETIC - not a real sale,2020-04-19T00:00:00.000Z,synthetic
+synthetic-202004-03,mewati,Mewati,62700,2020-04-04,10.1,True,10,SYNTHETIC - not a real sale,2020-04-04T00:00:00.000Z,synthetic
+synthetic-202004-04,gir,Gir,47700,2020-04-27,9.4,False,4,SYNTHETIC - not a real sale,2020-04-27T00:00:00.000Z,synthetic
+synthetic-202004-05,nari,Nari,53900,2020-04-16,9.1,True,10,SYNTHETIC - not a real sale,2020-04-16T00:00:00.000Z,synthetic
+synthetic-202005-00,nagori,Nagori,67900,2020-05-03,9.3,False,2,SYNTHETIC - not a real sale,2020-05-03T00:00:00.000Z,synthetic
+synthetic-202005-01,red-kandhari,Red Kandhari,54200,2020-05-18,11.5,False,6,SYNTHETIC - not a real sale,2020-05-18T00:00:00.000Z,synthetic
+synthetic-202005-02,sahiwal,Sahiwal,60800,2020-05-15,14.8,False,4,SYNTHETIC - not a real sale,2020-05-15T00:00:00.000Z,synthetic
+synthetic-202005-03,sahiwal,Sahiwal,57400,2020-05-20,8.4,False,9,SYNTHETIC - not a real sale,2020-05-20T00:00:00.000Z,synthetic
+synthetic-202005-04,hariana,Hariana,55900,2020-05-07,10.6,False,10,SYNTHETIC - not a real sale,2020-05-07T00:00:00.000Z,synthetic
+synthetic-202005-05,krishna-valley,Krishna Valley,67700,2020-05-04,15.6,False,2,SYNTHETIC - not a real sale,2020-05-04T00:00:00.000Z,synthetic
+synthetic-202006-00,kherigarh,Kherigarh,52000,2020-06-14,3.8,True,9,SYNTHETIC - not a real sale,2020-06-14T00:00:00.000Z,synthetic
+synthetic-202006-01,kangayam,Kangayam,34900,2020-06-01,7.7,False,10,SYNTHETIC - not a real sale,2020-06-01T00:00:00.000Z,synthetic
+synthetic-202006-02,vechur,Vechur,50300,2020-06-19,8.6,True,9,SYNTHETIC - not a real sale,2020-06-19T00:00:00.000Z,synthetic
+synthetic-202006-03,hallikar,Hallikar,63200,2020-06-27,8.5,False,2,SYNTHETIC - not a real sale,2020-06-27T00:00:00.000Z,synthetic
+synthetic-202006-04,nari,Nari,63700,2020-06-25,13.3,False,4,SYNTHETIC - not a real sale,2020-06-25T00:00:00.000Z,synthetic
+synthetic-202006-05,shweta-kapila,Shweta Kapila,56700,2020-06-15,3.2,True,8,SYNTHETIC - not a real sale,2020-06-15T00:00:00.000Z,synthetic
+synthetic-202007-00,vechur,Vechur,57300,2020-07-06,15.5,False,3,SYNTHETIC - not a real sale,2020-07-06T00:00:00.000Z,synthetic
+synthetic-202007-01,ghumsari,Ghumsari,73900,2020-07-13,17.9,True,6,SYNTHETIC - not a real sale,2020-07-13T00:00:00.000Z,synthetic
+synthetic-202007-02,ladakhi,Ladakhi,76500,2020-07-25,14.3,False,2,SYNTHETIC - not a real sale,2020-07-25T00:00:00.000Z,synthetic
+synthetic-202007-03,himachali-pahari,Himachali Pahari,41700,2020-07-02,5.7,False,10,SYNTHETIC - not a real sale,2020-07-02T00:00:00.000Z,synthetic
+synthetic-202007-04,kankrej,Kankrej,40400,2020-07-01,10.4,False,4,SYNTHETIC - not a real sale,2020-07-01T00:00:00.000Z,synthetic
+synthetic-202007-05,gir,Gir,39900,2020-07-18,6.7,False,9,SYNTHETIC - not a real sale,2020-07-18T00:00:00.000Z,synthetic
+synthetic-202008-00,mewati,Mewati,59000,2020-08-21,14.4,True,8,SYNTHETIC - not a real sale,2020-08-21T00:00:00.000Z,synthetic
+synthetic-202008-01,purnea,Purnea,50500,2020-08-14,8.1,False,4,SYNTHETIC - not a real sale,2020-08-14T00:00:00.000Z,synthetic
+synthetic-202008-02,umblachery,Umblachery,47500,2020-08-04,10.6,False,9,SYNTHETIC - not a real sale,2020-08-04T00:00:00.000Z,synthetic
+synthetic-202008-03,ghumsari,Ghumsari,49100,2020-08-15,8.1,False,9,SYNTHETIC - not a real sale,2020-08-15T00:00:00.000Z,synthetic
+synthetic-202008-04,bargur,Bargur,59300,2020-08-01,16.8,False,5,SYNTHETIC - not a real sale,2020-08-01T00:00:00.000Z,synthetic
+synthetic-202008-05,ladakhi,Ladakhi,52200,2020-08-26,5.9,True,7,SYNTHETIC - not a real sale,2020-08-26T00:00:00.000Z,synthetic
+synthetic-202009-00,nari,Nari,65000,2020-09-05,12.0,True,4,SYNTHETIC - not a real sale,2020-09-05T00:00:00.000Z,synthetic
+synthetic-202009-01,vechur,Vechur,65600,2020-09-17,12.5,False,9,SYNTHETIC - not a real sale,2020-09-17T00:00:00.000Z,synthetic
+synthetic-202009-02,thutho,Thutho,58800,2020-09-17,16.5,False,8,SYNTHETIC - not a real sale,2020-09-17T00:00:00.000Z,synthetic
+synthetic-202009-03,dagri,Dagri,54000,2020-09-20,16.0,True,6,SYNTHETIC - not a real sale,2020-09-20T00:00:00.000Z,synthetic
+synthetic-202009-04,shweta-kapila,Shweta Kapila,56100,2020-09-05,12.8,False,6,SYNTHETIC - not a real sale,2020-09-05T00:00:00.000Z,synthetic
+synthetic-202009-05,kosali,Kosali,48300,2020-09-10,14.0,False,7,SYNTHETIC - not a real sale,2020-09-10T00:00:00.000Z,synthetic
+synthetic-202010-00,kosali,Kosali,66200,2020-10-24,14.7,False,2,SYNTHETIC - not a real sale,2020-10-24T00:00:00.000Z,synthetic
+synthetic-202010-01,ongole,Ongole,86300,2020-10-22,17.7,False,2,SYNTHETIC - not a real sale,2020-10-22T00:00:00.000Z,synthetic
+synthetic-202010-02,kenkatha,Kenkatha,65300,2020-10-07,15.0,False,6,SYNTHETIC - not a real sale,2020-10-07T00:00:00.000Z,synthetic
+synthetic-202010-03,bargur,Bargur,52900,2020-10-03,8.6,True,5,SYNTHETIC - not a real sale,2020-10-03T00:00:00.000Z,synthetic
+synthetic-202010-04,bhelai,Bhelai,51800,2020-10-11,14.6,False,8,SYNTHETIC - not a real sale,2020-10-11T00:00:00.000Z,synthetic
+synthetic-202010-05,gangatari,Gangatari,43500,2020-10-17,3.7,True,2,SYNTHETIC - not a real sale,2020-10-17T00:00:00.000Z,synthetic
+synthetic-202011-00,nimari,Nimari,54800,2020-11-21,10.7,False,2,SYNTHETIC - not a real sale,2020-11-21T00:00:00.000Z,synthetic
+synthetic-202011-01,mewati,Mewati,50300,2020-11-07,16.4,False,4,SYNTHETIC - not a real sale,2020-11-07T00:00:00.000Z,synthetic
+synthetic-202011-02,punganur,Punganur,49100,2020-11-13,15.8,True,5,SYNTHETIC - not a real sale,2020-11-13T00:00:00.000Z,synthetic
+synthetic-202011-03,mewati,Mewati,52800,2020-11-06,7.1,False,9,SYNTHETIC - not a real sale,2020-11-06T00:00:00.000Z,synthetic
+synthetic-202011-04,umblachery,Umblachery,74000,2020-11-18,13.8,False,5,SYNTHETIC - not a real sale,2020-11-18T00:00:00.000Z,synthetic
+synthetic-202011-05,kosali,Kosali,43100,2020-11-16,9.1,True,3,SYNTHETIC - not a real sale,2020-11-16T00:00:00.000Z,synthetic
+synthetic-202012-00,dangi,Dangi,71500,2020-12-03,16.7,False,5,SYNTHETIC - not a real sale,2020-12-03T00:00:00.000Z,synthetic
+synthetic-202012-01,lakhimi,Lakhimi,34300,2020-12-01,4.0,True,6,SYNTHETIC - not a real sale,2020-12-01T00:00:00.000Z,synthetic
+synthetic-202012-02,siri,Siri,38300,2020-12-26,8.1,False,7,SYNTHETIC - not a real sale,2020-12-26T00:00:00.000Z,synthetic
+synthetic-202012-03,badri,Badri,43300,2020-12-25,11.1,True,5,SYNTHETIC - not a real sale,2020-12-25T00:00:00.000Z,synthetic
+synthetic-202012-04,rathi,Rathi,43800,2020-12-06,16.6,False,4,SYNTHETIC - not a real sale,2020-12-06T00:00:00.000Z,synthetic
+synthetic-202012-05,red-kandhari,Red Kandhari,62900,2020-12-07,12.8,True,9,SYNTHETIC - not a real sale,2020-12-07T00:00:00.000Z,synthetic
+synthetic-202101-00,kangayam,Kangayam,68200,2021-01-07,16.1,True,3,SYNTHETIC - not a real sale,2021-01-07T00:00:00.000Z,synthetic
+synthetic-202101-01,dagri,Dagri,70500,2021-01-13,14.8,False,9,SYNTHETIC - not a real sale,2021-01-13T00:00:00.000Z,synthetic
+synthetic-202101-02,red-kandhari,Red Kandhari,57300,2021-01-13,15.2,False,8,SYNTHETIC - not a real sale,2021-01-13T00:00:00.000Z,synthetic
+synthetic-202101-03,kankrej,Kankrej,57800,2021-01-18,11.4,True,5,SYNTHETIC - not a real sale,2021-01-18T00:00:00.000Z,synthetic
+synthetic-202101-04,dagri,Dagri,40600,2021-01-20,9.5,True,6,SYNTHETIC - not a real sale,2021-01-20T00:00:00.000Z,synthetic
+synthetic-202101-05,hallikar,Hallikar,48300,2021-01-02,3.6,True,7,SYNTHETIC - not a real sale,2021-01-02T00:00:00.000Z,synthetic
+synthetic-202102-00,khillari,Khillari,51400,2021-02-18,7.7,True,6,SYNTHETIC - not a real sale,2021-02-18T00:00:00.000Z,synthetic
+synthetic-202102-01,malnad-gidda,Malnad Gidda,53800,2021-02-06,3.9,False,6,SYNTHETIC - not a real sale,2021-02-06T00:00:00.000Z,synthetic
+synthetic-202102-02,pulikulam,Pulikulam,69400,2021-02-12,9.2,True,5,SYNTHETIC - not a real sale,2021-02-12T00:00:00.000Z,synthetic
+synthetic-202102-03,kherigarh,Kherigarh,38300,2021-02-14,3.0,False,4,SYNTHETIC - not a real sale,2021-02-14T00:00:00.000Z,synthetic
+synthetic-202102-04,nari,Nari,70800,2021-02-07,14.7,False,5,SYNTHETIC - not a real sale,2021-02-07T00:00:00.000Z,synthetic
+synthetic-202102-05,krishna-valley,Krishna Valley,54300,2021-02-19,6.6,False,9,SYNTHETIC - not a real sale,2021-02-19T00:00:00.000Z,synthetic
+synthetic-202103-00,badri,Badri,61300,2021-03-24,17.0,True,4,SYNTHETIC - not a real sale,2021-03-24T00:00:00.000Z,synthetic
+synthetic-202103-01,vechur,Vechur,53000,2021-03-04,5.3,True,4,SYNTHETIC - not a real sale,2021-03-04T00:00:00.000Z,synthetic
+synthetic-202103-02,gir,Gir,37700,2021-03-20,5.8,True,2,SYNTHETIC - not a real sale,2021-03-20T00:00:00.000Z,synthetic
+synthetic-202103-03,sahiwal,Sahiwal,44600,2021-03-16,6.6,False,4,SYNTHETIC - not a real sale,2021-03-16T00:00:00.000Z,synthetic
+synthetic-202103-04,pulikulam,Pulikulam,80700,2021-03-25,15.8,False,2,SYNTHETIC - not a real sale,2021-03-25T00:00:00.000Z,synthetic
+synthetic-202103-05,bhelai,Bhelai,65400,2021-03-25,15.8,True,4,SYNTHETIC - not a real sale,2021-03-25T00:00:00.000Z,synthetic
+synthetic-202104-00,siri,Siri,64600,2021-04-05,17.8,False,7,SYNTHETIC - not a real sale,2021-04-05T00:00:00.000Z,synthetic
+synthetic-202104-01,krishna-valley,Krishna Valley,70300,2021-04-06,15.0,False,4,SYNTHETIC - not a real sale,2021-04-06T00:00:00.000Z,synthetic
+synthetic-202104-02,shweta-kapila,Shweta Kapila,47200,2021-04-11,4.2,True,4,SYNTHETIC - not a real sale,2021-04-11T00:00:00.000Z,synthetic
+synthetic-202104-03,amritmahal,Amritmahal,67000,2021-04-20,5.5,False,9,SYNTHETIC - not a real sale,2021-04-20T00:00:00.000Z,synthetic
+synthetic-202104-04,gaolao,Gaolao,71900,2021-04-21,16.4,False,4,SYNTHETIC - not a real sale,2021-04-21T00:00:00.000Z,synthetic
+synthetic-202104-05,himachali-pahari,Himachali Pahari,64200,2021-04-14,13.4,True,9,SYNTHETIC - not a real sale,2021-04-14T00:00:00.000Z,synthetic
+synthetic-202105-00,khillari,Khillari,52600,2021-05-11,3.2,False,2,SYNTHETIC - not a real sale,2021-05-11T00:00:00.000Z,synthetic
+synthetic-202105-01,hariana,Hariana,68300,2021-05-15,16.5,False,5,SYNTHETIC - not a real sale,2021-05-15T00:00:00.000Z,synthetic
+synthetic-202105-02,kangayam,Kangayam,41500,2021-05-10,3.8,False,4,SYNTHETIC - not a real sale,2021-05-10T00:00:00.000Z,synthetic
+synthetic-202105-03,tharparkar,Tharparkar,81000,2021-05-17,15.5,True,2,SYNTHETIC - not a real sale,2021-05-17T00:00:00.000Z,synthetic
+synthetic-202105-04,ghumsari,Ghumsari,51200,2021-05-15,6.8,False,9,SYNTHETIC - not a real sale,2021-05-15T00:00:00.000Z,synthetic
+synthetic-202105-05,mewati,Mewati,67300,2021-05-16,13.2,False,8,SYNTHETIC - not a real sale,2021-05-16T00:00:00.000Z,synthetic
+synthetic-202106-00,bachaur,Bachaur,50200,2021-06-01,9.3,False,10,SYNTHETIC - not a real sale,2021-06-01T00:00:00.000Z,synthetic
+synthetic-202106-01,gangatari,Gangatari,65500,2021-06-03,10.8,False,10,SYNTHETIC - not a real sale,2021-06-03T00:00:00.000Z,synthetic
+synthetic-202106-02,tharparkar,Tharparkar,57100,2021-06-08,13.2,True,5,SYNTHETIC - not a real sale,2021-06-08T00:00:00.000Z,synthetic
+synthetic-202106-03,kangayam,Kangayam,37700,2021-06-25,6.0,False,10,SYNTHETIC - not a real sale,2021-06-25T00:00:00.000Z,synthetic
+synthetic-202106-04,ladakhi,Ladakhi,68100,2021-06-12,14.0,False,6,SYNTHETIC - not a real sale,2021-06-12T00:00:00.000Z,synthetic
+synthetic-202106-05,punganur,Punganur,74500,2021-06-22,14.1,False,6,SYNTHETIC - not a real sale,2021-06-22T00:00:00.000Z,synthetic
+synthetic-202107-00,nimari,Nimari,61400,2021-07-14,16.6,False,2,SYNTHETIC - not a real sale,2021-07-14T00:00:00.000Z,synthetic
+synthetic-202107-01,gir,Gir,52800,2021-07-01,6.1,False,6,SYNTHETIC - not a real sale,2021-07-01T00:00:00.000Z,synthetic
+synthetic-202107-02,thutho,Thutho,69400,2021-07-17,13.8,False,5,SYNTHETIC - not a real sale,2021-07-17T00:00:00.000Z,synthetic
+synthetic-202107-03,krishna-valley,Krishna Valley,64000,2021-07-12,12.1,False,5,SYNTHETIC - not a real sale,2021-07-12T00:00:00.000Z,synthetic
+synthetic-202107-04,red-kandhari,Red Kandhari,54700,2021-07-10,10.0,True,10,SYNTHETIC - not a real sale,2021-07-10T00:00:00.000Z,synthetic
+synthetic-202107-05,mewati,Mewati,41500,2021-07-19,5.0,True,4,SYNTHETIC - not a real sale,2021-07-19T00:00:00.000Z,synthetic
+synthetic-202108-00,bargur,Bargur,51100,2021-08-16,6.7,True,10,SYNTHETIC - not a real sale,2021-08-16T00:00:00.000Z,synthetic
+synthetic-202108-01,malvi,Malvi,47900,2021-08-06,7.2,True,10,SYNTHETIC - not a real sale,2021-08-06T00:00:00.000Z,synthetic
+synthetic-202108-02,dangi,Dangi,52300,2021-08-03,6.9,True,6,SYNTHETIC - not a real sale,2021-08-03T00:00:00.000Z,synthetic
+synthetic-202108-03,siri,Siri,58100,2021-08-03,12.8,False,9,SYNTHETIC - not a real sale,2021-08-03T00:00:00.000Z,synthetic
+synthetic-202108-04,hariana,Hariana,71600,2021-08-03,14.5,False,4,SYNTHETIC - not a real sale,2021-08-03T00:00:00.000Z,synthetic
+synthetic-202108-05,thutho,Thutho,77600,2021-08-02,17.7,False,7,SYNTHETIC - not a real sale,2021-08-02T00:00:00.000Z,synthetic
+synthetic-202109-00,ponwar,Ponwar,48200,2021-09-21,11.3,True,4,SYNTHETIC - not a real sale,2021-09-21T00:00:00.000Z,synthetic
+synthetic-202109-01,sahiwal,Sahiwal,62500,2021-09-07,11.1,True,2,SYNTHETIC - not a real sale,2021-09-07T00:00:00.000Z,synthetic
+synthetic-202109-02,hallikar,Hallikar,70800,2021-09-23,11.8,False,9,SYNTHETIC - not a real sale,2021-09-23T00:00:00.000Z,synthetic
+synthetic-202109-03,malnad-gidda,Malnad Gidda,71300,2021-09-21,9.1,False,2,SYNTHETIC - not a real sale,2021-09-21T00:00:00.000Z,synthetic
+synthetic-202109-04,red-sindhi,Red Sindhi,41100,2021-09-11,4.8,False,10,SYNTHETIC - not a real sale,2021-09-11T00:00:00.000Z,synthetic
+synthetic-202109-05,khillari,Khillari,77300,2021-09-12,15.7,True,7,SYNTHETIC - not a real sale,2021-09-12T00:00:00.000Z,synthetic
+synthetic-202110-00,kankrej,Kankrej,73300,2021-10-15,13.7,False,4,SYNTHETIC - not a real sale,2021-10-15T00:00:00.000Z,synthetic
+synthetic-202110-01,purnea,Purnea,46100,2021-10-05,6.7,True,4,SYNTHETIC - not a real sale,2021-10-05T00:00:00.000Z,synthetic
+synthetic-202110-02,deoni,Deoni,85000,2021-10-13,14.7,False,9,SYNTHETIC - not a real sale,2021-10-13T00:00:00.000Z,synthetic
+synthetic-202110-03,punganur,Punganur,52200,2021-10-04,11.0,False,5,SYNTHETIC - not a real sale,2021-10-04T00:00:00.000Z,synthetic
+synthetic-202110-04,kangayam,Kangayam,51300,2021-10-11,10.2,False,10,SYNTHETIC - not a real sale,2021-10-11T00:00:00.000Z,synthetic
+synthetic-202110-05,rathi,Rathi,47600,2021-10-01,6.1,True,9,SYNTHETIC - not a real sale,2021-10-01T00:00:00.000Z,synthetic
+synthetic-202111-00,himachali-pahari,Himachali Pahari,65000,2021-11-27,7.8,False,10,SYNTHETIC - not a real sale,2021-11-27T00:00:00.000Z,synthetic
+synthetic-202111-01,mewati,Mewati,66200,2021-11-27,11.0,True,9,SYNTHETIC - not a real sale,2021-11-27T00:00:00.000Z,synthetic
+synthetic-202111-02,gaolao,Gaolao,61400,2021-11-19,10.0,True,8,SYNTHETIC - not a real sale,2021-11-19T00:00:00.000Z,synthetic
+synthetic-202111-03,ladakhi,Ladakhi,61800,2021-11-22,3.8,True,2,SYNTHETIC - not a real sale,2021-11-22T00:00:00.000Z,synthetic
+synthetic-202111-04,dangi,Dangi,76200,2021-11-15,14.9,True,8,SYNTHETIC - not a real sale,2021-11-15T00:00:00.000Z,synthetic
+synthetic-202111-05,nimari,Nimari,59900,2021-11-27,12.6,True,6,SYNTHETIC - not a real sale,2021-11-27T00:00:00.000Z,synthetic
+synthetic-202112-00,malvi,Malvi,55000,2021-12-22,9.9,True,2,SYNTHETIC - not a real sale,2021-12-22T00:00:00.000Z,synthetic
+synthetic-202112-01,sahiwal,Sahiwal,52200,2021-12-09,8.9,False,7,SYNTHETIC - not a real sale,2021-12-09T00:00:00.000Z,synthetic
+synthetic-202112-02,bachaur,Bachaur,61000,2021-12-17,12.9,False,6,SYNTHETIC - not a real sale,2021-12-17T00:00:00.000Z,synthetic
+synthetic-202112-03,ponwar,Ponwar,57100,2021-12-19,8.1,True,2,SYNTHETIC - not a real sale,2021-12-19T00:00:00.000Z,synthetic
+synthetic-202112-04,red-kandhari,Red Kandhari,48900,2021-12-21,9.7,False,2,SYNTHETIC - not a real sale,2021-12-21T00:00:00.000Z,synthetic
+synthetic-202112-05,tharparkar,Tharparkar,57400,2021-12-10,7.5,False,8,SYNTHETIC - not a real sale,2021-12-10T00:00:00.000Z,synthetic
+synthetic-202201-00,mewati,Mewati,65300,2022-01-20,11.4,False,5,SYNTHETIC - not a real sale,2022-01-20T00:00:00.000Z,synthetic
+synthetic-202201-01,motu,Motu,60300,2022-01-10,9.3,False,5,SYNTHETIC - not a real sale,2022-01-10T00:00:00.000Z,synthetic
+synthetic-202201-02,ongole,Ongole,64700,2022-01-04,4.9,True,5,SYNTHETIC - not a real sale,2022-01-04T00:00:00.000Z,synthetic
+synthetic-202201-03,tharparkar,Tharparkar,77900,2022-01-09,12.9,True,9,SYNTHETIC - not a real sale,2022-01-09T00:00:00.000Z,synthetic
+synthetic-202201-04,himachali-pahari,Himachali Pahari,70800,2022-01-05,15.9,True,9,SYNTHETIC - not a real sale,2022-01-05T00:00:00.000Z,synthetic
+synthetic-202201-05,hariana,Hariana,63300,2022-01-08,7.1,True,4,SYNTHETIC - not a real sale,2022-01-08T00:00:00.000Z,synthetic
+synthetic-202202-00,motu,Motu,45100,2022-02-21,6.0,False,10,SYNTHETIC - not a real sale,2022-02-21T00:00:00.000Z,synthetic
+synthetic-202202-01,ponwar,Ponwar,75800,2022-02-17,12.2,True,4,SYNTHETIC - not a real sale,2022-02-17T00:00:00.000Z,synthetic
+synthetic-202202-02,bachaur,Bachaur,56000,2022-02-15,9.0,False,10,SYNTHETIC - not a real sale,2022-02-15T00:00:00.000Z,synthetic
+synthetic-202202-03,mewati,Mewati,84500,2022-02-12,16.1,False,5,SYNTHETIC - not a real sale,2022-02-12T00:00:00.000Z,synthetic
+synthetic-202202-04,ghumsari,Ghumsari,67500,2022-02-12,7.8,False,9,SYNTHETIC - not a real sale,2022-02-12T00:00:00.000Z,synthetic
+synthetic-202202-05,sahiwal,Sahiwal,68600,2022-02-25,8.0,True,5,SYNTHETIC - not a real sale,2022-02-25T00:00:00.000Z,synthetic
+synthetic-202203-00,krishna-valley,Krishna Valley,72500,2022-03-07,17.7,False,9,SYNTHETIC - not a real sale,2022-03-07T00:00:00.000Z,synthetic
+synthetic-202203-01,bhelai,Bhelai,63300,2022-03-07,10.2,False,8,SYNTHETIC - not a real sale,2022-03-07T00:00:00.000Z,synthetic
+synthetic-202203-02,shweta-kapila,Shweta Kapila,62700,2022-03-08,6.9,False,4,SYNTHETIC - not a real sale,2022-03-08T00:00:00.000Z,synthetic
+synthetic-202203-03,kenkatha,Kenkatha,71000,2022-03-05,15.2,False,7,SYNTHETIC - not a real sale,2022-03-05T00:00:00.000Z,synthetic
+synthetic-202203-04,bargur,Bargur,71500,2022-03-19,15.0,False,5,SYNTHETIC - not a real sale,2022-03-19T00:00:00.000Z,synthetic
+synthetic-202203-05,bhelai,Bhelai,44600,2022-03-27,4.7,False,6,SYNTHETIC - not a real sale,2022-03-27T00:00:00.000Z,synthetic
+synthetic-202204-00,ponwar,Ponwar,55100,2022-04-08,9.3,False,3,SYNTHETIC - not a real sale,2022-04-08T00:00:00.000Z,synthetic
+synthetic-202204-01,thutho,Thutho,56700,2022-04-22,4.0,True,7,SYNTHETIC - not a real sale,2022-04-22T00:00:00.000Z,synthetic
+synthetic-202204-02,poda-thirupu,Poda Thirupu,67000,2022-04-16,13.0,True,9,SYNTHETIC - not a real sale,2022-04-16T00:00:00.000Z,synthetic
+synthetic-202204-03,kangayam,Kangayam,59700,2022-04-14,9.4,False,4,SYNTHETIC - not a real sale,2022-04-14T00:00:00.000Z,synthetic
+synthetic-202204-04,gangatari,Gangatari,83400,2022-04-03,17.9,False,7,SYNTHETIC - not a real sale,2022-04-03T00:00:00.000Z,synthetic
+synthetic-202204-05,gir,Gir,73300,2022-04-09,13.9,False,4,SYNTHETIC - not a real sale,2022-04-09T00:00:00.000Z,synthetic
+synthetic-202205-00,kangayam,Kangayam,36300,2022-05-09,3.8,False,5,SYNTHETIC - not a real sale,2022-05-09T00:00:00.000Z,synthetic
+synthetic-202205-01,dagri,Dagri,77500,2022-05-12,15.5,False,10,SYNTHETIC - not a real sale,2022-05-12T00:00:00.000Z,synthetic
+synthetic-202205-02,khariar,Khariar,79900,2022-05-08,15.0,False,8,SYNTHETIC - not a real sale,2022-05-08T00:00:00.000Z,synthetic
+synthetic-202205-03,himachali-pahari,Himachali Pahari,89500,2022-05-05,16.2,True,4,SYNTHETIC - not a real sale,2022-05-05T00:00:00.000Z,synthetic
+synthetic-202205-04,konkan-kapila,Konkan Kapila,53200,2022-05-23,3.8,True,2,SYNTHETIC - not a real sale,2022-05-23T00:00:00.000Z,synthetic
+synthetic-202205-05,bhelai,Bhelai,46900,2022-05-23,3.5,False,8,SYNTHETIC - not a real sale,2022-05-23T00:00:00.000Z,synthetic
+synthetic-202206-00,bargur,Bargur,71800,2022-06-13,15.9,False,3,SYNTHETIC - not a real sale,2022-06-13T00:00:00.000Z,synthetic
+synthetic-202206-01,gaolao,Gaolao,48500,2022-06-20,4.4,False,6,SYNTHETIC - not a real sale,2022-06-20T00:00:00.000Z,synthetic
+synthetic-202206-02,ladakhi,Ladakhi,78900,2022-06-09,10.6,False,8,SYNTHETIC - not a real sale,2022-06-09T00:00:00.000Z,synthetic
+synthetic-202206-03,malnad-gidda,Malnad Gidda,68700,2022-06-21,6.3,True,7,SYNTHETIC - not a real sale,2022-06-21T00:00:00.000Z,synthetic
+synthetic-202206-04,bhelai,Bhelai,62400,2022-06-02,5.6,True,2,SYNTHETIC - not a real sale,2022-06-02T00:00:00.000Z,synthetic
+synthetic-202206-05,mewati,Mewati,93000,2022-06-18,17.9,True,10,SYNTHETIC - not a real sale,2022-06-18T00:00:00.000Z,synthetic
+synthetic-202207-00,motu,Motu,59900,2022-07-13,16.1,False,5,SYNTHETIC - not a real sale,2022-07-13T00:00:00.000Z,synthetic
+synthetic-202207-01,kankrej,Kankrej,43100,2022-07-08,6.3,False,10,SYNTHETIC - not a real sale,2022-07-08T00:00:00.000Z,synthetic
+synthetic-202207-02,amritmahal,Amritmahal,85100,2022-07-13,11.3,False,7,SYNTHETIC - not a real sale,2022-07-13T00:00:00.000Z,synthetic
+synthetic-202207-03,bargur,Bargur,45100,2022-07-14,3.7,False,5,SYNTHETIC - not a real sale,2022-07-14T00:00:00.000Z,synthetic
+synthetic-202207-04,kosali,Kosali,63200,2022-07-05,14.4,False,5,SYNTHETIC - not a real sale,2022-07-05T00:00:00.000Z,synthetic
+synthetic-202207-05,malnad-gidda,Malnad Gidda,66700,2022-07-09,7.1,False,3,SYNTHETIC - not a real sale,2022-07-09T00:00:00.000Z,synthetic
+synthetic-202208-00,shweta-kapila,Shweta Kapila,49400,2022-08-17,4.0,True,8,SYNTHETIC - not a real sale,2022-08-17T00:00:00.000Z,synthetic
+synthetic-202208-01,malvi,Malvi,78500,2022-08-25,12.7,True,9,SYNTHETIC - not a real sale,2022-08-25T00:00:00.000Z,synthetic
+synthetic-202208-02,gaolao,Gaolao,97000,2022-08-13,17.0,True,6,SYNTHETIC - not a real sale,2022-08-13T00:00:00.000Z,synthetic
+synthetic-202208-03,red-kandhari,Red Kandhari,39100,2022-08-06,5.9,False,2,SYNTHETIC - not a real sale,2022-08-06T00:00:00.000Z,synthetic
+synthetic-202208-04,nari,Nari,65300,2022-08-18,9.3,True,3,SYNTHETIC - not a real sale,2022-08-18T00:00:00.000Z,synthetic
+synthetic-202208-05,kherigarh,Kherigarh,76700,2022-08-02,7.8,False,4,SYNTHETIC - not a real sale,2022-08-02T00:00:00.000Z,synthetic
+synthetic-202209-00,ladakhi,Ladakhi,66000,2022-09-01,12.2,True,4,SYNTHETIC - not a real sale,2022-09-01T00:00:00.000Z,synthetic
+synthetic-202209-01,nagori,Nagori,42500,2022-09-04,4.5,True,2,SYNTHETIC - not a real sale,2022-09-04T00:00:00.000Z,synthetic
+synthetic-202209-02,mewati,Mewati,85600,2022-09-19,15.8,False,3,SYNTHETIC - not a real sale,2022-09-19T00:00:00.000Z,synthetic
+synthetic-202209-03,punganur,Punganur,80200,2022-09-11,18.0,True,3,SYNTHETIC - not a real sale,2022-09-11T00:00:00.000Z,synthetic
+synthetic-202209-04,ongole,Ongole,66000,2022-09-22,11.7,False,10,SYNTHETIC - not a real sale,2022-09-22T00:00:00.000Z,synthetic
+synthetic-202209-05,siri,Siri,56500,2022-09-27,10.5,False,4,SYNTHETIC - not a real sale,2022-09-27T00:00:00.000Z,synthetic
+synthetic-202210-00,gangatari,Gangatari,73500,2022-10-06,11.8,True,5,SYNTHETIC - not a real sale,2022-10-06T00:00:00.000Z,synthetic
+synthetic-202210-01,kankrej,Kankrej,56300,2022-10-16,4.5,False,2,SYNTHETIC - not a real sale,2022-10-16T00:00:00.000Z,synthetic
+synthetic-202210-02,tharparkar,Tharparkar,51700,2022-10-22,9.5,False,5,SYNTHETIC - not a real sale,2022-10-22T00:00:00.000Z,synthetic
+synthetic-202210-03,nagori,Nagori,77800,2022-10-13,8.9,True,4,SYNTHETIC - not a real sale,2022-10-13T00:00:00.000Z,synthetic
+synthetic-202210-04,malnad-gidda,Malnad Gidda,65300,2022-10-27,12.9,False,6,SYNTHETIC - not a real sale,2022-10-27T00:00:00.000Z,synthetic
+synthetic-202210-05,ladakhi,Ladakhi,67600,2022-10-05,8.7,True,4,SYNTHETIC - not a real sale,2022-10-05T00:00:00.000Z,synthetic
+synthetic-202211-00,siri,Siri,47000,2022-11-15,6.2,False,5,SYNTHETIC - not a real sale,2022-11-15T00:00:00.000Z,synthetic
+synthetic-202211-01,khillari,Khillari,78800,2022-11-17,15.4,False,3,SYNTHETIC - not a real sale,2022-11-17T00:00:00.000Z,synthetic
+synthetic-202211-02,thutho,Thutho,81500,2022-11-25,17.2,False,2,SYNTHETIC - not a real sale,2022-11-25T00:00:00.000Z,synthetic
+synthetic-202211-03,red-kandhari,Red Kandhari,43300,2022-11-19,3.1,True,10,SYNTHETIC - not a real sale,2022-11-19T00:00:00.000Z,synthetic
+synthetic-202211-04,gir,Gir,47800,2022-11-06,14.2,False,2,SYNTHETIC - not a real sale,2022-11-06T00:00:00.000Z,synthetic
+synthetic-202211-05,ongole,Ongole,52600,2022-11-09,3.1,False,10,SYNTHETIC - not a real sale,2022-11-09T00:00:00.000Z,synthetic
+synthetic-202212-00,thutho,Thutho,67000,2022-12-12,11.5,True,5,SYNTHETIC - not a real sale,2022-12-12T00:00:00.000Z,synthetic
+synthetic-202212-01,bhelai,Bhelai,50600,2022-12-27,10.4,False,4,SYNTHETIC - not a real sale,2022-12-27T00:00:00.000Z,synthetic
+synthetic-202212-02,dagri,Dagri,46700,2022-12-16,5.8,False,9,SYNTHETIC - not a real sale,2022-12-16T00:00:00.000Z,synthetic
+synthetic-202212-03,malnad-gidda,Malnad Gidda,52900,2022-12-14,4.5,False,6,SYNTHETIC - not a real sale,2022-12-14T00:00:00.000Z,synthetic
+synthetic-202212-04,shweta-kapila,Shweta Kapila,52900,2022-12-04,12.1,False,10,SYNTHETIC - not a real sale,2022-12-04T00:00:00.000Z,synthetic
+synthetic-202212-05,nari,Nari,56500,2022-12-23,4.8,False,3,SYNTHETIC - not a real sale,2022-12-23T00:00:00.000Z,synthetic
+synthetic-202301-00,vechur,Vechur,83000,2023-01-14,16.1,True,4,SYNTHETIC - not a real sale,2023-01-14T00:00:00.000Z,synthetic
+synthetic-202301-01,ongole,Ongole,82300,2023-01-19,13.4,True,7,SYNTHETIC - not a real sale,2023-01-19T00:00:00.000Z,synthetic
+synthetic-202301-02,dagri,Dagri,44300,2023-01-26,3.6,False,7,SYNTHETIC - not a real sale,2023-01-26T00:00:00.000Z,synthetic
+synthetic-202301-03,kenkatha,Kenkatha,46100,2023-01-10,5.1,True,6,SYNTHETIC - not a real sale,2023-01-10T00:00:00.000Z,synthetic
+synthetic-202301-04,punganur,Punganur,68300,2023-01-07,9.1,False,10,SYNTHETIC - not a real sale,2023-01-07T00:00:00.000Z,synthetic
+synthetic-202301-05,deoni,Deoni,65900,2023-01-18,12.8,False,9,SYNTHETIC - not a real sale,2023-01-18T00:00:00.000Z,synthetic
+synthetic-202302-00,hariana,Hariana,48000,2023-02-13,3.5,False,5,SYNTHETIC - not a real sale,2023-02-13T00:00:00.000Z,synthetic
+synthetic-202302-01,ponwar,Ponwar,46600,2023-02-09,3.6,False,6,SYNTHETIC - not a real sale,2023-02-09T00:00:00.000Z,synthetic
+synthetic-202302-02,mewati,Mewati,87000,2023-02-01,17.0,False,2,SYNTHETIC - not a real sale,2023-02-01T00:00:00.000Z,synthetic
+synthetic-202302-03,gaolao,Gaolao,49700,2023-02-25,5.3,False,2,SYNTHETIC - not a real sale,2023-02-25T00:00:00.000Z,synthetic
+synthetic-202302-04,vechur,Vechur,54100,2023-02-08,9.7,True,5,SYNTHETIC - not a real sale,2023-02-08T00:00:00.000Z,synthetic
+synthetic-202302-05,krishna-valley,Krishna Valley,62100,2023-02-27,5.8,True,3,SYNTHETIC - not a real sale,2023-02-27T00:00:00.000Z,synthetic
+synthetic-202303-00,umblachery,Umblachery,79400,2023-03-17,13.6,False,9,SYNTHETIC - not a real sale,2023-03-17T00:00:00.000Z,synthetic
+synthetic-202303-01,ghumsari,Ghumsari,99800,2023-03-22,17.2,True,10,SYNTHETIC - not a real sale,2023-03-22T00:00:00.000Z,synthetic
+synthetic-202303-02,mewati,Mewati,97300,2023-03-21,16.5,False,6,SYNTHETIC - not a real sale,2023-03-21T00:00:00.000Z,synthetic
+synthetic-202303-03,poda-thirupu,Poda Thirupu,74100,2023-03-10,9.8,False,4,SYNTHETIC - not a real sale,2023-03-10T00:00:00.000Z,synthetic
+synthetic-202303-04,hallikar,Hallikar,55000,2023-03-06,4.2,False,2,SYNTHETIC - not a real sale,2023-03-06T00:00:00.000Z,synthetic
+synthetic-202303-05,nagori,Nagori,64600,2023-03-05,12.2,True,4,SYNTHETIC - not a real sale,2023-03-05T00:00:00.000Z,synthetic
+synthetic-202304-00,konkan-kapila,Konkan Kapila,68700,2023-04-24,6.3,False,10,SYNTHETIC - not a real sale,2023-04-24T00:00:00.000Z,synthetic
+synthetic-202304-01,siri,Siri,54400,2023-04-05,6.5,True,5,SYNTHETIC - not a real sale,2023-04-05T00:00:00.000Z,synthetic
+synthetic-202304-02,himachali-pahari,Himachali Pahari,82200,2023-04-18,11.5,False,3,SYNTHETIC - not a real sale,2023-04-18T00:00:00.000Z,synthetic
+synthetic-202304-03,sahiwal,Sahiwal,51300,2023-04-17,6.0,False,9,SYNTHETIC - not a real sale,2023-04-17T00:00:00.000Z,synthetic
+synthetic-202304-04,sahiwal,Sahiwal,92700,2023-04-11,8.2,True,10,SYNTHETIC - not a real sale,2023-04-11T00:00:00.000Z,synthetic
+synthetic-202304-05,nimari,Nimari,79000,2023-04-21,17.2,False,4,SYNTHETIC - not a real sale,2023-04-21T00:00:00.000Z,synthetic
+synthetic-202305-00,nari,Nari,59500,2023-05-05,7.8,False,3,SYNTHETIC - not a real sale,2023-05-05T00:00:00.000Z,synthetic
+synthetic-202305-01,nimari,Nimari,53200,2023-05-05,6.4,False,10,SYNTHETIC - not a real sale,2023-05-05T00:00:00.000Z,synthetic
+synthetic-202305-02,bhelai,Bhelai,54500,2023-05-01,4.6,False,3,SYNTHETIC - not a real sale,2023-05-01T00:00:00.000Z,synthetic
+synthetic-202305-03,pulikulam,Pulikulam,81200,2023-05-14,9.6,False,2,SYNTHETIC - not a real sale,2023-05-14T00:00:00.000Z,synthetic
+synthetic-202305-04,nagori,Nagori,69100,2023-05-20,4.0,False,5,SYNTHETIC - not a real sale,2023-05-20T00:00:00.000Z,synthetic
+synthetic-202305-05,shweta-kapila,Shweta Kapila,58600,2023-05-13,3.8,False,2,SYNTHETIC - not a real sale,2023-05-13T00:00:00.000Z,synthetic
+synthetic-202306-00,konkan-kapila,Konkan Kapila,56800,2023-06-21,3.9,False,6,SYNTHETIC - not a real sale,2023-06-21T00:00:00.000Z,synthetic
+synthetic-202306-01,dagri,Dagri,59500,2023-06-24,9.4,False,3,SYNTHETIC - not a real sale,2023-06-24T00:00:00.000Z,synthetic
+synthetic-202306-02,kosali,Kosali,65600,2023-06-20,12.9,False,5,SYNTHETIC - not a real sale,2023-06-20T00:00:00.000Z,synthetic
+synthetic-202306-03,malnad-gidda,Malnad Gidda,60500,2023-06-14,9.4,False,5,SYNTHETIC - not a real sale,2023-06-14T00:00:00.000Z,synthetic
+synthetic-202306-04,pulikulam,Pulikulam,63000,2023-06-11,6.2,False,6,SYNTHETIC - not a real sale,2023-06-11T00:00:00.000Z,synthetic
+synthetic-202306-05,kankrej,Kankrej,69000,2023-06-25,12.4,False,4,SYNTHETIC - not a real sale,2023-06-25T00:00:00.000Z,synthetic
+synthetic-202307-00,rathi,Rathi,93600,2023-07-11,17.3,True,2,SYNTHETIC - not a real sale,2023-07-11T00:00:00.000Z,synthetic
+synthetic-202307-01,kosali,Kosali,71800,2023-07-21,10.9,False,8,SYNTHETIC - not a real sale,2023-07-21T00:00:00.000Z,synthetic
+synthetic-202307-02,gaolao,Gaolao,61700,2023-07-11,8.4,False,3,SYNTHETIC - not a real sale,2023-07-11T00:00:00.000Z,synthetic
+synthetic-202307-03,konkan-kapila,Konkan Kapila,60400,2023-07-15,7.6,True,8,SYNTHETIC - not a real sale,2023-07-15T00:00:00.000Z,synthetic
+synthetic-202307-04,himachali-pahari,Himachali Pahari,61300,2023-07-03,10.2,False,2,SYNTHETIC - not a real sale,2023-07-03T00:00:00.000Z,synthetic
+synthetic-202307-05,gangatari,Gangatari,78600,2023-07-07,9.7,False,4,SYNTHETIC - not a real sale,2023-07-07T00:00:00.000Z,synthetic
+synthetic-202308-00,kangayam,Kangayam,43500,2023-08-25,10.0,False,3,SYNTHETIC - not a real sale,2023-08-25T00:00:00.000Z,synthetic
+synthetic-202308-01,badri,Badri,58000,2023-08-04,7.7,True,5,SYNTHETIC - not a real sale,2023-08-04T00:00:00.000Z,synthetic
+synthetic-202308-02,vechur,Vechur,64300,2023-08-02,8.5,True,4,SYNTHETIC - not a real sale,2023-08-02T00:00:00.000Z,synthetic
+synthetic-202308-03,nagori,Nagori,60100,2023-08-24,10.5,False,2,SYNTHETIC - not a real sale,2023-08-24T00:00:00.000Z,synthetic
+synthetic-202308-04,poda-thirupu,Poda Thirupu,80900,2023-08-10,16.3,False,7,SYNTHETIC - not a real sale,2023-08-10T00:00:00.000Z,synthetic
+synthetic-202308-05,ongole,Ongole,67100,2023-08-13,4.2,True,7,SYNTHETIC - not a real sale,2023-08-13T00:00:00.000Z,synthetic
+synthetic-202309-00,pulikulam,Pulikulam,61600,2023-09-27,11.5,False,5,SYNTHETIC - not a real sale,2023-09-27T00:00:00.000Z,synthetic
+synthetic-202309-01,hallikar,Hallikar,56300,2023-09-23,6.4,False,2,SYNTHETIC - not a real sale,2023-09-23T00:00:00.000Z,synthetic
+synthetic-202309-02,tharparkar,Tharparkar,79000,2023-09-21,16.3,True,9,SYNTHETIC - not a real sale,2023-09-21T00:00:00.000Z,synthetic
+synthetic-202309-03,konkan-kapila,Konkan Kapila,66300,2023-09-10,12.1,False,5,SYNTHETIC - not a real sale,2023-09-10T00:00:00.000Z,synthetic
+synthetic-202309-04,sahiwal,Sahiwal,55200,2023-09-17,5.5,True,4,SYNTHETIC - not a real sale,2023-09-17T00:00:00.000Z,synthetic
+synthetic-202309-05,ponwar,Ponwar,53000,2023-09-19,9.0,False,2,SYNTHETIC - not a real sale,2023-09-19T00:00:00.000Z,synthetic
+synthetic-202310-00,badri,Badri,67000,2023-10-21,15.2,True,3,SYNTHETIC - not a real sale,2023-10-21T00:00:00.000Z,synthetic
+synthetic-202310-01,hariana,Hariana,68600,2023-10-07,13.2,False,5,SYNTHETIC - not a real sale,2023-10-07T00:00:00.000Z,synthetic
+synthetic-202310-02,ladakhi,Ladakhi,46500,2023-10-19,7.0,False,10,SYNTHETIC - not a real sale,2023-10-19T00:00:00.000Z,synthetic
+synthetic-202310-03,khillari,Khillari,63100,2023-10-11,14.6,False,7,SYNTHETIC - not a real sale,2023-10-11T00:00:00.000Z,synthetic
+synthetic-202310-04,ghumsari,Ghumsari,40400,2023-10-24,3.1,False,3,SYNTHETIC - not a real sale,2023-10-24T00:00:00.000Z,synthetic
+synthetic-202310-05,bargur,Bargur,47900,2023-10-22,6.1,False,8,SYNTHETIC - not a real sale,2023-10-22T00:00:00.000Z,synthetic
+synthetic-202311-00,hariana,Hariana,86600,2023-11-05,14.2,False,5,SYNTHETIC - not a real sale,2023-11-05T00:00:00.000Z,synthetic
+synthetic-202311-01,kankrej,Kankrej,58600,2023-11-24,9.2,False,8,SYNTHETIC - not a real sale,2023-11-24T00:00:00.000Z,synthetic
+synthetic-202311-02,badri,Badri,76300,2023-11-07,17.7,False,8,SYNTHETIC - not a real sale,2023-11-07T00:00:00.000Z,synthetic
+synthetic-202311-03,nagori,Nagori,69900,2023-11-21,6.7,False,2,SYNTHETIC - not a real sale,2023-11-21T00:00:00.000Z,synthetic
+synthetic-202311-04,nari,Nari,73100,2023-11-07,6.0,True,6,SYNTHETIC - not a real sale,2023-11-07T00:00:00.000Z,synthetic
+synthetic-202311-05,kosali,Kosali,75500,2023-11-22,14.9,False,6,SYNTHETIC - not a real sale,2023-11-22T00:00:00.000Z,synthetic
+synthetic-202312-00,red-sindhi,Red Sindhi,59000,2023-12-14,6.8,True,4,SYNTHETIC - not a real sale,2023-12-14T00:00:00.000Z,synthetic
+synthetic-202312-01,mewati,Mewati,53300,2023-12-11,6.4,False,7,SYNTHETIC - not a real sale,2023-12-11T00:00:00.000Z,synthetic
+synthetic-202312-02,gir,Gir,71900,2023-12-11,12.6,False,3,SYNTHETIC - not a real sale,2023-12-11T00:00:00.000Z,synthetic
+synthetic-202312-03,motu,Motu,88100,2023-12-07,15.8,False,2,SYNTHETIC - not a real sale,2023-12-07T00:00:00.000Z,synthetic
+synthetic-202312-04,kherigarh,Kherigarh,63600,2023-12-17,7.6,False,9,SYNTHETIC - not a real sale,2023-12-17T00:00:00.000Z,synthetic
+synthetic-202312-05,hariana,Hariana,90300,2023-12-20,14.7,False,2,SYNTHETIC - not a real sale,2023-12-20T00:00:00.000Z,synthetic
+synthetic-202401-00,dangi,Dangi,80300,2024-01-05,10.9,False,9,SYNTHETIC - not a real sale,2024-01-05T00:00:00.000Z,synthetic
+synthetic-202401-01,badri,Badri,56500,2024-01-07,7.3,True,10,SYNTHETIC - not a real sale,2024-01-07T00:00:00.000Z,synthetic
+synthetic-202401-02,tharparkar,Tharparkar,61600,2024-01-26,11.7,False,6,SYNTHETIC - not a real sale,2024-01-26T00:00:00.000Z,synthetic
+synthetic-202401-03,motu,Motu,63100,2024-01-19,6.7,False,4,SYNTHETIC - not a real sale,2024-01-19T00:00:00.000Z,synthetic
+synthetic-202401-04,gangatari,Gangatari,89200,2024-01-22,14.9,False,3,SYNTHETIC - not a real sale,2024-01-22T00:00:00.000Z,synthetic
+synthetic-202401-05,motu,Motu,113700,2024-01-18,17.8,False,5,SYNTHETIC - not a real sale,2024-01-18T00:00:00.000Z,synthetic
+synthetic-202402-00,deoni,Deoni,58400,2024-02-03,4.4,False,10,SYNTHETIC - not a real sale,2024-02-03T00:00:00.000Z,synthetic
+synthetic-202402-01,konkan-kapila,Konkan Kapila,88300,2024-02-27,14.8,False,7,SYNTHETIC - not a real sale,2024-02-27T00:00:00.000Z,synthetic
+synthetic-202402-02,dagri,Dagri,87500,2024-02-08,14.6,True,4,SYNTHETIC - not a real sale,2024-02-08T00:00:00.000Z,synthetic
+synthetic-202402-03,tharparkar,Tharparkar,72500,2024-02-06,15.4,True,6,SYNTHETIC - not a real sale,2024-02-06T00:00:00.000Z,synthetic
+synthetic-202402-04,krishna-valley,Krishna Valley,72900,2024-02-23,10.4,True,7,SYNTHETIC - not a real sale,2024-02-23T00:00:00.000Z,synthetic
+synthetic-202402-05,kherigarh,Kherigarh,52700,2024-02-26,3.5,False,5,SYNTHETIC - not a real sale,2024-02-26T00:00:00.000Z,synthetic
+synthetic-202403-00,lakhimi,Lakhimi,49400,2024-03-09,6.9,False,8,SYNTHETIC - not a real sale,2024-03-09T00:00:00.000Z,synthetic
+synthetic-202403-01,kenkatha,Kenkatha,56400,2024-03-07,11.0,False,9,SYNTHETIC - not a real sale,2024-03-07T00:00:00.000Z,synthetic
+synthetic-202403-02,mewati,Mewati,92900,2024-03-11,17.4,False,2,SYNTHETIC - not a real sale,2024-03-11T00:00:00.000Z,synthetic
+synthetic-202403-03,badri,Badri,66500,2024-03-13,11.0,False,3,SYNTHETIC - not a real sale,2024-03-13T00:00:00.000Z,synthetic
+synthetic-202403-04,krishna-valley,Krishna Valley,60900,2024-03-27,16.3,False,3,SYNTHETIC - not a real sale,2024-03-27T00:00:00.000Z,synthetic
+synthetic-202403-05,red-kandhari,Red Kandhari,46700,2024-03-25,5.1,False,3,SYNTHETIC - not a real sale,2024-03-25T00:00:00.000Z,synthetic
+synthetic-202404-00,gaolao,Gaolao,70000,2024-04-06,5.5,True,4,SYNTHETIC - not a real sale,2024-04-06T00:00:00.000Z,synthetic
+synthetic-202404-01,hallikar,Hallikar,66300,2024-04-02,4.1,False,2,SYNTHETIC - not a real sale,2024-04-02T00:00:00.000Z,synthetic
+synthetic-202404-02,punganur,Punganur,68700,2024-04-12,11.7,False,9,SYNTHETIC - not a real sale,2024-04-12T00:00:00.000Z,synthetic
+synthetic-202404-03,malvi,Malvi,68800,2024-04-20,12.6,False,10,SYNTHETIC - not a real sale,2024-04-20T00:00:00.000Z,synthetic
+synthetic-202404-04,vechur,Vechur,67000,2024-04-22,10.0,True,5,SYNTHETIC - not a real sale,2024-04-22T00:00:00.000Z,synthetic
+synthetic-202404-05,khillari,Khillari,56000,2024-04-23,5.3,True,9,SYNTHETIC - not a real sale,2024-04-23T00:00:00.000Z,synthetic
+synthetic-202405-00,ponwar,Ponwar,90400,2024-05-06,15.8,True,8,SYNTHETIC - not a real sale,2024-05-06T00:00:00.000Z,synthetic
+synthetic-202405-01,krishna-valley,Krishna Valley,50900,2024-05-25,6.2,False,7,SYNTHETIC - not a real sale,2024-05-25T00:00:00.000Z,synthetic
+synthetic-202405-02,thutho,Thutho,83000,2024-05-13,7.3,False,7,SYNTHETIC - not a real sale,2024-05-13T00:00:00.000Z,synthetic
+synthetic-202405-03,red-sindhi,Red Sindhi,76900,2024-05-19,12.4,True,4,SYNTHETIC - not a real sale,2024-05-19T00:00:00.000Z,synthetic
+synthetic-202405-04,rathi,Rathi,44900,2024-05-12,4.1,False,8,SYNTHETIC - not a real sale,2024-05-12T00:00:00.000Z,synthetic
+synthetic-202405-05,gir,Gir,49600,2024-05-21,6.3,False,9,SYNTHETIC - not a real sale,2024-05-21T00:00:00.000Z,synthetic
+synthetic-202406-00,bargur,Bargur,78400,2024-06-20,10.1,False,8,SYNTHETIC - not a real sale,2024-06-20T00:00:00.000Z,synthetic
+synthetic-202406-01,nagori,Nagori,91700,2024-06-17,10.4,False,7,SYNTHETIC - not a real sale,2024-06-17T00:00:00.000Z,synthetic
+synthetic-202406-02,hallikar,Hallikar,72400,2024-06-10,10.7,False,2,SYNTHETIC - not a real sale,2024-06-10T00:00:00.000Z,synthetic
+synthetic-202406-03,pulikulam,Pulikulam,78300,2024-06-13,10.0,False,6,SYNTHETIC - not a real sale,2024-06-13T00:00:00.000Z,synthetic
+synthetic-202406-04,nari,Nari,67000,2024-06-10,4.4,True,3,SYNTHETIC - not a real sale,2024-06-10T00:00:00.000Z,synthetic
+synthetic-202406-05,bhelai,Bhelai,81600,2024-06-16,14.0,True,3,SYNTHETIC - not a real sale,2024-06-16T00:00:00.000Z,synthetic
+synthetic-202407-00,hallikar,Hallikar,70500,2024-07-11,5.5,False,10,SYNTHETIC - not a real sale,2024-07-11T00:00:00.000Z,synthetic
+synthetic-202407-01,shweta-kapila,Shweta Kapila,80300,2024-07-07,9.2,False,3,SYNTHETIC - not a real sale,2024-07-07T00:00:00.000Z,synthetic
+synthetic-202407-02,ponwar,Ponwar,60600,2024-07-22,14.3,False,6,SYNTHETIC - not a real sale,2024-07-22T00:00:00.000Z,synthetic
+synthetic-202407-03,kenkatha,Kenkatha,59300,2024-07-08,7.3,True,8,SYNTHETIC - not a real sale,2024-07-08T00:00:00.000Z,synthetic
+synthetic-202407-04,badri,Badri,77600,2024-07-20,17.9,False,10,SYNTHETIC - not a real sale,2024-07-20T00:00:00.000Z,synthetic
+synthetic-202407-05,kherigarh,Kherigarh,84200,2024-07-15,17.0,True,5,SYNTHETIC - not a real sale,2024-07-15T00:00:00.000Z,synthetic
+synthetic-202408-00,khariar,Khariar,67000,2024-08-25,9.6,False,4,SYNTHETIC - not a real sale,2024-08-25T00:00:00.000Z,synthetic
+synthetic-202408-01,motu,Motu,94000,2024-08-09,15.0,True,2,SYNTHETIC - not a real sale,2024-08-09T00:00:00.000Z,synthetic
+synthetic-202408-02,deoni,Deoni,70000,2024-08-19,10.6,False,7,SYNTHETIC - not a real sale,2024-08-19T00:00:00.000Z,synthetic
+synthetic-202408-03,badri,Badri,64700,2024-08-04,8.0,True,6,SYNTHETIC - not a real sale,2024-08-04T00:00:00.000Z,synthetic
+synthetic-202408-04,purnea,Purnea,69500,2024-08-27,9.7,True,9,SYNTHETIC - not a real sale,2024-08-27T00:00:00.000Z,synthetic
+synthetic-202408-05,rathi,Rathi,46400,2024-08-05,3.3,True,3,SYNTHETIC - not a real sale,2024-08-05T00:00:00.000Z,synthetic
+synthetic-202409-00,malvi,Malvi,47300,2024-09-22,4.0,True,4,SYNTHETIC - not a real sale,2024-09-22T00:00:00.000Z,synthetic
+synthetic-202409-01,bargur,Bargur,88800,2024-09-17,15.7,True,6,SYNTHETIC - not a real sale,2024-09-17T00:00:00.000Z,synthetic
+synthetic-202409-02,umblachery,Umblachery,50800,2024-09-04,4.1,False,5,SYNTHETIC - not a real sale,2024-09-04T00:00:00.000Z,synthetic
+synthetic-202409-03,amritmahal,Amritmahal,62800,2024-09-15,5.7,False,5,SYNTHETIC - not a real sale,2024-09-15T00:00:00.000Z,synthetic
+synthetic-202409-04,malvi,Malvi,59900,2024-09-26,12.9,False,3,SYNTHETIC - not a real sale,2024-09-26T00:00:00.000Z,synthetic
+synthetic-202409-05,ponwar,Ponwar,81100,2024-09-13,10.4,True,10,SYNTHETIC - not a real sale,2024-09-13T00:00:00.000Z,synthetic
+synthetic-202410-00,badri,Badri,41000,2024-10-10,3.7,False,4,SYNTHETIC - not a real sale,2024-10-10T00:00:00.000Z,synthetic
+synthetic-202410-01,amritmahal,Amritmahal,71900,2024-10-17,9.6,False,4,SYNTHETIC - not a real sale,2024-10-17T00:00:00.000Z,synthetic
+synthetic-202410-02,punganur,Punganur,65700,2024-10-17,13.7,True,9,SYNTHETIC - not a real sale,2024-10-17T00:00:00.000Z,synthetic
+synthetic-202410-03,red-sindhi,Red Sindhi,54100,2024-10-07,6.7,True,9,SYNTHETIC - not a real sale,2024-10-07T00:00:00.000Z,synthetic
+synthetic-202410-04,himachali-pahari,Himachali Pahari,57100,2024-10-12,5.7,False,5,SYNTHETIC - not a real sale,2024-10-12T00:00:00.000Z,synthetic
+synthetic-202410-05,kankrej,Kankrej,74000,2024-10-25,16.9,True,4,SYNTHETIC - not a real sale,2024-10-25T00:00:00.000Z,synthetic
+synthetic-202411-00,pulikulam,Pulikulam,87300,2024-11-07,14.4,False,2,SYNTHETIC - not a real sale,2024-11-07T00:00:00.000Z,synthetic
+synthetic-202411-01,siri,Siri,79700,2024-11-23,11.3,True,2,SYNTHETIC - not a real sale,2024-11-23T00:00:00.000Z,synthetic
+synthetic-202411-02,nagori,Nagori,68200,2024-11-18,9.3,False,7,SYNTHETIC - not a real sale,2024-11-18T00:00:00.000Z,synthetic
+synthetic-202411-03,badri,Badri,51400,2024-11-23,4.1,False,3,SYNTHETIC - not a real sale,2024-11-23T00:00:00.000Z,synthetic
+synthetic-202411-04,bachaur,Bachaur,48400,2024-11-01,7.7,False,6,SYNTHETIC - not a real sale,2024-11-01T00:00:00.000Z,synthetic
+synthetic-202411-05,malnad-gidda,Malnad Gidda,59800,2024-11-13,5.6,True,8,SYNTHETIC - not a real sale,2024-11-13T00:00:00.000Z,synthetic
+synthetic-202412-00,punganur,Punganur,52300,2024-12-06,6.2,False,8,SYNTHETIC - not a real sale,2024-12-06T00:00:00.000Z,synthetic
+synthetic-202412-01,ghumsari,Ghumsari,67400,2024-12-26,6.6,False,6,SYNTHETIC - not a real sale,2024-12-26T00:00:00.000Z,synthetic
+synthetic-202412-02,gir,Gir,66800,2024-12-19,17.8,True,8,SYNTHETIC - not a real sale,2024-12-19T00:00:00.000Z,synthetic
+synthetic-202412-03,umblachery,Umblachery,65000,2024-12-13,8.1,True,5,SYNTHETIC - not a real sale,2024-12-13T00:00:00.000Z,synthetic
+synthetic-202412-04,hariana,Hariana,70400,2024-12-09,8.0,False,4,SYNTHETIC - not a real sale,2024-12-09T00:00:00.000Z,synthetic
+synthetic-202412-05,ghumsari,Ghumsari,69200,2024-12-18,9.7,False,4,SYNTHETIC - not a real sale,2024-12-18T00:00:00.000Z,synthetic
+synthetic-202501-00,lakhimi,Lakhimi,63900,2025-01-06,10.3,True,9,SYNTHETIC - not a real sale,2025-01-06T00:00:00.000Z,synthetic
+synthetic-202501-01,umblachery,Umblachery,52600,2025-01-04,3.7,True,6,SYNTHETIC - not a real sale,2025-01-04T00:00:00.000Z,synthetic
+synthetic-202501-02,umblachery,Umblachery,74500,2025-01-19,10.8,True,5,SYNTHETIC - not a real sale,2025-01-19T00:00:00.000Z,synthetic
+synthetic-202501-03,sahiwal,Sahiwal,73800,2025-01-03,8.6,False,8,SYNTHETIC - not a real sale,2025-01-03T00:00:00.000Z,synthetic
+synthetic-202501-04,ongole,Ongole,74700,2025-01-01,9.8,False,4,SYNTHETIC - not a real sale,2025-01-01T00:00:00.000Z,synthetic
+synthetic-202501-05,malnad-gidda,Malnad Gidda,81500,2025-01-01,11.0,False,3,SYNTHETIC - not a real sale,2025-01-01T00:00:00.000Z,synthetic
+synthetic-202502-00,bhelai,Bhelai,77600,2025-02-23,9.3,True,5,SYNTHETIC - not a real sale,2025-02-23T00:00:00.000Z,synthetic
+synthetic-202502-01,ponwar,Ponwar,54800,2025-02-21,3.3,False,4,SYNTHETIC - not a real sale,2025-02-21T00:00:00.000Z,synthetic
+synthetic-202502-02,bhelai,Bhelai,102200,2025-02-20,12.5,False,9,SYNTHETIC - not a real sale,2025-02-20T00:00:00.000Z,synthetic
+synthetic-202502-03,dangi,Dangi,67000,2025-02-04,9.7,False,6,SYNTHETIC - not a real sale,2025-02-04T00:00:00.000Z,synthetic
+synthetic-202502-04,gir,Gir,52700,2025-02-14,3.2,False,10,SYNTHETIC - not a real sale,2025-02-14T00:00:00.000Z,synthetic
+synthetic-202502-05,krishna-valley,Krishna Valley,66800,2025-02-13,10.2,False,4,SYNTHETIC - not a real sale,2025-02-13T00:00:00.000Z,synthetic
+synthetic-202503-00,bachaur,Bachaur,54400,2025-03-15,7.0,False,10,SYNTHETIC - not a real sale,2025-03-15T00:00:00.000Z,synthetic
+synthetic-202503-01,nari,Nari,100000,2025-03-27,17.0,False,10,SYNTHETIC - not a real sale,2025-03-27T00:00:00.000Z,synthetic
+synthetic-202503-02,malvi,Malvi,91600,2025-03-12,15.9,False,6,SYNTHETIC - not a real sale,2025-03-12T00:00:00.000Z,synthetic
+synthetic-202503-03,ghumsari,Ghumsari,73800,2025-03-27,8.8,False,10,SYNTHETIC - not a real sale,2025-03-27T00:00:00.000Z,synthetic
+synthetic-202503-04,vechur,Vechur,60900,2025-03-20,3.5,False,4,SYNTHETIC - not a real sale,2025-03-20T00:00:00.000Z,synthetic
+synthetic-202503-05,umblachery,Umblachery,66500,2025-03-08,5.7,False,5,SYNTHETIC - not a real sale,2025-03-08T00:00:00.000Z,synthetic
+synthetic-202504-00,mewati,Mewati,74600,2025-04-03,13.8,False,5,SYNTHETIC - not a real sale,2025-04-03T00:00:00.000Z,synthetic
+synthetic-202504-01,ghumsari,Ghumsari,79400,2025-04-25,11.6,True,2,SYNTHETIC - not a real sale,2025-04-25T00:00:00.000Z,synthetic
+synthetic-202504-02,badri,Badri,101200,2025-04-19,10.4,True,2,SYNTHETIC - not a real sale,2025-04-19T00:00:00.000Z,synthetic
+synthetic-202504-03,badri,Badri,42400,2025-04-26,5.0,False,10,SYNTHETIC - not a real sale,2025-04-26T00:00:00.000Z,synthetic
+synthetic-202504-04,himachali-pahari,Himachali Pahari,112300,2025-04-15,13.7,False,8,SYNTHETIC - not a real sale,2025-04-15T00:00:00.000Z,synthetic
+synthetic-202504-05,himachali-pahari,Himachali Pahari,93700,2025-04-05,10.8,False,9,SYNTHETIC - not a real sale,2025-04-05T00:00:00.000Z,synthetic
+synthetic-202505-00,lakhimi,Lakhimi,84300,2025-05-26,16.9,True,2,SYNTHETIC - not a real sale,2025-05-26T00:00:00.000Z,synthetic
+synthetic-202505-01,hallikar,Hallikar,75100,2025-05-01,6.6,True,9,SYNTHETIC - not a real sale,2025-05-01T00:00:00.000Z,synthetic
+synthetic-202505-02,konkan-kapila,Konkan Kapila,60500,2025-05-10,8.7,False,3,SYNTHETIC - not a real sale,2025-05-10T00:00:00.000Z,synthetic
+synthetic-202505-03,ladakhi,Ladakhi,66000,2025-05-06,4.3,True,4,SYNTHETIC - not a real sale,2025-05-06T00:00:00.000Z,synthetic
+synthetic-202505-04,red-sindhi,Red Sindhi,92300,2025-05-26,16.9,False,10,SYNTHETIC - not a real sale,2025-05-26T00:00:00.000Z,synthetic
+synthetic-202505-05,krishna-valley,Krishna Valley,82300,2025-05-23,14.6,False,8,SYNTHETIC - not a real sale,2025-05-23T00:00:00.000Z,synthetic
+synthetic-202506-00,kangayam,Kangayam,86000,2025-06-02,14.5,False,5,SYNTHETIC - not a real sale,2025-06-02T00:00:00.000Z,synthetic
+synthetic-202506-01,nagori,Nagori,53400,2025-06-21,4.4,False,6,SYNTHETIC - not a real sale,2025-06-21T00:00:00.000Z,synthetic
+synthetic-202506-02,konkan-kapila,Konkan Kapila,59800,2025-06-22,3.5,False,7,SYNTHETIC - not a real sale,2025-06-22T00:00:00.000Z,synthetic
+synthetic-202506-03,red-sindhi,Red Sindhi,102400,2025-06-08,15.9,True,8,SYNTHETIC - not a real sale,2025-06-08T00:00:00.000Z,synthetic
+synthetic-202506-04,ghumsari,Ghumsari,89700,2025-06-23,9.7,True,2,SYNTHETIC - not a real sale,2025-06-23T00:00:00.000Z,synthetic
+synthetic-202506-05,nari,Nari,110000,2025-06-25,16.2,True,9,SYNTHETIC - not a real sale,2025-06-25T00:00:00.000Z,synthetic
+synthetic-202507-00,bhelai,Bhelai,73800,2025-07-11,10.5,False,4,SYNTHETIC - not a real sale,2025-07-11T00:00:00.000Z,synthetic
+synthetic-202507-01,pulikulam,Pulikulam,69400,2025-07-16,5.3,False,7,SYNTHETIC - not a real sale,2025-07-16T00:00:00.000Z,synthetic
+synthetic-202507-02,poda-thirupu,Poda Thirupu,69400,2025-07-14,6.9,False,9,SYNTHETIC - not a real sale,2025-07-14T00:00:00.000Z,synthetic
+synthetic-202507-03,siri,Siri,95600,2025-07-15,15.6,True,10,SYNTHETIC - not a real sale,2025-07-15T00:00:00.000Z,synthetic
+synthetic-202507-04,khariar,Khariar,86800,2025-07-26,11.8,True,9,SYNTHETIC - not a real sale,2025-07-26T00:00:00.000Z,synthetic
+synthetic-202507-05,hallikar,Hallikar,77300,2025-07-02,11.5,False,4,SYNTHETIC - not a real sale,2025-07-02T00:00:00.000Z,synthetic
+synthetic-202508-00,kangayam,Kangayam,47100,2025-08-02,4.0,False,9,SYNTHETIC - not a real sale,2025-08-02T00:00:00.000Z,synthetic
+synthetic-202508-01,tharparkar,Tharparkar,57700,2025-08-25,4.8,False,4,SYNTHETIC - not a real sale,2025-08-25T00:00:00.000Z,synthetic
+synthetic-202508-02,khillari,Khillari,71900,2025-08-13,11.8,False,4,SYNTHETIC - not a real sale,2025-08-13T00:00:00.000Z,synthetic
+synthetic-202508-03,himachali-pahari,Himachali Pahari,73600,2025-08-13,4.6,False,8,SYNTHETIC - not a real sale,2025-08-13T00:00:00.000Z,synthetic
+synthetic-202508-04,khillari,Khillari,133900,2025-08-16,16.8,True,6,SYNTHETIC - not a real sale,2025-08-16T00:00:00.000Z,synthetic
+synthetic-202508-05,nagori,Nagori,87800,2025-08-10,17.2,True,4,SYNTHETIC - not a real sale,2025-08-10T00:00:00.000Z,synthetic
+synthetic-202509-00,badri,Badri,51800,2025-09-13,5.9,False,5,SYNTHETIC - not a real sale,2025-09-13T00:00:00.000Z,synthetic
+synthetic-202509-01,vechur,Vechur,74700,2025-09-18,4.0,True,3,SYNTHETIC - not a real sale,2025-09-18T00:00:00.000Z,synthetic
+synthetic-202509-02,red-kandhari,Red Kandhari,39200,2025-09-11,4.4,False,7,SYNTHETIC - not a real sale,2025-09-11T00:00:00.000Z,synthetic
+synthetic-202509-03,kherigarh,Kherigarh,69900,2025-09-10,5.0,True,10,SYNTHETIC - not a real sale,2025-09-10T00:00:00.000Z,synthetic
+synthetic-202509-04,ongole,Ongole,64600,2025-09-18,3.9,False,4,SYNTHETIC - not a real sale,2025-09-18T00:00:00.000Z,synthetic
+synthetic-202509-05,malnad-gidda,Malnad Gidda,68700,2025-09-17,6.0,True,4,SYNTHETIC - not a real sale,2025-09-17T00:00:00.000Z,synthetic
+synthetic-202510-00,khariar,Khariar,82100,2025-10-08,11.0,False,5,SYNTHETIC - not a real sale,2025-10-08T00:00:00.000Z,synthetic
+synthetic-202510-01,red-kandhari,Red Kandhari,85800,2025-10-25,17.5,False,3,SYNTHETIC - not a real sale,2025-10-25T00:00:00.000Z,synthetic
+synthetic-202510-02,lakhimi,Lakhimi,66400,2025-10-22,9.4,False,2,SYNTHETIC - not a real sale,2025-10-22T00:00:00.000Z,synthetic
+synthetic-202510-03,ongole,Ongole,65500,2025-10-04,4.4,False,2,SYNTHETIC - not a real sale,2025-10-04T00:00:00.000Z,synthetic
+synthetic-202510-04,bargur,Bargur,79000,2025-10-26,13.9,False,6,SYNTHETIC - not a real sale,2025-10-26T00:00:00.000Z,synthetic
+synthetic-202510-05,sahiwal,Sahiwal,88200,2025-10-24,14.3,False,6,SYNTHETIC - not a real sale,2025-10-24T00:00:00.000Z,synthetic
+synthetic-202511-00,gir,Gir,54000,2025-11-14,6.2,False,7,SYNTHETIC - not a real sale,2025-11-14T00:00:00.000Z,synthetic
+synthetic-202511-01,nari,Nari,62000,2025-11-20,5.8,True,8,SYNTHETIC - not a real sale,2025-11-20T00:00:00.000Z,synthetic
+synthetic-202511-02,umblachery,Umblachery,75300,2025-11-08,16.3,False,2,SYNTHETIC - not a real sale,2025-11-08T00:00:00.000Z,synthetic
+synthetic-202511-03,kosali,Kosali,99400,2025-11-17,17.6,False,7,SYNTHETIC - not a real sale,2025-11-17T00:00:00.000Z,synthetic
+synthetic-202511-04,red-sindhi,Red Sindhi,53000,2025-11-25,3.6,False,4,SYNTHETIC - not a real sale,2025-11-25T00:00:00.000Z,synthetic
+synthetic-202511-05,amritmahal,Amritmahal,93800,2025-11-21,13.9,False,4,SYNTHETIC - not a real sale,2025-11-21T00:00:00.000Z,synthetic
+synthetic-202512-00,khariar,Khariar,87900,2025-12-16,9.5,True,6,SYNTHETIC - not a real sale,2025-12-16T00:00:00.000Z,synthetic
+synthetic-202512-01,nimari,Nimari,67500,2025-12-27,12.0,False,7,SYNTHETIC - not a real sale,2025-12-27T00:00:00.000Z,synthetic
+synthetic-202512-02,mewati,Mewati,70200,2025-12-08,5.7,False,5,SYNTHETIC - not a real sale,2025-12-08T00:00:00.000Z,synthetic
+synthetic-202512-03,kangayam,Kangayam,79700,2025-12-25,14.5,False,7,SYNTHETIC - not a real sale,2025-12-25T00:00:00.000Z,synthetic
+synthetic-202512-04,ponwar,Ponwar,72400,2025-12-11,9.0,True,2,SYNTHETIC - not a real sale,2025-12-11T00:00:00.000Z,synthetic
+synthetic-202512-05,thutho,Thutho,55300,2025-12-16,6.1,True,3,SYNTHETIC - not a real sale,2025-12-16T00:00:00.000Z,synthetic
