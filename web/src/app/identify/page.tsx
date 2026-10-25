@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/navigation/SiteHeader";
 export const metadata: Metadata = {
   title: "Identify an animal",
   description:
-    "Photograph or upload an image of cattle or buffalo to get a predicted breed with a confidence score.",
+    "Photograph or upload an image of cattle to get a predicted breed with a confidence score.",
 };
 
 export default function IdentifyPage() {

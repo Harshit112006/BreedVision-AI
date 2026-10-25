@@ -59,8 +59,8 @@ export default function HomePage() {
                   Identify the breed. Keep a record that holds up.
                 </h1>
                 <p className="mt-6 max-w-lg text-lead text-ink-2 text-pretty">
-                  Image-based breed identification for Indian cattle and
-                  buffaloes. Photograph an animal and get a predicted breed, a
+                  Image-based breed identification for Indian cattle.
+                  Photograph an animal and get a predicted breed, a
                   confidence score, and the alternatives worth considering.
                 </p>
                 <div className="mt-9 flex flex-wrap gap-3">

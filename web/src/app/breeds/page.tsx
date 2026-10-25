@@ -11,7 +11,7 @@ import { getBreeds } from "@/services/breeds";
 export const metadata: Metadata = {
   title: "Breed library",
   description:
-    "Browse Indian cattle and buffalo breeds covered by BreedVision.",
+    "Browse Indian cattle breeds covered by BreedVision.",
 };
 
 export default async function BreedsPage() {
@@ -27,7 +27,7 @@ export default async function BreedsPage() {
               Breed library
             </h1>
             <p className="mt-2 max-w-xl text-body text-ink-2 text-pretty">
-              Indian cattle and buffalo breeds the system is being built to
+              Indian cattle breeds the system is being built to
               recognise. Search by breed or region.
             </p>
 

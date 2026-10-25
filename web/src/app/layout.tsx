@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s — BreedVision",
   },
   description:
-    "Image-based breed identification for Indian cattle and buffaloes. Photograph an animal, get a predicted breed with a confidence score, and keep a record.",
+    "Image-based breed identification for Indian cattle. Photograph an animal, get a predicted breed with a confidence score, and keep a record.",
 };
 
 export const viewport: Viewport = {
