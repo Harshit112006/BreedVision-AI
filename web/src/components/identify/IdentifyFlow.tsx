@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { DuplicateNotice, RemoteDuplicateNotice } from "@/components/prediction/DuplicateNotice";
+import { HeatmapPanel } from "@/components/prediction/HeatmapPanel";
 import { PredictionResult } from "@/components/prediction/PredictionResult";
 import { ErrorState } from "@/components/states";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -187,6 +188,7 @@ export function IdentifyFlow() {
         {remoteDup && saveState !== "saved" ? <RemoteDuplicateNotice match={remoteDup} /> : null}
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-12">
+          <div className="flex flex-col gap-4">
           <figure className="flex flex-col gap-3">
             <div className="relative aspect-4/3 overflow-hidden rounded-lg border border-line bg-cream">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -200,6 +202,8 @@ export function IdentifyFlow() {
               {image.width} × {image.height} · {formatBytes(image.bytes)}
             </figcaption>
           </figure>
+            <HeatmapPanel file={image.file} />
+          </div>
 
           <div className="flex flex-col gap-8">
             <PredictionResult prediction={prediction} />

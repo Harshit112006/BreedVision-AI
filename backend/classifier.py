@@ -264,3 +264,44 @@ def classify(image, top_k: int = 5) -> dict:
         # derived values, or the reverse.
         "thresholds": active_thresholds(),
     }
+
+
+def explain(image) -> dict:
+    """Where the model looked, for the breed it predicted.
+
+    Returns the exact 224x224 view the model received, a transparent heat-map
+    overlay for it, and a plain-language summary. See ml/training/explain.py for
+    what the map is and, just as important, what it is not.
+    """
+    if _predictor is None:
+        raise RuntimeError("classifier not loaded")
+
+    import base64
+
+    from ml.training import explain as ex
+
+    e = ex.explain(_predictor, image)
+
+    def data_url(im) -> str:
+        return "data:image/png;base64," + base64.b64encode(ex.to_png_bytes(im)).decode("ascii")
+
+    return {
+        "breed_id": slug(e.breed_label),
+        "breed_name": display_name(e.breed_label),
+        "probability": round(e.probability, 4),
+        "model_version": _predictor.model_version,
+        # The model sees a centre crop, so this is NOT the whole uploaded photo.
+        "view_png": data_url(e.crop),
+        "heatmap_png": data_url(ex.heatmap_rgba(e.heat)),
+        # 7x7 grid, 0-100, row-major. Also the data behind the picture, so the
+        # result is not locked inside an image.
+        "grid": [[int(round(v * 100)) for v in row] for row in e.heat.tolist()],
+        "summary": e.summary,
+        "method": "Grad-CAM (exact for this architecture: average pooling then a linear layer)",
+        "limits": [
+            "Shows image regions, not body parts or features.",
+            "Brightness is scaled per image and cannot be compared between images.",
+            "Only the centre crop the model received is shown.",
+            "Low resolution: 7 x 7 cells.",
+        ],
+    }

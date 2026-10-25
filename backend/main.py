@@ -303,3 +303,28 @@ async def classify(file: UploadFile = File(...), top_k: int = 5):
     con.commit(); con.close()
 
     return {"animal_id": aid, **result}
+
+
+@app.post("/api/explain")
+async def explain_prediction(file: UploadFile = File(...)):
+    """Heat-map of where the classifier found evidence for its predicted breed.
+
+    Explains the model's own top prediction, which may be wrong: it describes
+    what the model did, not whether it was right. Nothing is stored.
+    """
+    cls = classifier.status()
+    if not cls.available:
+        raise HTTPException(503, f"Breed classifier unavailable. {cls.detail}")
+    if not file.content_type or not file.content_type.startswith("image/"):
+        raise HTTPException(400, "Please upload an image file.")
+    raw = await file.read()
+    if len(raw) > 10*1024*1024:
+        raise HTTPException(413, "Image is larger than 10 MB.")
+    try:
+        image = Image.open(io.BytesIO(raw)).convert("RGB")
+    except Exception:
+        raise HTTPException(400, "That image could not be opened. It may be damaged.")
+    try:
+        return classifier.explain(image)
+    except Exception as exc:
+        raise HTTPException(500, f"Explanation failed: {type(exc).__name__}")
