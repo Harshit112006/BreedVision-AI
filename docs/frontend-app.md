@@ -87,9 +87,10 @@ it would be easy to show it with a small confidence figure beside it. The
 interface deliberately does not: the top-1 is demoted into a list of candidates
 with "none is confirmed" stated above it.
 
-> Thresholds are **provisional placeholders** (0.70 / 0.40) and are flagged as
-> such in code and on `/foundation`. Phase 5 of the ML plan derives the real
-> operating threshold from validation data.
+> Thresholds were originally placeholders (0.70 / 0.40). They are now **derived**:
+> 0.85 confident, 0.30 low, from `ml/training/calibrate.py` (see
+> `model-baseline.md` section 10). They are validation-based and not yet
+> confirmed on the test split.
 
 ## 5. Breed library
 

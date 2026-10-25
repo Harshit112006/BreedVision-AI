@@ -245,11 +245,7 @@ def classify_info():
         "model_version": cls.model_version,
         "num_classes": cls.num_classes,
         "task": "breed classification (49 Indian cattle breeds)",
-        "thresholds": {
-            "confident": classifier.PROVISIONAL_CONFIDENT_THRESHOLD,
-            "uncertain": classifier.PROVISIONAL_UNCERTAIN_THRESHOLD,
-            "provisional": True,
-        },
+        "thresholds": classifier.active_thresholds(),
     }
 
 @app.post("/api/classify")

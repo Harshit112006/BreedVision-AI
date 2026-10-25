@@ -192,3 +192,74 @@ applies to every timing in this document.
   label noise, low resolution, and no augmentation says nothing yet about a
   photograph taken in a field. Robustness is Phase 4.
 - **Not server or phone latency.** 17-61 ms/img is this laptop's 6 CPU cores.
+
+---
+
+## 10. Calibration and confidence thresholds
+
+`ml/training/calibrate.py` fits a temperature to the validation logits and reads
+confidence thresholds off the result. The **test split was not touched**: quality
+is estimated by 5-fold cross-fitting inside validation (fit T on four folds,
+apply to the fifth, pool).
+
+### Finding: this model was already well calibrated
+
+| (validation, 1,115 images) | Before | After (cross-fitted) |
+|---|---|---|
+| Fitted temperature | n/a | **1.04** (folds 1.03–1.06) |
+| Expected calibration error | 0.0552 | 0.0457 |
+| Negative log-likelihood | 1.3435 | 1.3432 |
+| Brier score | 0.5151 | 0.5159 |
+| Mean confidence vs accuracy | 0.626 vs 0.636 | 0.612 vs 0.636 |
+
+A temperature near 1.0 and a negligible change in every metric means scaling
+does almost nothing here. Class-balanced loss and early stopping kept the head
+from becoming overconfident. Calibration is still applied (T = 1.04) so the
+pipeline is correct if a later model needs it, but **it is not an improvement to
+claim**. For contrast, a differently trained model in a teammate's repository
+reported ECE 0.31, where the same step helped a great deal.
+
+### What the thresholds actually cost
+
+Calibrated, cross-fitted validation results:
+
+| Threshold | Share of photos where a breed is named | Accuracy when named |
+|---|---|---|
+| 0.40 | 73.1% | 74.2% |
+| 0.50 | 60.0% | 77.6% |
+| 0.70 | 42.0% | 85.3% |
+| **0.85** | **25.1%** | **90.4%** |
+| 0.95 | 12.5% | 96.4% |
+
+The earlier placeholders (0.70 confident, 0.40 uncertain) were wrong in both
+directions: at 0.70 the system named a breed that was right only 85% of the time.
+
+### Chosen operating point
+
+- **Confident at 0.85**: the first threshold where accuracy when naming a breed
+  reaches the 90% target (n = 280).
+- **Low below 0.30**: below this the true breed is in the top 3 less than 60% of
+  the time, so even a candidate list is unreliable.
+
+**The 90% target is a policy choice, not a fact about the model.** With a 63.6%
+top-1 model, standing behind a breed name at 90% means naming one for only about
+a quarter of photos. A lower target (say 80%, reached near 0.60, naming a breed
+for about half of photos) would name more breeds and be wrong more often. This is the central product trade-off and the
+number lives in one constant (`TARGET_CONFIDENT_ACCURACY`).
+
+### Limits
+
+- Validation both fits T and chooses the thresholds, so the figures are mildly
+  optimistic. They should be confirmed **once** on the untouched test split.
+- Calibration here is global (one temperature). It says nothing about whether
+  rarer breeds are calibrated as well as common ones.
+- Thresholds apply to in-distribution photos of the 49 breeds. They do not
+  detect non-cattle or out-of-scope images.
+
+### Keeping things in sync
+
+The thresholds ship **inside the deployed model bundle** and the API reports
+them at `/api/classify/info`, so a model can never be swapped without its
+operating point. The frontend keeps its own copy in `web/src/lib/confidence.ts`;
+`ml/tests/test_threshold_sync.py` fails if the two diverge (verified by
+deliberately breaking it).

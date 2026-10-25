@@ -62,8 +62,26 @@ def export(run_id: str, cfg: dict, out: Path) -> dict:
         rec = json.loads(record_path.read_text(encoding="utf-8"))
         metrics = rec.get("val_metrics", {})
 
+    # Calibration is optional: a bundle exported before calibrate.py was run
+    # simply carries T = 1.0 and no thresholds, and the service says so.
+    calib_path = runs_dir / f"{run_id}__calibration.json"
+    temperature, thresholds = 1.0, None
+    if calib_path.is_file():
+        cal = json.loads(calib_path.read_text(encoding="utf-8"))
+        temperature = float(cal["temperature_full_validation"])
+        d = cal["derived"]
+        if d.get("confident") is not None and d.get("low_below") is not None:
+            thresholds = {
+                "confident": float(d["confident"]),
+                "low_below": float(d["low_below"]),
+                "target_confident_accuracy": cal["targets"]["confident_accuracy"],
+                "basis": "validation, 5-fold cross-fitted; test split untouched",
+            }
+
     pre = cfg["preprocess"]
     bundle = {
+        "temperature": temperature,
+        "thresholds": thresholds,
         "bundle_format": BUNDLE_FORMAT,
         "run_id": run_id,
         "created_utc": datetime.now(timezone.utc).isoformat(),
@@ -107,6 +125,8 @@ def export(run_id: str, cfg: dict, out: Path) -> dict:
         "dataset_version": bundle["dataset_version"],
         "size_mb": round(size_mb, 2),
         "sha256": digest,
+        "temperature": temperature,
+        "thresholds": thresholds,
         "val_metrics": metrics,
         "created_utc": bundle["created_utc"],
     }

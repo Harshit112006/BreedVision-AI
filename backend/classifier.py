@@ -178,15 +178,38 @@ def status() -> ClassifierStatus:
     return _status
 
 
+def active_thresholds() -> dict:
+    """Thresholds shipped inside the loaded model, else the provisional ones.
+
+    Taking them from the model keeps a model and its operating point together:
+    swapping the bundle can never leave stale cut-offs behind in this file.
+    """
+    t = getattr(_predictor, "thresholds", None) if _predictor is not None else None
+    if t:
+        return {
+            "confident": float(t["confident"]),
+            "uncertain": float(t["low_below"]),
+            "provisional": False,
+            "basis": t.get("basis", ""),
+            "target_confident_accuracy": t.get("target_confident_accuracy"),
+        }
+    return {
+        "confident": PROVISIONAL_CONFIDENT_THRESHOLD,
+        "uncertain": PROVISIONAL_UNCERTAIN_THRESHOLD,
+        "provisional": True,
+        "basis": "placeholder; this model was exported without calibration",
+    }
+
+
 def band_for(confidence: float) -> str:
     """Map a probability onto what the interface is allowed to assert.
 
     The band, not the raw number, decides whether a single breed may be named.
-    Thresholds are provisional -- see the module docstring.
     """
-    if confidence >= PROVISIONAL_CONFIDENT_THRESHOLD:
+    t = active_thresholds()
+    if confidence >= t["confident"]:
         return "confident"
-    if confidence >= PROVISIONAL_UNCERTAIN_THRESHOLD:
+    if confidence >= t["uncertain"]:
         return "uncertain"
     return "low"
 
@@ -236,10 +259,8 @@ def classify(image, top_k: int = 5) -> dict:
         "model_version": out.model_version,
         "inference_ms": round(out.inference_ms, 1),
         "num_classes": len(_predictor.class_to_idx),
-        "thresholds": {
-            "confident": PROVISIONAL_CONFIDENT_THRESHOLD,
-            "uncertain": PROVISIONAL_UNCERTAIN_THRESHOLD,
-            # Stated in every response so no consumer treats these as validated.
-            "provisional": True,
-        },
+        "temperature": getattr(_predictor, "temperature", 1.0),
+        # Stated in every response so no consumer mistakes placeholders for
+        # derived values, or the reverse.
+        "thresholds": active_thresholds(),
     }

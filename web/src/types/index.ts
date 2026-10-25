@@ -94,7 +94,7 @@ export interface ModelInfo {
   version: string;
   architecture: string;
   numClasses: number;
-  /** Provisional until Phase 5 derives it from validation data. */
+  /** Derived by ml/training/calibrate.py; see lib/confidence.ts for the basis. */
   confidenceThreshold: number;
   trainedAt: string | null;
 }

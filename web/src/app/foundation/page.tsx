@@ -9,7 +9,11 @@ import { Badge, Eyebrow } from "@/components/ui/Badge";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Field, Input, Select, Textarea } from "@/components/ui/Field";
-import { THRESHOLDS_ARE_PROVISIONAL } from "@/lib/confidence";
+import {
+  DEFAULT_THRESHOLDS,
+  THRESHOLDS_ARE_PROVISIONAL,
+  THRESHOLD_BASIS,
+} from "@/lib/confidence";
 
 export const metadata: Metadata = {
   title: "Design foundation",
@@ -229,18 +233,16 @@ export default function FoundationPage() {
                 title="Confidence"
                 description="Three redundant channels — written band, segmented fill, and the number — so the reading never depends on colour alone."
               >
-                {THRESHOLDS_ARE_PROVISIONAL ? (
-                  <div className="rounded-md border border-amber/30 bg-amber-soft px-4 py-3">
-                    <p className="text-small text-ink-2">
-                      <strong className="font-semibold text-amber">
-                        Provisional thresholds.
-                      </strong>{" "}
-                      The confident / uncertain cut-offs below are placeholders.
-                      Phase 5 of the ML plan derives the real operating
-                      threshold from validation data.
-                    </p>
-                  </div>
-                ) : null}
+                <div className="rounded-md border border-line bg-paper-sunk px-4 py-3">
+                  <p className="text-small text-ink-2">
+                    <strong className="font-semibold text-ink">
+                      {THRESHOLDS_ARE_PROVISIONAL
+                        ? "Provisional thresholds."
+                        : `Confident at ${DEFAULT_THRESHOLDS.confident * 100}%, uncertain from ${DEFAULT_THRESHOLDS.uncertain * 100}%.`}
+                    </strong>{" "}
+                    {THRESHOLD_BASIS}
+                  </p>
+                </div>
                 <div className="grid gap-6 sm:grid-cols-3">
                   <Card>
                     <ConfidenceIndicator value={0.914} />

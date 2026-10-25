@@ -7,7 +7,14 @@
   "image_size": 224,
   "dataset_version": "v1",
   "size_mb": 15.82,
-  "sha256": "24b343ec26418505cec4c41267d53b527bbe05cc63173f6af340355a8dc3940a",
+  "sha256": "f85f1399f295ce33402bdf7ec6074bbc8f82fe41ec6a33451c9acc61366cb9a5",
+  "temperature": 1.04,
+  "thresholds": {
+    "confident": 0.85,
+    "low_below": 0.3,
+    "target_confident_accuracy": 0.9,
+    "basis": "validation, 5-fold cross-fitted; test split untouched"
+  },
   "val_metrics": {
     "accuracy": 0.6358744394618834,
     "macro_f1": 0.6048610397172275,
@@ -19,5 +26,5 @@
     "top3_accuracy": 0.8278026905829596,
     "top5_accuracy": 0.9031390134529148
   },
-  "created_utc": "2026-08-19T10:01:20.423465+00:00"
+  "created_utc": "2026-10-25T12:11:39.599240+00:00"
 }

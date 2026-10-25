@@ -1,10 +1,23 @@
 /**
  * Confidence banding — how much the interface is allowed to assert.
  *
- * IMPORTANT: the thresholds below are PROVISIONAL placeholders. Phase 5 of the
- * ML plan derives the real operating threshold empirically from validation
- * data; until that runs, these values are not evidence-based and no part of the
- * UI may present them as a validated accuracy guarantee.
+ * The cut-offs are DERIVED, not guessed: ml/training/calibrate.py temperature-
+ * scales the trained head and reads thresholds off validation data using 5-fold
+ * cross-fitting, with the test split untouched.
+ *
+ *   confident >= 0.85  first threshold where accuracy-when-named reaches the
+ *                      90% target (the model names a breed for ~25% of photos)
+ *   low       <  0.30  below this, the true breed is in the top 3 less than 60%
+ *                      of the time, so even a candidate list is unreliable
+ *
+ * These MUST match the thresholds embedded in the deployed model bundle
+ * (backend/models/breedvision_classifier.json), which the API reports at
+ * /api/classify/info. If the model is re-exported, update them together.
+ *
+ * Honest limits: validation was used both to fit the temperature and to choose
+ * the cut-offs, so the figures are mildly optimistic until confirmed once on
+ * the held-out test split. The 90% target is a policy choice, not a fact about
+ * the model; a lower target names more breeds at lower accuracy.
  *
  * The band — not the raw number — decides how the result screen speaks:
  *   confident  -> state the breed
@@ -21,18 +34,21 @@ export interface ConfidenceThresholds {
   uncertain: number;
 }
 
-/** Provisional. Replace with the Phase 5 value once measured. */
-export const PROVISIONAL_THRESHOLDS: ConfidenceThresholds = {
-  confident: 0.7,
-  uncertain: 0.4,
+export const DEFAULT_THRESHOLDS: ConfidenceThresholds = {
+  confident: 0.85,
+  uncertain: 0.3,
 };
 
-/** True while the thresholds above are not yet backed by validation data. */
-export const THRESHOLDS_ARE_PROVISIONAL = true;
+/** True only while the thresholds are placeholders rather than derived. */
+export const THRESHOLDS_ARE_PROVISIONAL = false;
+
+/** One line the UI can show wherever thresholds are explained. */
+export const THRESHOLD_BASIS =
+  "Derived on validation data (5-fold cross-fitted), targeting 90% accuracy when a breed is named. Not yet confirmed on the held-out test split.";
 
 export function bandFor(
   confidence: number,
-  thresholds: ConfidenceThresholds = PROVISIONAL_THRESHOLDS,
+  thresholds: ConfidenceThresholds = DEFAULT_THRESHOLDS,
 ): ConfidenceBand {
   if (confidence >= thresholds.confident) return "confident";
   if (confidence >= thresholds.uncertain) return "uncertain";

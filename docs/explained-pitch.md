@@ -145,9 +145,11 @@ off a slide. Every figure is measured.
 > Convert to RGB, resize and crop to 224, normalise, extract features, classify,
 > softmax to percentages. Then a confidence band decides what the interface is
 > allowed to claim: confident names the breed; uncertain refuses to and shows
-> candidates instead; lowest just asks for a better photo. The thresholds are
-> currently placeholders and flagged as such in the UI — deriving them properly
-> from validation data is a later phase.
+> candidates instead; lowest just asks for a better photo. The cut-offs
+> are measured on validation data, not guessed: the model names a breed at 85%
+> and above, where it is right about 90% of the time, which covers only about a
+> quarter of photos. That 90% target is a trade-off I chose, and it is not yet
+> confirmed on the held-out test set.
 >
 > **Security.**
 > No secrets in the frontend — only public configuration. No credentials

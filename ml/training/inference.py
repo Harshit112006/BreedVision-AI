@@ -71,6 +71,11 @@ class BreedPredictor:
         #
         # Preferring the bundle when present is what makes offline serving
         # possible without a second, divergent inference path.
+        # Calibration travels with the bundle (ml/training/calibrate.py). A
+        # training checkpoint has none, which means T = 1.0 and no thresholds.
+        self.temperature = float(ckpt.get("temperature", 1.0))
+        self.thresholds = ckpt.get("thresholds")
+
         self.is_bundle = "backbone_state_dict" in ckpt
         if self.is_bundle:
             import timm
@@ -130,7 +135,7 @@ class BreedPredictor:
         t0 = time.perf_counter()
         feats = self.backbone(x)
         logits = self.head((feats - self.feature_mean) / self.feature_std)
-        probs = torch.softmax(logits, dim=1)[0]
+        probs = torch.softmax(logits / self.temperature, dim=1)[0]
         elapsed_ms = (time.perf_counter() - t0) * 1000.0
 
         k = min(top_k, probs.numel())

@@ -55,6 +55,6 @@ export const MOCK_MODEL_INFO: ModelInfo = {
   version: "not-deployed",
   architecture: "under evaluation (Phase 2 backbone comparison)",
   numClasses: NUM_CLASSES,
-  confidenceThreshold: 0.7,
+  confidenceThreshold: 0.85,
   trainedAt: null,
 };

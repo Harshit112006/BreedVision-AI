@@ -220,10 +220,12 @@ candidates at all, just advice on taking a better photo.
 This is a designed refusal to overclaim, and it is enforced in code, not left
 to whoever builds a screen later.
 
-> **One caveat, stated plainly:** the cut-off values that decide these bands
-> (currently 70% and 40%) are **placeholders**. They have not yet been derived
-> from data. The interface displays a warning saying so. Choosing them properly
-> is a later phase.
+> **How the cut-offs were chosen:** they were measured, not guessed. On
+> validation data the model is confident at 85% and above, and gives up below
+> 30%. At 85%, a named breed is right about 90% of the time, but that happens for
+> only about a quarter of photos. The 90% target is a policy choice: a lower
+> target names more breeds and is wrong more often. The figures were chosen on
+> validation data and not yet confirmed on the held-out test set.
 
 ## What information the user receives
 
@@ -389,8 +391,8 @@ could-not-identify, and that band decides what the screen is allowed to assert.
 
 Note that the 40.5% above would land in **uncertain** — so the app would
 *decline* to name Amritmahal even though it was right. That's the honest
-behaviour, and it's also evidence the placeholder thresholds need proper
-derivation.
+behaviour. Under the measured cut-offs a result needs 85% to name a breed, and
+this one scored about 40%, so it is correctly treated as uncertain.
 
 ### 8. The confidence score is shown **[REAL]**
 *Sees:* A written status ("Confident match"), a ten-segment bar, and the number
@@ -674,8 +676,8 @@ scores. *Out:* 49 percentages summing to 100%. *Tech:* softmax. **REAL**
 **11. Confidence banding** — deciding how much the interface may assert. This
 is the trust layer: it is what stops a weak guess being presented as a finding.
 *In:* top probability. *Out:* `confident` / `uncertain` / `low` and a flag for
-whether a breed may be named. *Tech:* `src/lib/confidence.ts`. **REAL — but the
-threshold values are provisional placeholders**
+whether a breed may be named. *Tech:* `src/lib/confidence.ts`. **REAL — with
+thresholds (0.85 / 0.30) derived on validation data, not yet confirmed on test**
 
 **12. Backend response** — should return breed, confidence, alternatives and
 model version. The FastAPI backend returns a *detection* shape instead

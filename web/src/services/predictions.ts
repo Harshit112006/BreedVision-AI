@@ -33,14 +33,15 @@ function mockPrediction(seedKey: string): Prediction {
   const pool = MOCK_BREED_SUMMARIES;
 
   // Spread across the three confidence bands so every result state is
-  // reachable while building: ~55% confident, ~28% uncertain, ~17% low.
+  // reachable while building. Ranges straddle the derived cut-offs (0.85 and
+  // 0.30): confident 0.86 – 0.97, uncertain 0.31 – 0.84, low 0.12 – 0.29.
   const roll = (h % 100) / 100;
   const top =
-    roll < 0.55
-      ? 0.72 + ((h >> 3) % 26) / 100 // 0.72 – 0.97
-      : roll < 0.83
-        ? 0.42 + ((h >> 5) % 26) / 100 // 0.42 – 0.67
-        : 0.18 + ((h >> 7) % 20) / 100; // 0.18 – 0.37
+    roll < 0.3
+      ? 0.86 + ((h >> 3) % 12) / 100
+      : roll < 0.75
+        ? 0.31 + ((h >> 5) % 54) / 100
+        : 0.12 + ((h >> 7) % 18) / 100;
 
   const primary = pool[h % pool.length];
   const others = pool.filter((b) => b.id !== primary.id);

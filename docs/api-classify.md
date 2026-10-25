@@ -115,7 +115,9 @@ back to the run that produced it.
   "model_version": "phase2-frozen-baseline__efficientnet_b0",
   "num_classes": 49,
   "task": "breed classification (49 Indian cattle breeds)",
-  "thresholds": { "confident": 0.7, "uncertain": 0.4, "provisional": true }
+  "thresholds": { "confident": 0.85, "uncertain": 0.3, "provisional": false,
+                  "basis": "validation, 5-fold cross-fitted; test split untouched",
+                  "target_confident_accuracy": 0.9 }
 }
 ```
 
@@ -147,7 +149,9 @@ Measured response for a real image from the held-out test split
   "model_version": "phase2-frozen-baseline__efficientnet_b0",
   "inference_ms": 121.8,
   "num_classes": 49,
-  "thresholds": { "confident": 0.7, "uncertain": 0.4, "provisional": true }
+  "thresholds": { "confident": 0.85, "uncertain": 0.3, "provisional": false,
+                  "basis": "validation, 5-fold cross-fitted; test split untouched",
+                  "target_confident_accuracy": 0.9 }
 }
 ```
 
@@ -156,9 +160,13 @@ runners-up are all South Indian draught breeds, so the confusions are
 anatomically sensible. But at 40.5% the band is `uncertain`, `is_confident` is
 false, and the animal record is stored as `Unknown`.
 
-`thresholds.provisional` is `true` in **every** response. The cut-offs are
-placeholders; Phase 5 derives the real operating point from validation data.
-Shipping the flag means no consumer can mistake them for validated figures.
+`thresholds` comes from the model bundle itself (see `docs/model-baseline.md`
+section 10), so a model and its operating point cannot be separated.
+`provisional` is `false` for a calibrated bundle and `true` for one exported
+without calibration, so no consumer can mistake placeholders for derived values.
+The example response above was captured before calibration, under the old
+placeholder cut-offs (0.70 / 0.40); under the current ones the same image is
+still `uncertain`.
 
 ### Errors
 
