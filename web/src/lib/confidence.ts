@@ -3,10 +3,10 @@
  *
  * The cut-offs are DERIVED, not guessed: ml/training/calibrate.py temperature-
  * scales the trained head and reads thresholds off validation data using 5-fold
- * cross-fitting, with the test split untouched.
+ * cross-fitting, with no tuning on the test split.
  *
  *   confident >= 0.85  first threshold where accuracy-when-named reaches the
- *                      90% target (the model names a breed for ~25% of photos)
+ *                      90% target (the model names a breed for ~24% of photos)
  *   low       <  0.30  below this, the true breed is in the top 3 less than 60%
  *                      of the time, so even a candidate list is unreliable
  *
@@ -15,8 +15,9 @@
  * /api/classify/info. If the model is re-exported, update them together.
  *
  * Honest limits: validation was used both to fit the temperature and to choose
- * the cut-offs, so the figures are mildly optimistic until confirmed once on
- * the held-out test split. The 90% target is a policy choice, not a fact about
+ * the cut-offs. They were then confirmed once on the held-out test split
+ * (docs/test-evaluation.md): 90.1% accurate on the 24% of photos where a breed
+ * is named. That is one dataset, not field conditions. The 90% target is a policy choice, not a fact about
  * the model; a lower target names more breeds at lower accuracy.
  *
  * The band — not the raw number — decides how the result screen speaks:
@@ -44,7 +45,7 @@ export const THRESHOLDS_ARE_PROVISIONAL = false;
 
 /** One line the UI can show wherever thresholds are explained. */
 export const THRESHOLD_BASIS =
-  "Derived on validation data (5-fold cross-fitted), targeting 90% accuracy when a breed is named. Not yet confirmed on the held-out test split.";
+  "Derived on validation data (5-fold cross-fitted), targeting 90% accuracy when a breed is named. Confirmed once on the held-out test split.";
 
 export function bandFor(
   confidence: number,

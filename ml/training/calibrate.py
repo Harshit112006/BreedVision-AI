@@ -37,6 +37,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from ml.training import features as feat_mod  # noqa: E402
+from ml.training import ft_logits  # noqa: E402
 from ml.training import train as train_mod  # noqa: E402
 
 N_BINS = 15
@@ -50,6 +51,9 @@ TARGET_LOW_TOP3 = 0.60
 def logits_for(run: str, cfg: dict, split: str):
     runs = Path(cfg["paths"]["runs"])
     ckpt = torch.load(runs / f"{run}.pt", map_location="cpu", weights_only=False)
+    if ft_logits.is_finetuned(ckpt):
+        # Fine-tuned backbone: cached frozen features do not apply.
+        return ft_logits.logits_for_checkpoint(run, ckpt, cfg, split)
     fs = feat_mod.load(
         feat_mod.cache_path(
             Path(cfg["paths"]["features"]),

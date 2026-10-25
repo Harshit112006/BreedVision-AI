@@ -223,9 +223,10 @@ to whoever builds a screen later.
 > **How the cut-offs were chosen:** they were measured, not guessed. On
 > validation data the model is confident at 85% and above, and gives up below
 > 30%. At 85%, a named breed is right about 90% of the time, but that happens for
-> only about a quarter of photos. The 90% target is a policy choice: a lower
-> target names more breeds and is wrong more often. The figures were chosen on
-> validation data and not yet confirmed on the held-out test set.
+> a quarter of photos. The 90% target is a policy choice: a lower
+> target names more breeds and is wrong more often. The cut-offs were chosen on
+> validation data and then confirmed once on the held-out test set, where the
+> model names a breed for 24% of photos and is right 90% of the time when it does.
 
 ## What information the user receives
 
@@ -611,8 +612,12 @@ Reading these properly:
   breeds equally; accuracy is dominated by the larger ones. The gap means
   smaller breeds are predicted worse — expected at 5.1× imbalance.
 
-**The test split has never been touched.** Choosing an architecture against it
-would contaminate the only honest estimate of real-world performance.
+**The test split was used only for final scoring.** Choosing a model against it
+would contaminate the only honest estimate of real-world performance, so the
+architecture, the fine-tuning epoch, the temperature and the thresholds were all
+chosen on validation. The test split has been scored twice, once for the frozen
+baseline and once for the fine-tuned model, and both results are reported
+(`docs/test-evaluation.md`).
 
 ### Frontend
 Next.js 16.3.1, React 19.2, TypeScript 5, Tailwind CSS v4. Routes: `/`,
@@ -677,7 +682,7 @@ scores. *Out:* 49 percentages summing to 100%. *Tech:* softmax. **REAL**
 is the trust layer: it is what stops a weak guess being presented as a finding.
 *In:* top probability. *Out:* `confident` / `uncertain` / `low` and a flag for
 whether a breed may be named. *Tech:* `src/lib/confidence.ts`. **REAL — with
-thresholds (0.85 / 0.30) derived on validation data, not yet confirmed on test**
+thresholds (0.85 / 0.30) derived on validation data and confirmed on test**
 
 **12. Backend response** — should return breed, confidence, alternatives and
 model version. The FastAPI backend returns a *detection* shape instead
@@ -776,10 +781,12 @@ right (precision); of all actual Gir images, how many did it find (recall).
 
 1. **What it does** — photo in, breed and confidence out, across 49 Indian
    cattle breeds.
-2. **How** — transfer learning: a frozen ImageNet-pretrained EfficientNet-B0
-   produces 1,280 features; a trained linear layer maps them to 49 breeds.
-3. **How well** — 63.6% top-1, 82.8% top-3 on validation. Chance is 2%. The
-   test set is untouched.
+2. **How** — transfer learning: an ImageNet-pretrained EfficientNet-B0, with
+   its last three blocks fine-tuned and a linear layer mapping its 1,280 features
+   to 49 breeds.
+3. **How well** — 61.9% top-1 and 83.0% top-3 on the held-out test set (49
+   breeds; chance is 2%). It names a breed for about 1 photo in 4, and is right
+   about 9 times in 10 when it does.
 4. **The honest part** — it refuses to name a breed when unsure, and the
    dataset has proven label errors (216 images filed under multiple breeds).
 5. **What's missing** — the join. A frontend, a backend and a trained model all

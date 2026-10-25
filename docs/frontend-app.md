@@ -89,8 +89,9 @@ with "none is confirmed" stated above it.
 
 > Thresholds were originally placeholders (0.70 / 0.40). They are now **derived**:
 > 0.85 confident, 0.30 low, from `ml/training/calibrate.py` (see
-> `model-baseline.md` section 10). They are validation-based and not yet
-> confirmed on the test split.
+> `model-baseline.md` section 10). They are validation-based and were then
+> confirmed on the test split (`test-evaluation.md`): 90.1% accurate when a
+> breed is named, which happens for 24% of photos.
 
 ## 5. Breed library
 

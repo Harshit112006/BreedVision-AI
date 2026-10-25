@@ -1,5 +1,10 @@
 # Baseline Classification Model (Phase 2)
 
+> **Status note (26 Oct 2026).** This document records the Phase 2 frozen-backbone
+> baseline as it stood then, when the test split was still untouched. Later work
+> fine-tuned the model and scored the test split; see `test-evaluation.md` for the
+> current numbers.
+
 **Status:** complete. All figures below are measured on this machine; none are
 estimated or carried over from published benchmarks.
 

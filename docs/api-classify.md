@@ -116,7 +116,7 @@ back to the run that produced it.
   "num_classes": 49,
   "task": "breed classification (49 Indian cattle breeds)",
   "thresholds": { "confident": 0.85, "uncertain": 0.3, "provisional": false,
-                  "basis": "validation, 5-fold cross-fitted; test split untouched",
+                  "basis": "validation, 5-fold cross-fitted; not tuned on the test split",
                   "target_confident_accuracy": 0.9 }
 }
 ```
@@ -150,7 +150,7 @@ Measured response for a real image from the held-out test split
   "inference_ms": 121.8,
   "num_classes": 49,
   "thresholds": { "confident": 0.85, "uncertain": 0.3, "provisional": false,
-                  "basis": "validation, 5-fold cross-fitted; test split untouched",
+                  "basis": "validation, 5-fold cross-fitted; not tuned on the test split",
                   "target_confident_accuracy": 0.9 }
 }
 ```

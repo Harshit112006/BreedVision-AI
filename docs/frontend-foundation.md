@@ -116,8 +116,9 @@ in Phase B reads `assertsBreed` from there rather than re-deciding.
 
 > **The thresholds are derived, not placeholders** (0.85 confident, 0.30 low),
 > from validation data via `ml/training/calibrate.py`. `/foundation` states
-> their basis. They are not yet confirmed on the held-out test split, and the UI
-> does not present them as a validated accuracy guarantee.
+> their basis. They were confirmed once on the held-out test split
+> (`test-evaluation.md`), but the UI still does not present them as an accuracy
+> guarantee: they describe one dataset, not field conditions.
 
 ## 6. Verification
 

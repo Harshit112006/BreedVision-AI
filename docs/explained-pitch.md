@@ -54,8 +54,10 @@ off a slide. Every figure is measured.
 > under more than one breed, so their labels contradict each other. I removed
 > those, plus one non-Indian breed, leaving 7,799 images across 49 breeds.
 >
-> **Results.** 63.6% top-1 and 82.8% top-3 on validation, against 2% chance.
-> The test set is untouched, held for final evaluation.
+> **Results.** On the held-out test set: 61.9% top-1 and 83.0% top-3, against 2%
+> chance. I fine-tuned the last three blocks of EfficientNet-B0; that lifted test
+> top-1 from 59.3% to 61.9%, a modest but consistent gain. I looked at the test
+> set twice, once per model, and chose nothing from either result.
 >
 > **Stack.** PyTorch and timm for the model; Next.js, React and TypeScript for
 > the web application; FastAPI and SQLite for the backend that exists on `main`.
@@ -147,9 +149,9 @@ off a slide. Every figure is measured.
 > allowed to claim: confident names the breed; uncertain refuses to and shows
 > candidates instead; lowest just asks for a better photo. The cut-offs
 > are measured on validation data, not guessed: the model names a breed at 85%
-> and above, where it is right about 90% of the time, which covers only about a
-> quarter of photos. That 90% target is a trade-off I chose, and it is not yet
-> confirmed on the held-out test set.
+> and above, where it is right about 90% of the time, which covers about a
+> quarter of photos. That 90% target is a trade-off I chose; on the held-out test
+> set it held (90.1% right on the 24% of photos where a breed was named).
 >
 > **Security.**
 > No secrets in the frontend — only public configuration. No credentials
@@ -159,9 +161,9 @@ off a slide. Every figure is measured.
 > **Current status.**
 > The dataset pipeline is complete and reproducible with 21 passing tests. The
 > baseline model is trained and evaluated. The web application works end to end
-> — upload, validation, resizing, results, history. The gap is that the two
-> halves aren't connected: the site runs on a labelled mock service until the
-> FastAPI backend exists. The test split is deliberately untouched.
+> — upload, validation, resizing, results, history — and is connected to the
+> FastAPI classifier. A labelled mock mode remains for interface development. The
+> test split was scored once per model and nothing was tuned on it.
 >
 > **Future scope.**
 > Fine-tuning instead of frozen features — that's the biggest available gain and
@@ -179,7 +181,7 @@ Guard rails, because these are easy to drift into and none are true:
 
 | Don't say | Say instead |
 |---|---|
-| "It's 99% accurate" | "63.6% top-1, 82.8% top-3 on validation" |
+| "It's 99% accurate" | "61.9% top-1, 83.0% top-3 on the held-out test set" |
 | "It works offline with on-device AI" | "Records save on-device; on-device inference is future scope" |
 | "It integrates with Bharat Pashudhan" | "No government integration exists" |
 | "It identifies cattle and buffalo" | "49 cattle breeds. The dataset has no buffalo" |

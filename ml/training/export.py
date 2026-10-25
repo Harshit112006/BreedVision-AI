@@ -54,13 +54,26 @@ def export(run_id: str, cfg: dict, out: Path) -> dict:
 
     # Building with pretrained=True here is intentional: this is the one moment
     # the weights are fetched, so that serving never has to.
-    print(f"materialising backbone {timm_name} ...", flush=True)
-    backbone, dim = feat_mod.build_backbone(timm_name)
+    if "backbone_state_dict" in ckpt:
+        # Fine-tuned run: the trained backbone weights travel with the
+        # checkpoint, so nothing is fetched and nothing is re-initialised.
+        import timm
+
+        print(f"using fine-tuned backbone {timm_name} from the checkpoint",
+              flush=True)
+        backbone = timm.create_model(timm_name, pretrained=False, num_classes=0)
+        backbone.load_state_dict(ckpt["backbone_state_dict"])
+        dim = int(backbone.num_features)
+    else:
+        print(f"materialising backbone {timm_name} ...", flush=True)
+        backbone, dim = feat_mod.build_backbone(timm_name)
 
     metrics = {}
     if record_path.is_file():
         rec = json.loads(record_path.read_text(encoding="utf-8"))
         metrics = rec.get("val_metrics", {})
+    if not metrics:
+        metrics = ckpt.get("val_metrics", {})
 
     # Calibration is optional: a bundle exported before calibrate.py was run
     # simply carries T = 1.0 and no thresholds, and the service says so.
@@ -75,7 +88,7 @@ def export(run_id: str, cfg: dict, out: Path) -> dict:
                 "confident": float(d["confident"]),
                 "low_below": float(d["low_below"]),
                 "target_confident_accuracy": cal["targets"]["confident_accuracy"],
-                "basis": "validation, 5-fold cross-fitted; test split untouched",
+                "basis": "validation, 5-fold cross-fitted; not tuned on the test split",
             }
 
     pre = cfg["preprocess"]
