@@ -21,6 +21,7 @@ const PUBLIC_NAV: NavItem[] = [
   { href: "/breeds", label: "Breeds" },
   { href: "/history", label: "History" },
   { href: "/prices", label: "Prices" },
+  { href: "/account", label: "Account" },
 ];
 
 export function SiteHeader() {

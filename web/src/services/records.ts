@@ -18,6 +18,8 @@ import {
 } from "./localdb";
 import type { GeoLocation, Prediction, ServiceResult } from "@/types";
 
+import { deleteRemoteRecord } from "./cloud";
+
 /** A record plus a live object URL for its image. Revoke when finished. */
 export interface LocalRecord {
   id: string;
@@ -138,6 +140,14 @@ export async function getRecord(
 
 export async function deleteRecord(id: string): Promise<ServiceResult<null>> {
   try {
+    // A synced record also lives in the cloud. Deleting only the local copy
+    // would leave the user believing their data is gone when it is not, so the
+    // cloud copy goes first and a failure there stops the deletion.
+    const existing = await getRecordById(id);
+    if (existing?.syncState === "synced") {
+      const remote = await deleteRemoteRecord(id);
+      if (!remote.ok) return remote;
+    }
     await deleteRecordById(id);
     return { ok: true, data: null };
   } catch {

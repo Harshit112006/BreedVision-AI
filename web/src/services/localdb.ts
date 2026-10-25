@@ -127,6 +127,8 @@ export interface StoredSale {
   createdAt: string;
   /** "synthetic" rows are demonstration data and must always be labelled. */
   source: "user" | "synthetic";
+  /** True once this sale has been uploaded to the user's account. */
+  synced?: boolean;
 }
 
 function salesTx<T>(
@@ -177,4 +179,18 @@ export async function deleteSalesBySource(
   await salesTx("readwrite", (s) => {
     ids.forEach((id) => s.delete(id));
   });
+}
+
+/* ------------------------------------------------------------ sync state -- */
+
+export async function markRecordSynced(id: string): Promise<void> {
+  const rec = await getRecordById(id);
+  if (rec) await putRecord({ ...rec, syncState: "synced" });
+}
+
+export async function markSalesSynced(ids: string[]): Promise<void> {
+  if (ids.length === 0) return;
+  const all = await getAllSales();
+  const set = new Set(ids);
+  await putSales(all.filter((s) => set.has(s.id)).map((s) => ({ ...s, synced: true })));
 }

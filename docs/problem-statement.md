@@ -35,7 +35,8 @@ BreedVision AI lets a field worker photograph an animal and get:
 | Breed classification, 49 cattle breeds | Built; 63.6% top-1 / 82.8% top-3 on validation |
 | Confidence bands that refuse to name a breed when unsure | Built (thresholds still provisional) |
 | Optional GPS tagging | Built |
-| Local records and history | Built (device only) |
+| Local records and history | Built, on-device |
+| Accounts, cloud backup, cross-account duplicate check | Schema and rules **tested**; client wiring **written but not run against a live Supabase project** (see `supabase.md`) |
 | Buffalo breeds | **Not covered**: no buffalo in the dataset |
 | Relative value ranking and sale-price log | Built (see below) |
 | Rupee price estimate | **Not built**; blocked on a verified price source |

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { DuplicateNotice } from "@/components/prediction/DuplicateNotice";
+import { DuplicateNotice, RemoteDuplicateNotice } from "@/components/prediction/DuplicateNotice";
 import { PredictionResult } from "@/components/prediction/PredictionResult";
 import { ErrorState } from "@/components/states";
 import { Button, ButtonLink } from "@/components/ui/Button";
@@ -21,6 +21,7 @@ import {
   type DuplicateMatch,
   type PhotoFingerprint,
 } from "@/services/duplicates";
+import { currentUser, remoteDuplicate, syncAll, type RemoteDuplicate } from "@/services/cloud";
 import { predictBreed } from "@/services/predictions";
 import { saveRecord } from "@/services/records";
 import { IMAGE_LIMITS } from "@/services/config";
@@ -53,6 +54,8 @@ export function IdentifyFlow() {
   const [savedId, setSavedId] = useState<string | null>(null);
   const [fp, setFp] = useState<PhotoFingerprint | null>(null);
   const [duplicate, setDuplicate] = useState<DuplicateMatch | null>(null);
+  const [remoteDup, setRemoteDup] = useState<RemoteDuplicate | null>(null);
+  const [syncNote, setSyncNote] = useState<string | null>(null);
   const [attachLocation, setAttachLocation] = useState(false);
   const [savedLocation, setSavedLocation] = useState<GeoLocation | null>(null);
   const [locationNote, setLocationNote] = useState<string | null>(null);
@@ -78,6 +81,8 @@ export function IdentifyFlow() {
     setLocationNote(null);
     setFp(null);
     setDuplicate(null);
+    setRemoteDup(null);
+    setSyncNote(null);
     setPhase("idle");
   }, [image]);
 
@@ -117,10 +122,14 @@ export function IdentifyFlow() {
     try {
       const f = await fingerprint(image.file);
       setFp(f);
-      setDuplicate(await findDuplicate(f));
+      const local = await findDuplicate(f);
+      setDuplicate(local);
+      // Only ask the cloud when the device found nothing and an account exists.
+      setRemoteDup(local ? null : await remoteDuplicate(f));
     } catch {
       setFp(null);
       setDuplicate(null);
+      setRemoteDup(null);
     }
   }, [image]);
 
@@ -156,6 +165,17 @@ export function IdentifyFlow() {
     setSavedId(result.data.id);
     setSavedLocation(location);
     setSaveState("saved");
+
+    // If signed in, upload straight away. Never blocks or fails the save: the
+    // record is already safe on the device and simply stays pending on error.
+    if (await currentUser()) {
+      const r = await syncAll();
+      setSyncNote(
+        r.ok && r.data.recordsFailed.length === 0
+          ? "Synced to your account."
+          : "Cloud sync didn’t finish. It will retry from the Account page.",
+      );
+    }
   }, [image, prediction, attachLocation, fp, duplicate]);
 
   /* ------------------------------------------------------------- result -- */
@@ -164,6 +184,7 @@ export function IdentifyFlow() {
       <div className="flex flex-col gap-8">
         <MockDataNotice what="This prediction was generated for interface development." />
         {duplicate && saveState !== "saved" ? <DuplicateNotice match={duplicate} /> : null}
+        {remoteDup && saveState !== "saved" ? <RemoteDuplicateNotice match={remoteDup} /> : null}
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-12">
           <figure className="flex flex-col gap-3">
@@ -283,7 +304,7 @@ export function IdentifyFlow() {
               {saveState === "saved"
                 ? `Saved on this device.${
                     savedLocation ? " Location attached." : ""
-                  }${locationNote ? ` ${locationNote}` : ""}`
+                  }${locationNote ? ` ${locationNote}` : ""}${syncNote ? ` ${syncNote}` : ""}`
                 : saveState === "failed"
                   ? (error?.message ??
                     "This record could not be saved on your device.")
