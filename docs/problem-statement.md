@@ -32,16 +32,18 @@ BreedVision lets a field worker photograph an animal and get:
 
 | Capability | Status |
 |---|---|
-| Breed classification, 49 cattle breeds | Built; 63.6% top-1 / 82.8% top-3 on validation |
-| Confidence bands that refuse to name a breed when unsure | Built (thresholds still provisional) |
+| Breed classification, 49 cattle breeds | Built; on 1,114 held-out photos 61.9% top-1 / 83.0% top-3 (`test-evaluation.md`) |
+| Confidence bands that refuse to name a breed when unsure | Built; thresholds derived on validation and confirmed on test |
+| "Does not look like cattle" check | Built; limits stated (`non-cattle-check.md`) |
+| Where-the-model-looked heat-map | Built and measured (`explainability.md`) |
 | Optional GPS tagging | Built |
-| Local records and history | Built, on-device |
-| Accounts, cloud backup, cross-account duplicate check | Schema and rules **tested**; client wiring **written but not run against a live Supabase project** (see `supabase.md`) |
+| Local records, history and CSV export | Built, on-device |
+| Accounts, cloud backup, cross-account duplicate check | Schema and rules **tested**; client **switched off** and never run against a live Supabase project (`supabase.md`) |
 | Buffalo breeds | **Not covered**: no buffalo in the dataset |
-| Relative value ranking and sale-price log | Built (see below) |
-| Rupee price estimate | **Not built**; blocked on a verified price source |
-| Duplicate-photo check | Built, device-only; catches re-submitted photos, **not** different photos of one animal (see `duplicate-detection.md`) |
-| Duplicate-animal identification | **Not possible with this method**; needs a different technique |
+| Indicative rupee value guide | Built: listed price ranges for 10 of 49 breeds plus milk and pregnancy adjustments; not a quote (`price-reference.md`) |
+| Duplicate-photo check | Built, device-only; catches re-submitted photos, **not** different photos of one animal (`duplicate-detection.md`) |
+| Duplicate-animal identification | **Not possible with this method** |
+| Five-language interface | Built; translations unreviewed (`i18n.md`) |
 | Offline capture with sync | Planned; local records already carry a sync state |
 | Bharat Pashudhan integration | **Not built**; no integration exists |
 

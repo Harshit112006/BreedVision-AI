@@ -48,7 +48,7 @@ three**, which is why the page shows a range.
   (the same cow costs far more in a city than at the breeding tract), season, age
   and lactation stage are **not** in the estimate.
 - Only the milk and pregnancy effects have any published support, and that
-  support is a 2010-11 study of crossbred-heavy herds in one state.
+  support is a 2010-11 study in one state whose sample includes no indigenous breeds of the kind identified here.
 
 ## The synthetic sales dataset (not shown in the app)
 
